@@ -3,7 +3,9 @@ let faction = "horde"; // Default to Horde
 
 async function loadBuffs() {
     try {
-        const response = await fetch(`${faction}_buffs.json`);
+        const url = `${faction}_buffs.json`;
+        console.log(`Attempting to load: ${url}`); // Debug log
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -14,6 +16,7 @@ async function loadBuffs() {
         displayBuffs();
         startCountdown();
     } catch (error) {
+        console.error("Load error:", error); // Debug log
         document.getElementById("buffList").innerHTML = `<tr><td colspan="5">Error loading buffs: ${error.message}</td></tr>`;
         buffs = [];
     }
@@ -21,9 +24,15 @@ async function loadBuffs() {
 
 function updateFaction() {
     faction = document.getElementById("faction").value;
-    document.getElementById("buffList").innerHTML = ""; // Clear current table
-    document.getElementById("countdownTimer").textContent = "--:--:--"; // Reset countdown
-    loadBuffs(); // Reload buffs for selected faction
+    document.getElementById("buffList").innerHTML = "";
+    document.getElementById("countdownTimer").textContent = "--:--:--";
+    // Toggle alliance class on body for color changes
+    if (faction === "alliance") {
+        document.body.classList.add("alliance");
+    } else {
+        document.body.classList.remove("alliance");
+    }
+    loadBuffs();
 }
 
 function formatDateTime(date, isServerTime = false) {
