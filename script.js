@@ -17,7 +17,7 @@ async function loadBuffs() {
         startCountdown();
     } catch (error) {
         console.error("Load error:", error); // Debug log
-        document.getElementById("buffList").innerHTML = `<tr><td colspan="5">Error loading buffs: ${error.message}</td></tr>`;
+        document.getElementById("buffList").innerHTML = `<tr><td colspan="6">Error loading buffs: ${error.message}</td></tr>`;
         buffs = [];
     }
 }
@@ -26,7 +26,6 @@ function updateFaction() {
     faction = document.getElementById("faction").value;
     document.getElementById("buffList").innerHTML = "";
     document.getElementById("countdownTimer").textContent = "--:--:--";
-    // Toggle alliance class on body for color changes
     if (faction === "alliance") {
         document.body.classList.add("alliance");
     } else {
@@ -65,7 +64,7 @@ function displayBuffs() {
     buffList.innerHTML = "";
     
     if (buffs.length === 0) {
-        buffList.innerHTML = `<tr><td colspan="5">No buffs available.</td></tr>`;
+        buffList.innerHTML = `<tr><td colspan="6">No buffs available.</td></tr>`;
         return;
     }
 
@@ -80,7 +79,7 @@ function displayBuffs() {
     });
 
     if (futureBuffs.length === 0) {
-        buffList.innerHTML = `<tr><td colspan="5">No upcoming buffs available.</td></tr>`;
+        buffList.innerHTML = `<tr><td colspan="6">No upcoming buffs available.</td></tr>`;
         return;
     }
 
@@ -99,6 +98,7 @@ function displayBuffs() {
             <td>${yourTime}</td>
             <td>${buff.server || "Doomhowl"}</td>
             <td>${buff.guild}</td>
+            <td>Onyxia</td> <!-- Hardcoded as Onyxia -->
             <td>${buff.notes || ""}</td>
         `;
         buffList.appendChild(row);
