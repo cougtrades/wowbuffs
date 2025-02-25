@@ -1,29 +1,33 @@
 let buffs = [];
+let faction = "horde"; // Default to Horde
 
 async function loadBuffs() {
     try {
-        const response = await fetch('buffs.json');
+        const response = await fetch(`${faction}_buffs.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         
-        // Remove duplicates based on datetime and guild
-        buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild, item])).values()); // Use UTC datetime + guild as key
-        
-        // Sort buffs by datetime (soonest to oldest, in UTC)
+        buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild, item])).values());
         buffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
         displayBuffs();
-        startCountdown(); // Start or restart the countdown when buffs are loaded
+        startCountdown();
     } catch (error) {
-        document.getElementById("buffList").innerHTML = `<tr><td colspan="4">Error loading buffs: ${error.message}</td></tr>`;
+        document.getElementById("buffList").innerHTML = `<tr><td colspan="5">Error loading buffs: ${error.message}</td></tr>`;
         buffs = [];
     }
 }
 
+function updateFaction() {
+    faction = document.getElementById("faction").value;
+    document.getElementById("buffList").innerHTML = ""; // Clear current table
+    document.getElementById("countdownTimer").textContent = "--:--:--"; // Reset countdown
+    loadBuffs(); // Reload buffs for selected faction
+}
+
 function formatDateTime(date, isServerTime = false) {
     if (isServerTime) {
-        // Format as Mountain Time (UTC-7) for Server Time, without the year
         return date.toLocaleString("en-US", {
             timeZone: "America/Denver",
             weekday: "long",
@@ -34,7 +38,6 @@ function formatDateTime(date, isServerTime = false) {
             hour12: true
         });
     } else {
-        // Format as user's local timezone for Your Time, without the year
         const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         return date.toLocaleString("en-US", {
             timeZone: userTimezone,
@@ -53,7 +56,7 @@ function displayBuffs() {
     buffList.innerHTML = "";
     
     if (buffs.length === 0) {
-        buffList.innerHTML = `<tr><td colspan="4">No buffs available.</td></tr>`;
+        buffList.innerHTML = `<tr><td colspan="5">No buffs available.</td></tr>`;
         return;
     }
 
@@ -61,7 +64,6 @@ function displayBuffs() {
     const now = new Date();
     const localNow = new Date(now.toLocaleString("en-US", { timeZone: userTimezone }));
 
-    // Filter out expired buffs (only show future buffs in user's local time)
     const futureBuffs = buffs.filter(buff => {
         const utcDate = new Date(buff.datetime);
         const localBuffDate = new Date(utcDate.toLocaleString("en-US", { timeZone: userTimezone }));
@@ -69,7 +71,7 @@ function displayBuffs() {
     });
 
     if (futureBuffs.length === 0) {
-        buffList.innerHTML = `<tr><td colspan="4">No upcoming buffs available.</td></tr>`;
+        buffList.innerHTML = `<tr><td colspan="5">No upcoming buffs available.</td></tr>`;
         return;
     }
 
@@ -80,28 +82,22 @@ function displayBuffs() {
             utcDate = new Date();
         }
 
-        const serverTime = formatDateTime(utcDate, true); // Mountain Time (MNT)
-        const yourTime = formatDateTime(utcDate, false); // User's local timezone
+        const serverTime = formatDateTime(utcDate, true);
+        const yourTime = formatDateTime(utcDate, false);
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${serverTime}</td> <!-- Server Time (MNT) -->
-            <td>${yourTime}</td> <!-- Your Time (user's local timezone) -->
+            <td>${serverTime}</td>
+            <td>${yourTime}</td>
             <td>${buff.server || "Doomhowl"}</td>
             <td>${buff.guild}</td>
+            <td>${buff.notes || ""}</td>
         `;
         buffList.appendChild(row);
     });
-
-    // Hide or clear the last-updated element if it exists
-    const lastUpdatedElement = document.querySelector(".last-updated");
-    if (lastUpdatedElement) {
-        lastUpdatedElement.style.display = "none"; // Hide the entire element
-        // Optionally, clear its content: lastUpdatedElement.textContent = "";
-    }
 }
 
 function startCountdown() {
-    let lastDisplayedBuffs = null; // Track the last displayed buffs to avoid unnecessary updates
+    let lastDisplayedBuffs = null;
 
     function updateCountdown() {
         if (buffs.length === 0) {
@@ -109,46 +105,39 @@ function startCountdown() {
             return;
         }
 
-        const now = new Date(); // User's local time
+        const now = new Date();
         const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const localNow = new Date(now.toLocaleString("en-US", { timeZone: userTimezone })); // User's local time in their timezone
-
-        // Log for debugging
-        console.log("User's Local Time:", localNow.toLocaleString("en-US", { timeZone: userTimezone, second: "numeric" }));
-        console.log("Next Buff Datetime (UTC):", buffs.map(b => b.datetime));
+        const localNow = new Date(now.toLocaleString("en-US", { timeZone: userTimezone }));
 
         const nextBuff = buffs.find(buff => {
-            const buffDate = new Date(buff.datetime); // Parse UTC datetime
-            // Convert buffDate to user's local timezone for comparison (no -1 hour adjustment)
+            const buffDate = new Date(buff.datetime);
             const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
-            console.log("Buff Date (Local):", localBuffDate.toLocaleString("en-US", { timeZone: userTimezone, second: "numeric" }));
             return localBuffDate > localNow;
         });
 
         if (!nextBuff) {
             document.getElementById("countdownTimer").textContent = "No upcoming buffs";
             if (lastDisplayedBuffs !== null) {
-                displayBuffs(); // Update display only if it changed
+                displayBuffs();
                 lastDisplayedBuffs = null;
             }
             return;
         }
 
-        const buffDate = new Date(nextBuff.datetime); // Parse UTC datetime
-        const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone })); // Convert to user's local timezone
+        const buffDate = new Date(nextBuff.datetime);
+        const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
         const timeDiff = localBuffDate - localNow;
 
         if (timeDiff <= 0) {
             document.getElementById("countdownTimer").textContent = "Buff is now!";
-            // Filter out expired buffs in user's local time and update display
             const currentFutureBuffs = buffs.filter(buff => {
                 const utcDate = new Date(buff.datetime);
                 const localBuffDate = new Date(utcDate.toLocaleString("en-US", { timeZone: userTimezone }));
                 return localBuffDate > localNow;
             });
             if (JSON.stringify(currentFutureBuffs) !== JSON.stringify(lastDisplayedBuffs)) {
-                buffs = currentFutureBuffs; // Update buffs to only include future buffs
-                displayBuffs(); // Update display only if buffs have changed
+                buffs = currentFutureBuffs;
+                displayBuffs();
                 lastDisplayedBuffs = currentFutureBuffs;
             }
             return;
@@ -159,28 +148,26 @@ function startCountdown() {
         const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-        // Hide fields if their value is 0 for clarity
         let timerDisplay;
         if (days === 0) {
             if (hours === 0) {
                 if (minutes === 0) {
-                    timerDisplay = `${seconds}`; // Only show seconds (e.g., "50")
+                    timerDisplay = `${seconds}`;
                 } else {
-                    timerDisplay = `${minutes}:${seconds.toString().padStart(2, '0')}`; // Only show minutes and seconds (e.g., "23:50")
+                    timerDisplay = `${minutes}:${seconds.toString().padStart(2, '0')}`;
                 }
             } else {
-                timerDisplay = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; // Only show hours, minutes, seconds (e.g., "21:22")
+                timerDisplay = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
         } else {
-            timerDisplay = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; // Show all fields with days (e.g., "1d 12:34:56")
+            timerDisplay = `${days}d ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
         document.getElementById("countdownTimer").textContent = timerDisplay;
     }
 
-    console.log("Starting countdown...");
     updateCountdown();
-    setInterval(updateCountdown, 1000); // Update countdown every second
+    setInterval(updateCountdown, 1000);
 }
 
 loadBuffs();
