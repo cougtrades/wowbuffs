@@ -1,0 +1,158 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: url('ony.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #e6e6e6; /* Light gray for readability on dark background */
+}
+
+h1 {
+    text-align: center;
+    color: #ff6b6b; /* Pastel red for title */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Georgia', serif; /* Thematic font for WoW */
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black for a subtle fade */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow for depth */
+    border: 2px solid #ff4d4d; /* Slightly darker pastel red border for contrast */
+    backdrop-filter: blur(5px); /* Slight blur to enhance background visibility */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #ff6b6b; /* Pastel red header */
+    color: #000000; /* Black text for contrast */
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #ff4d4d; /* Slightly darker red for depth */
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #666; /* Medium gray border for rows */
+    color: #e6e6e6; /* Light gray text for readability */
+    background-color: rgba(0, 0, 0, 0.3); /* Very light black overlay for table cells */
+}
+
+tr:hover {
+    background-color: rgba(255, 107, 107, 0.15); /* Very light pastel red hover effect */
+    transition: background-color 0.3s;
+}
+
+.countdown {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #AAFF00; /* Pastel red */
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#countdownTimer {
+    color: #AAFF00; /* Bright green for emphasis, matching WoW Horde theme */
+    font-family: 'Courier New', monospace;
+}
+
+.last-updated {
+    text-align: center;
+    color: #999; /* Light gray for contrast */
+    font-style: italic;
+    margin-top: 20px;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Add a subtle animation for table rows */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+tr {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Mobile Optimization with Media Queries */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Smaller heading for mobile */
+        margin-bottom: 15px;
+    }
+
+    .container {
+        max-width: 100%; /* Full width on mobile */
+        padding: 15px; /* Reduced padding */
+        margin: 0 5px; /* Small margin to avoid edge touching */
+    }
+
+    /* Enhanced table responsiveness for mobile */
+    table {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+        white-space: normal; /* Allow text to wrap instead of nowrap to prevent overflow */
+        font-size: 0.9rem; /* Slightly smaller text for better fit */
+    }
+
+    th, td {
+        padding: 8px; /* Smaller padding for mobile */
+        min-width: 120px; /* Minimum width for cells to prevent excessive shrinking */
+        word-wrap: break-word; /* Ensure long words or text wrap */
+    }
+
+    /* Ensure table headers and cells stack nicely */
+    th {
+        font-size: 0.9rem; /* Match td size for consistency */
+    }
+
+    .countdown {
+        font-size: 1.1rem; /* Slightly smaller countdown text */
+        margin-top: 15px;
+    }
+
+    #countdownTimer {
+        font-size: 1rem; /* Adjust timer size */
+    }
+}
+
+/* Extra small screens (e.g., phones below 480px) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Even smaller heading */
+    }
+
+    table {
+        font-size: 0.8rem; /* Even smaller text for tiny screens */
+    }
+
+    th, td {
+        padding: 6px; /* Tighter padding */
+        min-width: 100px; /* Adjust minimum width for smaller screens */
+    }
+
+    .countdown {
+        font-size: 1rem;
+    }
+
+    #countdownTimer {
+        font-size: 0.9rem;
+    }
+}
