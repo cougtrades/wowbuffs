@@ -127,7 +127,7 @@ tr {
     h1 { font-size: 1.8rem; margin-bottom: 15px; }
     .container { max-width: 100%; padding: 15px; margin: 0 5px; }
     table { display: block; overflow-x: auto; white-space: normal; font-size: 0.9rem; }
-    th, td { padding: 8px; min-width: 120px; word-wrap: break-word; }
+    th, td { padding: 8px; min-width: 100px; word-wrap: break-word; }
     th { font-size: 0.9rem; }
     .countdown { font-size: 1.1rem; margin-top: 15px; }
     #countdownTimer { font-size: 1rem; }
@@ -136,7 +136,7 @@ tr {
 @media (max-width: 480px) {
     h1 { font-size: 1.5rem; }
     table { font-size: 0.8rem; }
-    th, td { padding: 6px; min-width: 100px; }
+    th, td { padding: 6px; min-width: 80px; }
     .countdown { font-size: 1rem; }
     #countdownTimer { font-size: 0.9rem; }
 }
