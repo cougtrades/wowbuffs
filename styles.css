@@ -2,18 +2,23 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background: url('ony.webp') no-repeat center center fixed; /* Update with alliance bg if desired */
+    background: url('ony.webp') no-repeat center center fixed; /* Same for both */
     background-size: cover;
     color: #e6e6e6;
 }
 
 h1 {
     text-align: center;
-    color: #ff6b6b; /* Pastel red for Horde, could change for Alliance */
+    color: #ff6b6b; /* Default Horde - pastel red */
     font-size: 2.5rem;
     margin-bottom: 20px;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
     font-family: 'Georgia', serif;
+    transition: color 0.3s;
+}
+
+body.alliance h1 {
+    color: #6b9cff; /* Alliance - pastel blue */
 }
 
 .container {
@@ -23,8 +28,13 @@ h1 {
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    border: 2px solid #ff4d4d; /* Red for Horde, could use blue for Alliance */
+    border: 2px solid #ff4d4d; /* Default Horde - red */
     backdrop-filter: blur(5px);
+    transition: border-color 0.3s;
+}
+
+body.alliance .container {
+    border: 2px solid #4d7bff; /* Alliance - darker blue */
 }
 
 .faction-select {
@@ -43,8 +53,13 @@ h1 {
     font-size: 1rem;
     background-color: #333;
     color: #e6e6e6;
-    border: 1px solid #ff4d4d;
+    border: 1px solid #ff4d4d; /* Default Horde - red */
     border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+body.alliance .faction-select select {
+    border: 1px solid #4d7bff; /* Alliance - blue */
 }
 
 table {
@@ -54,12 +69,18 @@ table {
 }
 
 th {
-    background-color: #ff6b6b;
+    background-color: #ff6b6b; /* Default Horde - pastel red */
     color: #000000;
     padding: 14px;
     text-align: left;
     font-weight: 600;
-    border-bottom: 2px solid #ff4d4d;
+    border-bottom: 2px solid #ff4d4d; /* Default Horde - red */
+    transition: background-color 0.3s, border-bottom 0.3s;
+}
+
+body.alliance th {
+    background-color: #6b9cff; /* Alliance - pastel blue */
+    border-bottom: 2px solid #4d7bff; /* Alliance - darker blue */
 }
 
 td {
@@ -70,8 +91,12 @@ td {
 }
 
 tr:hover {
-    background-color: rgba(255, 107, 107, 0.15);
+    background-color: rgba(255, 107, 107, 0.15); /* Default Horde - light red hover */
     transition: background-color 0.3s;
+}
+
+body.alliance tr:hover {
+    background-color: rgba(107, 156, 255, 0.15); /* Alliance - light blue hover */
 }
 
 .countdown {
