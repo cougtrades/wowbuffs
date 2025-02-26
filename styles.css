@@ -147,6 +147,24 @@ tr {
     animation: fadeIn 0.5s ease-out;
 }
 
+.intro {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #e6e6e6;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.intro strong {
+    color: #ff6b6b; /* Default Horde red */
+}
+
+body.alliance .intro strong {
+    color: #6b9cff; /* Alliance blue */
+}
+
 @media (max-width: 768px) {
     body { padding: 10px; }
     h1 { font-size: 1.8rem; margin-bottom: 15px; }
@@ -157,6 +175,7 @@ tr {
     .countdown { font-size: 1.1rem; margin-top: 15px; }
     #countdownTimer { font-size: 1rem; }
     footer { font-size: 1rem; margin-top: 20px; padding: 10px 0; }
+    .intro { font-size: 1rem; padding: 10px; }
 }
 
 @media (max-width: 480px) {
@@ -166,4 +185,5 @@ tr {
     .countdown { font-size: 1rem; }
     #countdownTimer { font-size: 0.9rem; }
     footer { font-size: 0.9rem; margin-top: 15px; }
+    .intro { font-size: 0.9rem; }
 }
