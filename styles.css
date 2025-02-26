@@ -62,6 +62,86 @@ body.alliance .faction-select select {
     border: 1px solid #4d7bff; /* Alliance - blue */
 }
 
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.filter {
+    background-color: #ff6b6b; /* Default Horde - pastel red */
+    color: #000000;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+body.alliance .filter {
+    background-color: #6b9cff; /* Alliance - pastel blue */
+}
+
+.filter:hover {
+    background-color: #ff4d4d; /* Darker red for hover (Horde) */
+}
+
+body.alliance .filter:hover {
+    background-color: #4d7bff; /* Darker blue for hover (Alliance) */
+
+}
+
+.filter-popup {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    color: #e6e6e6;
+}
+
+.popup-content {
+    text-align: left;
+}
+
+.popup-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+}
+
+.popup-content label {
+    display: block;
+    margin: 5px 0;
+}
+
+.popup-content input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.popup-content button {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: #333;
+    color: #e6e6e6;
+    border: 1px solid #ff4d4d;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+body.alliance .popup-content button {
+    border: 1px solid #4d7bff;
+}
+
+.popup-content button:hover {
+    background-color: rgba(255, 107, 107, 0.15); /* Default Horde hover */
+}
+
+body.alliance .popup-content button:hover {
+    background-color: rgba(107, 156, 255, 0.15); /* Alliance hover */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -113,6 +193,33 @@ body.alliance tr:hover {
     font-family: 'Courier New', monospace;
 }
 
+footer {
+    text-align: center;
+    margin-top: 40px; /* Increased spacing from clips section */
+    color: #e6e6e6; /* Brighter text for better contrast on dark background */
+    font-size: 1.1rem; /* Larger font for readability */
+    padding: 15px 0; /* Add vertical padding for spacing */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Stronger shadow for legibility */
+}
+
+footer a {
+    color: #ff6b6b; /* Default Horde - red */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #ff4d4d; /* Darker red for hover */
+}
+
+body.alliance footer a {
+    color: #6b9cff; /* Alliance - blue */
+}
+
+body.alliance footer a:hover {
+    color: #4d7bff; /* Darker blue for hover */
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -127,10 +234,17 @@ tr {
     h1 { font-size: 1.8rem; margin-bottom: 15px; }
     .container { max-width: 100%; padding: 15px; margin: 0 5px; }
     table { display: block; overflow-x: auto; white-space: normal; font-size: 0.9rem; }
+    .filter-container { flex-wrap: wrap; gap: 5px; }
+    .filter { flex: 1; min-width: 100px; }
     th, td { padding: 8px; min-width: 100px; word-wrap: break-word; }
     th { font-size: 0.9rem; }
     .countdown { font-size: 1.1rem; margin-top: 15px; }
     #countdownTimer { font-size: 1rem; }
+    footer {
+        margin-top: 30px; /* Reduced spacing on tablet */
+        font-size: 1rem; /* Slightly smaller font on tablet */
+        padding: 10px 0; /* Reduced padding */
+    }
 }
 
 @media (max-width: 480px) {
@@ -139,4 +253,11 @@ tr {
     th, td { padding: 6px; min-width: 80px; }
     .countdown { font-size: 1rem; }
     #countdownTimer { font-size: 0.9rem; }
+    .filter-container { flex-direction: column; }
+    .filter { width: 100%; margin-bottom: 5px; }
+    footer {
+        margin-top: 20px; /* Further reduced spacing on phone */
+        font-size: 0.9rem; /* Smaller font on phone */
+        padding: 8px 0; /* Reduced padding */
+    }
 }
