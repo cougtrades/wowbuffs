@@ -84,9 +84,21 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-03-01T00:50:00Z",
+        "guild": "Death",
+        "notes": "Swearing the dragon’s gift Onyxia",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-03-01T02:55:00Z",
         "guild": "Secret",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-03-03T00:50:00Z",
+        "guild": "Death",
+        "notes": "Swearing the dragon’s gift Onyxia",
         "server": "Doomhowl"
     }
 ]
