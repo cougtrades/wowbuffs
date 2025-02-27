@@ -1,5 +1,6 @@
 let buffs = [];
 let faction = "horde"; // Default to Horde
+let alertedBuffs = new Set(); // Track buffs that have triggered alerts
 
 async function loadBuffs() {
     try {
@@ -32,6 +33,7 @@ function updateFaction() {
         document.body.classList.remove("alliance");
     }
     loadBuffs();
+    alertedBuffs.clear(); // Reset alerted buffs when switching factions
 }
 
 function formatDateTime(date, isServerTime = false) {
@@ -107,7 +109,6 @@ function displayBuffs() {
 
 function startCountdown() {
     let lastDisplayedBuffs = null;
-    let notificationShown = false; // Track if notification was shown for the current buff
 
     function updateCountdown() {
         if (buffs.length === 0) {
@@ -131,7 +132,6 @@ function startCountdown() {
                 displayBuffs();
                 lastDisplayedBuffs = null;
             }
-            notificationShown = false; // Reset notification flag if no buffs
             return;
         }
 
@@ -139,10 +139,11 @@ function startCountdown() {
         const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
         const timeDiff = localBuffDate - localNow;
 
-        // Check for 10-minute warning
-        if (timeDiff <= 10 * 60 * 1000 && timeDiff > 0 && !notificationShown) { // 10 minutes = 600,000 ms
+        // Check for 10-minute warning, only if not already alerted for this buff
+        const buffKey = `${nextBuff.datetime}_${nextBuff.guild}`; // Unique key for each buff
+        if (timeDiff <= 10 * 60 * 1000 && timeDiff > 0 && !alertedBuffs.has(buffKey)) {
             showBuffAlert(nextBuff);
-            notificationShown = true; // Prevent duplicate notifications for this buff
+            alertedBuffs.add(buffKey); // Mark this buff as alerted
         }
 
         if (timeDiff <= 0) {
@@ -157,7 +158,7 @@ function startCountdown() {
                 displayBuffs();
                 lastDisplayedBuffs = currentFutureBuffs;
             }
-            notificationShown = false; // Reset for the next buff
+            alertedBuffs.clear(); // Clear alerted buffs when current buff passes
             return;
         }
 
