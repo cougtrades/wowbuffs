@@ -2,14 +2,14 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background: url('ony.webp') no-repeat center center fixed; /* Same for both */
+    background: url('ony.webp') no-repeat center center fixed;
     background-size: cover;
     color: #e6e6e6;
 }
 
 h1 {
     text-align: center;
-    color: #ff6b6b; /* Default Horde - pastel red */
+    color: #ff6b6b;
     font-size: 2.5rem;
     margin-bottom: 20px;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
@@ -18,7 +18,7 @@ h1 {
 }
 
 body.alliance h1 {
-    color: #6b9cff; /* Alliance - pastel blue */
+    color: #6b9cff;
 }
 
 .container {
@@ -28,14 +28,13 @@ body.alliance h1 {
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    border: 2px solid #ff4d4d; /* Default Horde - red */
+    border: 2px solid #ff4d4d;
     backdrop-filter: blur(5px);
     transition: border-color 0.3s;
-    /* Removed fixed min-height to allow dynamic sizing */
 }
 
 body.alliance .container {
-    border: 2px solid #4d7bff; /* Alliance - darker blue */
+    border: 2px solid #4d7bff;
 }
 
 .faction-select {
@@ -54,35 +53,35 @@ body.alliance .container {
     font-size: 1rem;
     background-color: #333;
     color: #e6e6e6;
-    border: 1px solid #ff4d4d; /* Default Horde - red */
+    border: 1px solid #ff4d4d;
     border-radius: 5px;
     transition: border-color 0.3s;
 }
 
 body.alliance .faction-select select {
-    border: 1px solid #4d7bff; /* Alliance - blue */
+    border: 1px solid #4d7bff;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    table-layout: auto; /* Ensures table width fits content dynamically */
+    table-layout: auto;
 }
 
 th {
-    background-color: #ff6b6b; /* Default Horde - pastel red */
+    background-color: #ff6b6b;
     color: #000000;
     padding: 14px;
     text-align: left;
     font-weight: 600;
-    border-bottom: 2px solid #ff4d4d; /* Default Horde - red */
+    border-bottom: 2px solid #ff4d4d;
     transition: background-color 0.3s, border-bottom 0.3s;
 }
 
 body.alliance th {
-    background-color: #6b9cff; /* Alliance - pastel blue */
-    border-bottom: 2px solid #4d7bff; /* Alliance - darker blue */
+    background-color: #6b9cff;
+    border-bottom: 2px solid #4d7bff;
 }
 
 td {
@@ -93,12 +92,12 @@ td {
 }
 
 tr:hover {
-    background-color: rgba(255, 107, 107, 0.15); /* Default Horde - light red hover */
+    background-color: rgba(255, 107, 107, 0.15);
     transition: background-color 0.3s;
 }
 
 body.alliance tr:hover {
-    background-color: rgba(107, 156, 255, 0.15); /* Alliance - light blue hover */
+    background-color: rgba(107, 156, 255, 0.15);
 }
 
 .countdown {
@@ -120,24 +119,24 @@ footer {
     margin-top: 30px;
     padding: 15px 0;
     font-size: 1.1rem;
-    color: #ffffff; /* White text for readability */
-    font-family: 'Arial', sans-serif; /* Matches body font */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Adds contrast against background */
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 footer a {
-    color: #ffffff; /* White for the email link */
-    text-decoration: none; /* No underline by default */
-    transition: color 0.3s ease; /* Smooth hover transition */
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #ff6b6b; /* Matches Horde red for hover */
-    text-decoration: underline; /* Underline on hover for clarity */
+    color: #ff6b6b;
+    text-decoration: underline;
 }
 
 body.alliance footer a:hover {
-    color: #6b9cff; /* Matches Alliance blue for hover when Alliance is selected */
+    color: #6b9cff;
 }
 
 @keyframes fadeIn {
@@ -160,11 +159,11 @@ tr {
 }
 
 .intro strong {
-    color: #ff6b6b; /* Default Horde red */
+    color: #ff6b6b;
 }
 
 body.alliance .intro strong {
-    color: #6b9cff; /* Alliance blue */
+    color: #6b9cff;
 }
 
 @media (max-width: 768px) {
