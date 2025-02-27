@@ -17,7 +17,7 @@ async function loadBuffs() {
         startCountdown();
     } catch (error) {
         console.error("Load error:", error); // Debug log
-        document.getElementById("buffList").innerHTML = `<tr><td colspan="6">Error loading buffs: ${error.message}</td></tr>`;
+        document.getElementById("buffList").innerHTML = `<tr><td colspan="5">Error loading buffs: ${error.message}</td></tr>`;
         buffs = [];
     }
 }
@@ -50,9 +50,6 @@ function formatDateTime(date, isServerTime = false) {
         const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         return date.toLocaleString("en-US", {
             timeZone: userTimezone,
-            weekday: "long",
-            month: "long",
-            day: "numeric",
             hour: "numeric",
             minute: "numeric",
             hour12: true
@@ -65,7 +62,7 @@ function displayBuffs() {
     buffList.innerHTML = "";
     
     if (buffs.length === 0) {
-        buffList.innerHTML = `<tr><td colspan="6">No buffs available.</td></tr>`;
+        buffList.innerHTML = `<tr><td colspan="5">No buffs available.</td></tr>`;
         return;
     }
 
@@ -80,7 +77,7 @@ function displayBuffs() {
     });
 
     if (futureBuffs.length === 0) {
-        buffList.innerHTML = `<tr><td colspan="6">No upcoming buffs available.</td></tr>`;
+        buffList.innerHTML = `<tr><td colspan="5">No upcoming buffs available.</td></tr>`;
         return;
     }
 
@@ -97,9 +94,8 @@ function displayBuffs() {
         row.innerHTML = `
             <td>${serverTime}</td>
             <td>${yourTime}</td>
-            <td>${buff.server || "Doomhowl"}</td>
             <td>${buff.guild}</td>
-            <td>Onyxia</td> <!-- Hardcoded as Onyxia -->
+            <td>Onyxia</td>
             <td>${buff.notes || ""}</td>
         `;
         buffList.appendChild(row);
