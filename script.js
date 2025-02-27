@@ -16,6 +16,7 @@ async function loadBuffs() {
         buffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
         displayBuffs();
         startCountdown();
+        checkInitialBuffAlert(); // Check if we need an alert on load
     } catch (error) {
         console.error("Load error:", error); // Debug log
         document.getElementById("buffList").innerHTML = `<tr><td colspan="6">Error loading buffs: ${error.message}</td></tr>`;
@@ -139,9 +140,9 @@ function startCountdown() {
         const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
         const timeDiff = localBuffDate - localNow;
 
-        // Check for 10-minute warning, only if not already alerted for this buff
-        const buffKey = `${nextBuff.datetime}_${nextBuff.guild}`; // Unique key for each buff
-        if (timeDiff <= 10 * 60 * 1000 && timeDiff > 0 && !alertedBuffs.has(buffKey)) {
+        // Check for 10-minute warning, only if not already alerted for this buff and time is exactly at 10 minutes
+        const buffKey = `${nextBuff.datetime}_${nextBuff.guild}`;
+        if (timeDiff <= 10 * 60 * 1000 && timeDiff > 9 * 60 * 1000 && !alertedBuffs.has(buffKey)) { // Narrow to 10-9 minutes
             showBuffAlert(nextBuff);
             alertedBuffs.add(buffKey); // Mark this buff as alerted
         }
@@ -183,6 +184,34 @@ function startCountdown() {
         }
 
         document.getElementById("countdownTimer").textContent = timerDisplay;
+    }
+
+    // New function to check initial buff state on load
+    function checkInitialBuffAlert() {
+        if (buffs.length === 0) return;
+
+        const now = new Date();
+        const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const localNow = new Date(now.toLocaleString("en-US", { timeZone: userTimezone }));
+
+        const nextBuff = buffs.find(buff => {
+            const buffDate = new Date(buff.datetime);
+            const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
+            return localBuffDate > localNow;
+        });
+
+        if (!nextBuff) return;
+
+        const buffDate = new Date(nextBuff.datetime);
+        const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
+        const timeDiff = localBuffDate - localNow;
+
+        // Only trigger alert if exactly at 10 minutes on load, not if already past 10 minutes
+        const buffKey = `${nextBuff.datetime}_${nextBuff.guild}`;
+        if (timeDiff <= 10 * 60 * 1000 && timeDiff > 9 * 60 * 1000 && !alertedBuffs.has(buffKey)) {
+            showBuffAlert(nextBuff);
+            alertedBuffs.add(buffKey);
+        }
     }
 
     // Function to show the buff alert with sound
