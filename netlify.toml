@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://hcbuffs.netlify.app/*"
+  to = "https://hcbuffs.com/:splat"
+  status = 301
+  force = true
