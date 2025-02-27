@@ -107,6 +107,7 @@ function displayBuffs() {
 
 function startCountdown() {
     let lastDisplayedBuffs = null;
+    let notificationShown = false; // Track if notification was shown for the current buff
 
     function updateCountdown() {
         if (buffs.length === 0) {
@@ -130,12 +131,19 @@ function startCountdown() {
                 displayBuffs();
                 lastDisplayedBuffs = null;
             }
+            notificationShown = false; // Reset notification flag if no buffs
             return;
         }
 
         const buffDate = new Date(nextBuff.datetime);
         const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
         const timeDiff = localBuffDate - localNow;
+
+        // Check for 10-minute warning
+        if (timeDiff <= 10 * 60 * 1000 && timeDiff > 0 && !notificationShown) { // 10 minutes = 600,000 ms
+            showBuffAlert(nextBuff);
+            notificationShown = true; // Prevent duplicate notifications for this buff
+        }
 
         if (timeDiff <= 0) {
             document.getElementById("countdownTimer").textContent = "Buff is now!";
@@ -149,6 +157,7 @@ function startCountdown() {
                 displayBuffs();
                 lastDisplayedBuffs = currentFutureBuffs;
             }
+            notificationShown = false; // Reset for the next buff
             return;
         }
 
@@ -173,6 +182,35 @@ function startCountdown() {
         }
 
         document.getElementById("countdownTimer").textContent = timerDisplay;
+    }
+
+    // Function to show the buff alert with sound
+    function showBuffAlert(buff) {
+        // Play sound alert
+        const sound = new Audio('/10minalert.mp3'); // Updated to your MP3 file name
+        sound.play().catch(error => console.warn("Sound playback failed:", error));
+
+        // Check if the browser supports notifications
+        if ("Notification" in window) {
+            // Request permission if not already granted
+            if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+                Notification.requestPermission();
+            }
+
+            // Show notification if permission is granted
+            if (Notification.permission === "granted") {
+                new Notification("Buff Alert!", {
+                    body: `Onyxia buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)`,
+                    icon: "/favicon.ico" // Use your favicon as the notification icon
+                });
+            } else {
+                // Fallback to a simple alert if notifications are blocked or not supported
+                alert(`Onyxia buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)`);
+            }
+        } else {
+            // If Notification API isn't supported, use a basic alert
+            alert(`Onyxia buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)`);
+        }
     }
 
     updateCountdown();
