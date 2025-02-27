@@ -31,7 +31,7 @@ body.alliance h1 {
     border: 2px solid #ff4d4d; /* Default Horde - red */
     backdrop-filter: blur(5px);
     transition: border-color 0.3s;
-    min-height: 600px; /* Prevent layout shift by setting a minimum height */
+    /* Removed fixed min-height to allow dynamic sizing */
 }
 
 body.alliance .container {
@@ -67,6 +67,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    table-layout: auto; /* Ensures table width fits content dynamically */
 }
 
 th {
@@ -169,7 +170,7 @@ body.alliance .intro strong {
 @media (max-width: 768px) {
     body { padding: 10px; }
     h1 { font-size: 1.8rem; margin-bottom: 15px; }
-    .container { max-width: 100%; padding: 15px; margin: 0 5px; min-height: 500px; } /* Adjusted for mobile */
+    .container { max-width: 100%; padding: 15px; margin: 0 5px; }
     table { display: block; overflow-x: auto; white-space: normal; font-size: 0.9rem; }
     th, td { padding: 8px; min-width: 80px; word-wrap: break-word; }
     th { font-size: 0.9rem; }
@@ -187,5 +188,4 @@ body.alliance .intro strong {
     #countdownTimer { font-size: 0.9rem; }
     footer { font-size: 0.9rem; margin-top: 15px; }
     .intro { font-size: 0.9rem; }
-    .container { min-height: 400px; } /* Adjusted for very small screens */
 }
