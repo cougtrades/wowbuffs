@@ -1,6 +1,5 @@
 let buffs = [];
 let faction = "horde"; // Default to Horde
-let alertedBuffs = new Set(); // Track buffs that have triggered alerts
 
 async function loadBuffs() {
     try {
@@ -33,7 +32,7 @@ function updateFaction() {
         document.body.classList.remove("alliance");
     }
     loadBuffs();
-    alertedBuffs.clear(); // Reset alerted buffs when switching factions
+    localStorage.removeItem('alertedBuffs'); // Clear alerted buffs when switching factions
 }
 
 function formatDateTime(date, isServerTime = false) {
@@ -139,11 +138,15 @@ function startCountdown() {
         const localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: userTimezone }));
         const timeDiff = localBuffDate - localNow;
 
+        // Load alerted buffs from localStorage (if any)
+        let alertedBuffs = new Set(JSON.parse(localStorage.getItem('alertedBuffs')) || []);
+
         // Check for 10-minute warning, only if not already alerted for this buff
         const buffKey = `${nextBuff.datetime}_${nextBuff.guild}`; // Unique key for each buff
         if (timeDiff <= 10 * 60 * 1000 && timeDiff > 0 && !alertedBuffs.has(buffKey)) {
             showBuffAlert(nextBuff);
             alertedBuffs.add(buffKey); // Mark this buff as alerted
+            localStorage.setItem('alertedBuffs', JSON.stringify([...alertedBuffs])); // Save to localStorage
         }
 
         if (timeDiff <= 0) {
@@ -158,7 +161,7 @@ function startCountdown() {
                 displayBuffs();
                 lastDisplayedBuffs = currentFutureBuffs;
             }
-            alertedBuffs.clear(); // Clear alerted buffs when current buff passes
+            localStorage.removeItem('alertedBuffs'); // Clear alerted buffs when current buff passes
             return;
         }
 
