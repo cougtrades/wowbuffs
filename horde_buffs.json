@@ -84,9 +84,21 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-02-28T22:00:00Z",
+        "guild": "OnlyFangs",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-02-28T23:30:00Z",
         "guild": "Fatal",
         "notes": "(RIP PIKA)",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-03-01T01:00:00Z",
+        "guild": "Power Rangers",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
@@ -117,12 +129,6 @@
         "datetime": "2025-03-03T00:50:00Z",
         "guild": "Death",
         "notes": "Swearing the dragon’s gift",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-02-28T22:00:00Z",
-        "guild": "OnlyFangs",
-        "notes": "",
         "server": "Doomhowl"
     }
 ]
