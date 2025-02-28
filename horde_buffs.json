@@ -66,12 +66,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-02-28T07:00:00Z",
-        "guild": "Fatal",
-        "notes": "Dropping that sweet sweet Onyxia (RIP PIKA)",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-02-28T08:00:00Z",
         "guild": "Anzacs HC",
         "notes": "",
@@ -87,6 +81,12 @@
         "datetime": "2025-02-28T02:45:00Z",
         "guild": "Washed Up",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-02-28T16:30:00Z",
+        "guild": "Fatal",
+        "notes": "(RIP PIKA)",
         "server": "Doomhowl"
     },
     {
