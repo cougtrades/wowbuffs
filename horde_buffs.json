@@ -96,9 +96,15 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-03-01T04:00:00Z",
+        "guild": "Shadow Wizard Money Gang",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-03-01T00:50:00Z",
         "guild": "Death",
-        "notes": "Swearing the dragon’s gift Onyxia",
+        "notes": "Swearing the dragon’s gift",
         "server": "Doomhowl"
     },
     {
@@ -110,7 +116,7 @@
     {
         "datetime": "2025-03-03T00:50:00Z",
         "guild": "Death",
-        "notes": "Swearing the dragon’s gift Onyxia",
+        "notes": "Swearing the dragon’s gift",
         "server": "Doomhowl"
     }
 ]
