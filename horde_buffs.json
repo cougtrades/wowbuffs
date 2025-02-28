@@ -118,5 +118,11 @@
         "guild": "Death",
         "notes": "Swearing the dragon’s gift",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-03-03T22:00:00Z",
+        "guild": "OnlyFangs",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
