@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -10,9 +10,9 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="/android-chrome-512x512.png" sizes="512x512">
-    <link rel="preload" href="/styles.css" as="style">
-    <link rel="preload" href="/script.js" as="script">
-    <link rel="preload" href="/ony.webp" as="image">
+    <link rel="preload" href="/styles.min.css" as="style">
+    <link rel="preload" href="/script.min.js" as="script">
+    <link rel="preload" href="/ony_compressed.webp" as="image">
     <title>HCBuffs - WoW Classic Hardcore Onyxia Schedule</title>
     <meta name="description" content="Find the latest WoW Classic buff schedule for Onyxia and more on Doomhowl server. Check server times for Horde and Alliance buffs, including when Ony drops. Updated for Hardcore (HC) WoW Classic.">
     <meta name="keywords" content="wow classic buff schedule, when ony, wen ony, when ony buff, when does ony drop, what time is ony, hc wow classic buffs, hcbuffs, onyxia buff schedule, doomhowl buffs">
@@ -22,7 +22,7 @@
     <meta property="og:description" content="Get the exact times for Onyxia buff drops in WoW Classic Hardcore on Doomhowl. Horde and Alliance schedules included!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hcbuffs.com">
-    <meta property="og:image" content="https://hcbuffs.com/ony.webp">
+    <meta property="og:image" content="https://hcbuffs.com/ony_compressed.webp">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1M81YHK2EB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,12 +38,16 @@
         <p>Welcome to the ultimate <strong>WoW Classic buff schedule</strong> for the Doomhowl server! Find out <strong>when Onyxia drops</strong> her buff, check server times for Horde and Alliance, and stay updated on Hardcore (HC) WoW Classic buffs like Ony. Use the dropdown to switch factions and see what time Ony hits!</p>
     </section>
     <div class="container">
-        <div class="faction-select">
+        <div class="faction-select" role="region" aria-label="Faction Selection">
             <label for="faction">Faction:</label>
-            <select id="faction" onchange="updateFaction()">
+            <select id="faction" onchange="updateFaction()" aria-label="Select faction (Horde or Alliance)">
                 <option value="horde">Horde</option>
                 <option value="alliance">Alliance</option>
             </select>
+        </div>
+        <div class="search-container" role="search" aria-label="Search Buffs">
+            <label for="buffSearch">Search Buffs:</label>
+            <input type="text" id="buffSearch" placeholder="Search by guild, time, or buff..." oninput="searchBuffs()" aria-label="Search buff schedule">
         </div>
         <table id="buffTable">
             <thead>
@@ -57,7 +61,7 @@
             </thead>
             <tbody id="buffList"></tbody>
         </table>
-        <div class="countdown" id="countdown">
+        <div class="countdown" id="countdown" role="timer" aria-live="polite">
             Next Buff in: <span id="countdownTimer">--:--:--</span>
         </div>
     </div>
