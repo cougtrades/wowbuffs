@@ -38,14 +38,16 @@ function formatDateTime(date, isServerTime = false) {
         return date.toLocaleString("en-US", {
             timeZone: "America/Denver",
             weekday: "long",
+            month: "long",
+            day: "numeric",
             hour: "numeric",
             minute: "numeric",
             hour12: true
         });
     } else {
-        const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         return date.toLocaleString("en-US", {
-            timeZone: userTimezone,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            weekday: "long",
             hour: "numeric",
             minute: "numeric",
             hour12: true
