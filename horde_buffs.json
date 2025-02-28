@@ -66,6 +66,12 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-02-28T07:00:00Z",
+        "guild": "Fatal",
+        "notes": "Dropping that sweet sweet Onyxia (RIP PIKA)",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-02-28T08:00:00Z",
         "guild": "Anzacs HC",
         "notes": "",
@@ -86,7 +92,7 @@
     {
         "datetime": "2025-03-01T00:50:00Z",
         "guild": "Death",
-        "notes": "",
+        "notes": "Swearing the dragon’s gift Onyxia",
         "server": "Doomhowl"
     },
     {
@@ -98,7 +104,7 @@
     {
         "datetime": "2025-03-03T00:50:00Z",
         "guild": "Death",
-        "notes": "",
+        "notes": "Swearing the dragon’s gift Onyxia",
         "server": "Doomhowl"
     }
 ]
