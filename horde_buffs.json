@@ -33,7 +33,11 @@
         "notes": "Dropping Following a First Rag Kill for Endless ",
         "server": "Doomhowl"
     },
-    {
+    [
+    {"datetime": "2025-03-07T00:50:00Z", "guild": "Death", "notes": "Swearing the dragon’s gift Ony Sands fall at", "server": "Doomhowl"},
+    {"datetime": "2025-03-08T00:50:00Z", "guild": "Death", "notes": "Swearing the dragon’s gift Ony Sands fall at", "server": "Doomhowl"}
+],
+​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​{
         "datetime": "2025-03-03T18:10:00Z",
         "guild": "OnlyFangs",
         "notes": "buff by Thurtilla",
