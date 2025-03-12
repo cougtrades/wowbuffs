@@ -106,6 +106,7 @@ function updateFaction() {
     faction = document.getElementById("faction").value;
     document.getElementById("buffList").innerHTML = "";
     document.getElementById("countdownTimer").textContent = "--:--:--";
+    document.getElementById("lastBuffTime").textContent = "--:--:--";
     if (faction === "alliance") {
         document.body.classList.add("alliance");
     } else {
@@ -199,7 +200,8 @@ function startCountdown() {
     
     function updateCountdown() {
         if (buffs.length === 0) {
-            document.getElementById("countdownTimer").textContent = "No upcoming buffs";
+            document.getElementById("countdownTimer").textContent = "--:--:--";
+            document.getElementById("lastBuffTime").textContent = "--:--:--";
             return;
         }
 
@@ -208,6 +210,40 @@ function startCountdown() {
             let buffDate = moment(e.datetime).tz(selectedTimezone);
             return buffDate.isAfter(now);
         });
+
+        // Find the last completed buff and calculate elapsed time
+        let pastBuffs = buffs.filter(e => {
+            let buffDate = moment(e.datetime).tz(selectedTimezone);
+            return buffDate.isBefore(now);
+        }).sort((a, b) => moment(b.datetime).tz(selectedTimezone) - moment(a.datetime).tz(selectedTimezone));
+
+        let lastBuff = pastBuffs[0]; // Most recent past buff
+        if (lastBuff) {
+            let lastBuffDate = moment(lastBuff.datetime).tz(selectedTimezone);
+            let timeDiff = now.diff(lastBuffDate); // Time elapsed since last buff
+            let duration = moment.duration(timeDiff);
+            let days = Math.floor(duration.asDays());
+            let hours = duration.hours();
+            let minutes = duration.minutes();
+            let seconds = duration.seconds();
+            let timeString;
+            if (days === 0) {
+                if (hours === 0) {
+                    if (minutes === 0) {
+                        timeString = `-${seconds}`;
+                    } else {
+                        timeString = `-${minutes}:${seconds.toString().padStart(2, "0")}`;
+                    }
+                } else {
+                    timeString = `-${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+                }
+            } else {
+                timeString = `-${days}d ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            }
+            document.getElementById("lastBuffTime").textContent = timeString;
+        } else {
+            document.getElementById("lastBuffTime").textContent = "--:--:--";
+        }
 
         if (!nextBuff) {
             document.getElementById("countdownTimer").textContent = "No upcoming buffs";
