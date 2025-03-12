@@ -130,9 +130,9 @@ function displayBuffs() {
         buffList.innerHTML = '<tr><td colspan="5">No buffs available.</td></tr>';
         return;
     }
-    let now = moment().tz(selectedTimezone);
+    let now = moment().tz("America/Denver"); // Base time in America/Denver
     let upcomingBuffs = buffs.filter(buff => {
-        let buffDate = moment(buff.datetime).tz(selectedTimezone);
+        let buffDate = moment(buff.datetime).tz("America/Denver");
         return buffDate.isAfter(now);
     });
     if (upcomingBuffs.length === 0) {
@@ -164,7 +164,7 @@ function searchBuffs() {
         buffList.innerHTML = '<tr><td colspan="5">No buffs available.</td></tr>';
         return;
     }
-    let now = moment().tz(selectedTimezone);
+    let now = moment().tz("America/Denver"); // Base time in America/Denver
     let filteredBuffs = buffs.filter(buff => {
         let serverTime = formatDateTime(new Date(buff.datetime), true).toLowerCase();
         let guild = buff.guild.toLowerCase();
@@ -172,7 +172,7 @@ function searchBuffs() {
         return serverTime.includes(searchTerm) || guild.includes(searchTerm) || notes.includes(searchTerm);
     });
     let upcomingFilteredBuffs = filteredBuffs.filter(buff => {
-        let buffDate = moment(buff.datetime).tz(selectedTimezone);
+        let buffDate = moment(buff.datetime).tz("America/Denver");
         return buffDate.isAfter(now);
     });
     if (upcomingFilteredBuffs.length === 0) {
@@ -197,7 +197,7 @@ function searchBuffs() {
 
 function startCountdown() {
     let lastBuffs = null;
-    
+
     function updateCountdown() {
         if (buffs.length === 0) {
             document.getElementById("countdownTimer").textContent = "--:--:--";
@@ -205,21 +205,22 @@ function startCountdown() {
             return;
         }
 
-        let now = moment().tz(selectedTimezone);
+        let now = moment().tz("America/Denver"); // Base time in America/Denver
+
         let nextBuff = buffs.find(e => {
-            let buffDate = moment(e.datetime).tz(selectedTimezone);
+            let buffDate = moment(e.datetime).tz("America/Denver");
             return buffDate.isAfter(now);
         });
 
         // Find the last completed buff and calculate elapsed time
         let pastBuffs = buffs.filter(e => {
-            let buffDate = moment(e.datetime).tz(selectedTimezone);
+            let buffDate = moment(e.datetime).tz("America/Denver");
             return buffDate.isBefore(now);
-        }).sort((a, b) => moment(b.datetime).tz(selectedTimezone) - moment(a.datetime).tz(selectedTimezone));
+        }).sort((a, b) => moment(b.datetime).tz("America/Denver") - moment(a.datetime).tz("America/Denver"));
 
         let lastBuff = pastBuffs[0]; // Most recent past buff
         if (lastBuff) {
-            let lastBuffDate = moment(lastBuff.datetime).tz(selectedTimezone);
+            let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
             let timeDiff = now.diff(lastBuffDate); // Time elapsed since last buff
             let duration = moment.duration(timeDiff);
             let days = Math.floor(duration.asDays());
@@ -254,7 +255,7 @@ function startCountdown() {
             return;
         }
 
-        let buffDate = moment(nextBuff.datetime).tz(selectedTimezone);
+        let buffDate = moment(nextBuff.datetime).tz("America/Denver");
         let timeDiff = buffDate.diff(now);
         let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
         let buffKey = `${nextBuff.datetime}_${nextBuff.guild}`;
@@ -268,7 +269,7 @@ function startCountdown() {
         if (timeDiff <= 0) {
             document.getElementById("countdownTimer").textContent = "Buff is now!";
             let upcomingBuffs = buffs.filter(e => {
-                let d = moment(e.datetime).tz(selectedTimezone);
+                let d = moment(e.datetime).tz("America/Denver");
                 return d.isAfter(now);
             });
             if (JSON.stringify(upcomingBuffs) !== JSON.stringify(lastBuffs)) {
@@ -335,7 +336,9 @@ function startCountdown() {
 }
 
 // Initialize
-populateTimezoneDropdown();
-loadBuffs();
-setInterval(loadBuffs, 60000);
-displayBuffs();
+document.addEventListener('DOMContentLoaded', () => {
+    populateTimezoneDropdown();
+    loadBuffs();
+    setInterval(loadBuffs, 60000);
+    displayBuffs();
+});
