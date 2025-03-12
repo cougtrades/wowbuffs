@@ -91,3 +91,28 @@ body.alliance .timezone-select select {
         padding: 4px;
     }
 }
+
+.server-time-warning {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.3);
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .server-time-warning {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .server-time-warning {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}
