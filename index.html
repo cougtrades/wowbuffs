@@ -35,7 +35,7 @@
 <body>
     <h1>WoW Classic Buff Schedule</h1>
     <section class="intro">
-        <p>Welcome to the ultimate <strong>WoW Classic buff schedule</strong> for the Doomhowl server! Find out <strong>when Onyxia drops</strong> her buff, check server times for Horde and Alliance, and stay updated on Hardcore (HC) WoW Classic buffs like Ony. Use the dropdown to switch factions and see what time Ony hits!</p>
+        <p>Welcome to the ultimate <strong>WoW Classic buff schedule</strong> for the Doomhowl server! Find out <strong>when Onyxia drops</strong> her buff, check server times for Horde and Alliance, and stay updated on Hardcore (HC) WoW Classic buffs like Ony. Use the dropdowns to switch factions and set your timezone, then see what time Ony hits!</p>
     </section>
     <div class="container">
         <div class="faction-select" role="region" aria-label="Faction Selection">
@@ -43,6 +43,14 @@
             <select id="faction" onchange="updateFaction()" aria-label="Select faction (Horde or Alliance)">
                 <option value="horde">Horde</option>
                 <option value="alliance">Alliance</option>
+            </select>
+        </div>
+        <div class="timezone-select" role="region" aria-label="Timezone Selection">
+            <label for="timezoneSearch">Filter Timezones:</label>
+            <input type="text" id="timezoneSearch" placeholder="Search by country or city..." oninput="filterTimezones()" aria-label="Search timezones">
+            <label for="timezone">Timezone:</label>
+            <select id="timezone" onchange="updateTimezone()" aria-label="Select your timezone">
+                <!-- Options populated by JavaScript -->
             </select>
         </div>
         <div class="search-container" role="search" aria-label="Search Buffs">
@@ -68,6 +76,8 @@
     <footer>
         Feature ideas? Comments? Want your own app made? <a href="mailto:cougdevs@gmail.com">cougdevs@gmail.com</a> | <a href="https://www.buymeacoffee.com/cougdevs" target="_blank">Support HCBuffs</a>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
