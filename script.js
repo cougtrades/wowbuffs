@@ -1,5 +1,90 @@
 let buffs = [];
 let faction = "horde";
+let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+function populateTimezoneDropdown() {
+    const timezoneSelect = document.getElementById("timezone");
+    const timezoneSearch = document.getElementById("timezoneSearch");
+    const countryTimezones = {
+        "United States": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
+        "Canada": ["America/Toronto", "America/Vancouver"],
+        "Australia": ["Australia/Perth", "Australia/Sydney"],
+        "Chile": ["America/Santiago"],
+        "Brazil": ["America/Sao_Paulo"],
+        "United Kingdom": ["Europe/London"],
+        "New Zealand": ["Pacific/Auckland"],
+        "China": ["Asia/Shanghai"],
+        "Argentina": ["America/Argentina/Buenos_Aires"],
+        "Germany": ["Europe/Berlin"],
+        "Sweden": ["Europe/Stockholm"],
+        "Ukraine": ["Europe/Kiev"],
+        "Mexico": ["America/Mexico_City"],
+        "Colombia": ["America/Bogota"],
+        "Russia": ["Europe/Moscow"],
+        "Norway": ["Europe/Oslo"],
+        "Spain": ["Europe/Madrid"],
+        "Singapore": ["Asia/Singapore"],
+        "Finland": ["Europe/Helsinki"],
+        "Peru": ["America/Lima"],
+        "Indonesia": ["Asia/Jakarta"],
+        "Netherlands": ["Europe/Amsterdam"],
+        "Denmark": ["Europe/Copenhagen"],
+        "South Korea": ["Asia/Seoul"],
+        "Taiwan": ["Asia/Taipei"],
+        "Venezuela": ["America/Caracas"],
+        "France": ["Europe/Paris"],
+        "Hungary": ["Europe/Budapest"],
+        "Romania": ["Europe/Bucharest"],
+        "Saudi Arabia": ["Asia/Riyadh"],
+        "Belarus": ["Europe/Minsk"],
+        "Czechia": ["Europe/Prague"],
+        "Poland": ["Europe/Warsaw"],
+        "Thailand": ["Asia/Bangkok"],
+        "Costa Rica": ["America/Costa_Rica"],
+        "Iceland": ["Atlantic/Reykjavik"],
+        "Malaysia": ["Asia/Kuala_Lumpur"],
+        "Serbia": ["Europe/Belgrade"],
+        "Uruguay": ["America/Montevideo"],
+        "Cyprus": ["Asia/Nicosia"]
+    };
+
+    let options = Object.entries(countryTimezones).map(([country, zones]) => {
+        return `<optgroup label="${country}">
+            ${zones.map(zone => `<option value="${zone}" ${zone === selectedTimezone ? "selected" : ""}>${zone}</option>`).join("")}
+        </optgroup>`;
+    }).join("");
+
+    timezoneSelect.innerHTML = options;
+
+    function filterTimezones() {
+        const searchTerm = timezoneSearch.value.toLowerCase();
+        const optgroups = timezoneSelect.getElementsByTagName("optgroup");
+        Array.from(optgroups).forEach(optgroup => {
+            const options = optgroup.getElementsByTagName("option");
+            let anyMatch = false;
+            Array.from(options).forEach(option => {
+                const text = option.textContent.toLowerCase();
+                if (text.includes(searchTerm) || optgroup.label.toLowerCase().includes(searchTerm)) {
+                    option.style.display = "";
+                    anyMatch = true;
+                } else {
+                    option.style.display = "none";
+                }
+            });
+            optgroup.style.display = anyMatch ? "" : "none";
+        });
+    }
+
+    timezoneSearch.addEventListener("input", filterTimezones);
+    filterTimezones(); // Initial filter
+}
+
+function updateTimezone() {
+    selectedTimezone = document.getElementById("timezone").value;
+    localStorage.setItem("selectedTimezone", selectedTimezone);
+    displayBuffs();
+    startCountdown(); // Restart countdown with new timezone
+}
 
 async function loadBuffs() {
     try {
@@ -31,9 +116,10 @@ function updateFaction() {
 }
 
 function formatDateTime(date, isServerTime = false) {
-    return isServerTime
-        ? date.toLocaleString("en-US", { timeZone: "America/Denver", weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: true })
-        : date.toLocaleString("en-US", { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, weekday: "long", hour: "numeric", minute: "numeric", hour12: true });
+    const timezone = isServerTime ? "America/Denver" : selectedTimezone;
+    return moment(date).tz(timezone).format(
+        isServerTime ? "dddd, MMMM D, h:mm A" : "dddd, h:mm A"
+    );
 }
 
 function displayBuffs() {
@@ -43,21 +129,18 @@ function displayBuffs() {
         buffList.innerHTML = '<tr><td colspan="5">No buffs available.</td></tr>';
         return;
     }
-    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let now = new Date();
-    let localNow = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
+    let now = moment().tz(selectedTimezone);
     let upcomingBuffs = buffs.filter(buff => {
-        let buffDate = new Date(buff.datetime);
-        let localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: timezone }));
-        return localBuffDate > localNow;
+        let buffDate = moment(buff.datetime).tz(selectedTimezone);
+        return buffDate.isAfter(now);
     });
     if (upcomingBuffs.length === 0) {
         buffList.innerHTML = '<tr><td colspan="5">No upcoming buffs available.</td></tr>';
         return;
     }
     upcomingBuffs.forEach(buff => {
-        let buffDate = new Date(buff.datetime);
-        if (isNaN(buffDate.getTime())) buffDate = new Date();
+        let buffDate = moment(buff.datetime);
+        if (!buffDate.isValid()) buffDate = moment();
         let serverTime = formatDateTime(buffDate, true);
         let localTime = formatDateTime(buffDate, false);
         let row = document.createElement("tr");
@@ -80,9 +163,7 @@ function searchBuffs() {
         buffList.innerHTML = '<tr><td colspan="5">No buffs available.</td></tr>';
         return;
     }
-    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let now = new Date();
-    let localNow = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
+    let now = moment().tz(selectedTimezone);
     let filteredBuffs = buffs.filter(buff => {
         let serverTime = formatDateTime(new Date(buff.datetime), true).toLowerCase();
         let guild = buff.guild.toLowerCase();
@@ -90,16 +171,15 @@ function searchBuffs() {
         return serverTime.includes(searchTerm) || guild.includes(searchTerm) || notes.includes(searchTerm);
     });
     let upcomingFilteredBuffs = filteredBuffs.filter(buff => {
-        let buffDate = new Date(buff.datetime);
-        let localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: timezone }));
-        return localBuffDate > localNow;
+        let buffDate = moment(buff.datetime).tz(selectedTimezone);
+        return buffDate.isAfter(now);
     });
     if (upcomingFilteredBuffs.length === 0) {
         buffList.innerHTML = '<tr><td colspan="5">No matching buffs available.</td></tr>';
         return;
     }
     upcomingFilteredBuffs.forEach(buff => {
-        let buffDate = new Date(buff.datetime);
+        let buffDate = moment(buff.datetime);
         let serverTime = formatDateTime(buffDate, true);
         let localTime = formatDateTime(buffDate, false);
         let row = document.createElement("tr");
@@ -123,13 +203,10 @@ function startCountdown() {
             return;
         }
 
-        let now = new Date();
-        let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        let localNow = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
+        let now = moment().tz(selectedTimezone);
         let nextBuff = buffs.find(e => {
-            let buffDate = new Date(e.datetime);
-            let localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: timezone }));
-            return localBuffDate > localNow;
+            let buffDate = moment(e.datetime).tz(selectedTimezone);
+            return buffDate.isAfter(now);
         });
 
         if (!nextBuff) {
@@ -141,9 +218,8 @@ function startCountdown() {
             return;
         }
 
-        let buffDate = new Date(nextBuff.datetime);
-        let localBuffDate = new Date(buffDate.toLocaleString("en-US", { timeZone: timezone }));
-        let timeDiff = localBuffDate - localNow;
+        let buffDate = moment(nextBuff.datetime).tz(selectedTimezone);
+        let timeDiff = buffDate.diff(now);
         let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
         let buffKey = `${nextBuff.datetime}_${nextBuff.guild}`;
 
@@ -156,9 +232,8 @@ function startCountdown() {
         if (timeDiff <= 0) {
             document.getElementById("countdownTimer").textContent = "Buff is now!";
             let upcomingBuffs = buffs.filter(e => {
-                let d = new Date(e.datetime);
-                let localD = new Date(d.toLocaleString("en-US", { timeZone: timezone }));
-                return localD > localNow;
+                let d = moment(e.datetime).tz(selectedTimezone);
+                return d.isAfter(now);
             });
             if (JSON.stringify(upcomingBuffs) !== JSON.stringify(lastBuffs)) {
                 buffs = upcomingBuffs;
@@ -169,10 +244,11 @@ function startCountdown() {
             return;
         }
 
-        let days = Math.floor(timeDiff / 86400000);
-        let hours = Math.floor((timeDiff % 86400000) / 3600000);
-        let minutes = Math.floor((timeDiff % 3600000) / 60000);
-        let seconds = Math.floor((timeDiff % 60000) / 1000);
+        let duration = moment.duration(timeDiff);
+        let days = Math.floor(duration.asDays());
+        let hours = duration.hours();
+        let minutes = duration.minutes();
+        let seconds = duration.seconds();
         let timeString;
         if (days === 0) {
             if (hours === 0) {
@@ -222,6 +298,8 @@ function startCountdown() {
     setInterval(updateCountdown, 1000);
 }
 
+// Initialize
+populateTimezoneDropdown();
 loadBuffs();
 setInterval(loadBuffs, 60000);
 displayBuffs();
