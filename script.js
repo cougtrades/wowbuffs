@@ -2,23 +2,6 @@ let buffs = [];
 let faction = "horde";
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-async function getServerTime() {
-    try {
-        // Use HTTPS to avoid mixed content issues
-        const response = await fetch('https://worldtimeapi.org/api/timezone/America/Denver');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        document.getElementById("serverTimeWarning").style.display = "none"; // Hide warning on success
-        return moment(data.datetime).tz("America/Denver");
-    } catch (error) {
-        console.error("Failed to fetch server time, using local time as fallback:", error);
-        document.getElementById("serverTimeWarning").style.display = "block"; // Show warning on failure
-        return moment().tz("America/Denver");
-    }
-}
-
 function populateTimezoneDropdown() {
     const timezoneSelect = document.getElementById("timezone");
     const timezoneSearch = document.getElementById("timezoneSearch");
@@ -212,19 +195,9 @@ function searchBuffs() {
     });
 }
 
-async function startCountdown() {
+function startCountdown() {
     let lastBuffs = null;
-    let lastServerTimeFetch = null;
-    let serverTime = null;
-
-    // Fetch server time every minute to keep it accurate
-    async function fetchServerTime() {
-        serverTime = await getServerTime();
-        lastServerTimeFetch = Date.now();
-    }
-
-    await fetchServerTime(); // Initial fetch
-
+    
     function updateCountdown() {
         if (buffs.length === 0) {
             document.getElementById("countdownTimer").textContent = "--:--:--";
@@ -232,31 +205,22 @@ async function startCountdown() {
             return;
         }
 
-        // Update server time every second by adding elapsed time since last fetch
-        const elapsedSeconds = (Date.now() - lastServerTimeFetch) / 1000;
-        const nowServerTime = moment(serverTime).add(elapsedSeconds, 'seconds');
-        const now = nowServerTime.clone().tz(selectedTimezone);
-
-        // Refetch server time every minute to prevent drift
-        if (elapsedSeconds >= 60) {
-            fetchServerTime();
-        }
-
+        let now = moment().tz(selectedTimezone);
         let nextBuff = buffs.find(e => {
-            let buffDate = moment(e.datetime).tz("America/Denver");
-            return buffDate.isAfter(nowServerTime);
+            let buffDate = moment(e.datetime).tz(selectedTimezone);
+            return buffDate.isAfter(now);
         });
 
         // Find the last completed buff and calculate elapsed time
         let pastBuffs = buffs.filter(e => {
-            let buffDate = moment(e.datetime).tz("America/Denver");
-            return buffDate.isBefore(nowServerTime);
-        }).sort((a, b) => moment(b.datetime).tz("America/Denver") - moment(a.datetime).tz("America/Denver"));
+            let buffDate = moment(e.datetime).tz(selectedTimezone);
+            return buffDate.isBefore(now);
+        }).sort((a, b) => moment(b.datetime).tz(selectedTimezone) - moment(a.datetime).tz(selectedTimezone));
 
         let lastBuff = pastBuffs[0]; // Most recent past buff
         if (lastBuff) {
-            let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
-            let timeDiff = nowServerTime.diff(lastBuffDate); // Time elapsed since last buff
+            let lastBuffDate = moment(lastBuff.datetime).tz(selectedTimezone);
+            let timeDiff = now.diff(lastBuffDate); // Time elapsed since last buff
             let duration = moment.duration(timeDiff);
             let days = Math.floor(duration.asDays());
             let hours = duration.hours();
@@ -290,8 +254,8 @@ async function startCountdown() {
             return;
         }
 
-        let buffDate = moment(nextBuff.datetime).tz("America/Denver");
-        let timeDiff = buffDate.diff(nowServerTime);
+        let buffDate = moment(nextBuff.datetime).tz(selectedTimezone);
+        let timeDiff = buffDate.diff(now);
         let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
         let buffKey = `${nextBuff.datetime}_${nextBuff.guild}`;
 
@@ -304,8 +268,8 @@ async function startCountdown() {
         if (timeDiff <= 0) {
             document.getElementById("countdownTimer").textContent = "Buff is now!";
             let upcomingBuffs = buffs.filter(e => {
-                let d = moment(e.datetime).tz("America/Denver");
-                return d.isAfter(nowServerTime);
+                let d = moment(e.datetime).tz(selectedTimezone);
+                return d.isAfter(now);
             });
             if (JSON.stringify(upcomingBuffs) !== JSON.stringify(lastBuffs)) {
                 buffs = upcomingBuffs;
@@ -371,9 +335,7 @@ async function startCountdown() {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    populateTimezoneDropdown();
-    loadBuffs();
-    setInterval(loadBuffs, 60000);
-    displayBuffs();
-});
+populateTimezoneDropdown();
+loadBuffs();
+setInterval(loadBuffs, 60000);
+displayBuffs();
