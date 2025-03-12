@@ -4,7 +4,11 @@ let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTime
 
 async function getServerTime() {
     try {
-        const response = await fetch('http://worldtimeapi.org/api/timezone/America/Denver');
+        // Use HTTPS to avoid mixed content issues
+        const response = await fetch('https://worldtimeapi.org/api/timezone/America/Denver');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
         document.getElementById("serverTimeWarning").style.display = "none"; // Hide warning on success
         return moment(data.datetime).tz("America/Denver");
