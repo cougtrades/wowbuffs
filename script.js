@@ -2,6 +2,23 @@ let buffs = [];
 let faction = "horde";
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+// Twitch Clips Carousel
+let currentSlide = 0;
+const clipsWrapper = document.querySelector('.clips-wrapper');
+const clips = document.querySelectorAll('.clip');
+const dotsContainer = document.querySelector('.carousel-dots');
+
+// Create dots
+clips.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
 function populateTimezoneDropdown() {
     const timezoneSelect = document.getElementById("timezone");
     const timezoneSearch = document.getElementById("timezoneSearch");
@@ -335,10 +352,75 @@ function startCountdown() {
     setInterval(updateCountdown, 1000);
 }
 
+function updateCarousel() {
+    clipsWrapper.style.transform = `translateX(-${currentSlide * 640}px)`;
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function moveCarousel(direction) {
+    currentSlide = (currentSlide + direction + clips.length) % clips.length;
+    updateCarousel();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+}
+
+// Auto-advance carousel every 30 seconds
+setInterval(() => moveCarousel(1), 30000);
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     populateTimezoneDropdown();
     loadBuffs();
     setInterval(loadBuffs, 60000);
     displayBuffs();
+});
+
+// Video Popup Functions
+function openVideoPopup(videoUrl) {
+    const popup = document.getElementById('videoPopup');
+    const video = document.getElementById('popupVideo');
+    
+    // Set the video source
+    video.src = videoUrl;
+    
+    // Show the popup
+    popup.style.display = 'flex';
+    popup.classList.add('active');
+    
+    // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
+    
+    // Add event listeners for closing
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) {
+            closeVideoPopup();
+        }
+    });
+}
+
+function closeVideoPopup() {
+    const popup = document.getElementById('videoPopup');
+    const video = document.getElementById('popupVideo');
+    
+    // Hide the popup
+    popup.style.display = 'none';
+    popup.classList.remove('active');
+    
+    // Clear the video source
+    video.src = '';
+    
+    // Restore body scrolling
+    document.body.style.overflow = '';
+}
+
+// Close popup with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeVideoPopup();
+    }
 });
