@@ -196,21 +196,23 @@ body.alliance .timezone-select select {
 }
 
 .carousel-dots {
-    margin-top: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    gap: 8px;
+    position: relative;
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: #444;
+    background-color: #666;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .dot.active {
-    background: #ff4444;
+    background-color: #fff;
 }
 
 /* Video Popup Styles */
