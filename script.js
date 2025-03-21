@@ -353,14 +353,16 @@ function startCountdown() {
 }
 
 function updateCarousel() {
-    clipsWrapper.style.transform = `translateX(-${currentSlide * 640}px)`;
+    const translateX = -currentSlide * 100;
+    clipsWrapper.style.transform = `translateX(${translateX}%)`;
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
 }
 
 function moveCarousel(direction) {
-    currentSlide = (currentSlide + direction + clips.length) % clips.length;
+    const totalSlides = clips.length;
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
     updateCarousel();
 }
 
