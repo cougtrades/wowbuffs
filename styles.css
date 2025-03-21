@@ -123,9 +123,9 @@ body.alliance .timezone-select select {
 
 .clip {
     flex: 0 0 100%;
-    min-width: 100%;
     position: relative;
     cursor: pointer;
+    min-width: 100%;
 }
 
 .clip-content {
@@ -142,9 +142,9 @@ body.alliance .timezone-select select {
 }
 
 .clip-content p {
-    pointer-events: none;
+    margin: 8px 0;
     text-align: center;
-    margin-top: 10px;
+    color: #fff;
 }
 
 .clip:hover {
@@ -168,39 +168,51 @@ body.alliance .timezone-select select {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: #ff4444;
     color: white;
     border: none;
-    padding: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    z-index: 2;
+}
+
+.carousel-button:hover {
+    background: #ff6666;
 }
 
 .carousel-button.prev {
-    left: 0;
+    left: 10px;
 }
 
 .carousel-button.next {
-    right: 0;
+    right: 10px;
 }
 
 .carousel-dots {
     display: flex;
     justify-content: center;
+    margin: 10px auto;
     gap: 8px;
-    margin-top: 10px;
+    position: relative;
 }
 
 .dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #666;
+    background-color: #666;
     cursor: pointer;
 }
 
 .dot.active {
-    background: #fff;
+    background-color: #fff;
 }
 
 /* Video Popup Styles */
