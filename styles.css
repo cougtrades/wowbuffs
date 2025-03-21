@@ -94,12 +94,9 @@ body.alliance .timezone-select select {
 
 /* Twitch Clips Carousel Styles */
 .twitch-clips-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    background: #1a1a1a;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0 15px;
 }
 
 .twitch-clips-container h2 {
@@ -121,96 +118,99 @@ body.alliance .timezone-select select {
 
 .clips-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out;
-    gap: 1rem;
-    padding: 0 1rem;
+    transition: transform 0.3s ease;
 }
 
 .clip {
     position: relative;
     cursor: pointer;
+    flex: 0 0 100%;  /* Take full width on mobile */
+    max-width: 640px; /* Maximum width on desktop */
+    margin: 0 auto;
+    padding: 10px;
 }
 
 .clip-content {
     position: relative;
     pointer-events: none;
+    width: 100%;
 }
 
 .clip-content iframe {
     pointer-events: none;
+    width: 100%;    /* Make iframe responsive */
+    height: auto;   /* Auto height */
+    aspect-ratio: 16/9;  /* Maintain video aspect ratio */
 }
 
 .clip-content p {
     pointer-events: none;
+    font-size: 14px;
+    margin: 8px 0;
+    word-wrap: break-word;
 }
 
 .clip:hover {
     opacity: 0.9;
 }
 
-.clip iframe {
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-    border: 2px solid #ff4444;
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .clip {
+        flex: 0 0 640px;  /* Original size on desktop */
+        padding: 15px;
+    }
 }
 
-.clip p {
-    margin: 0;
-    text-align: center;
-    color: #fff;
-    font-size: 0.9rem;
-}
-
+/* Carousel navigation buttons */
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #ff4444;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    padding: 15px;
     cursor: pointer;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
     z-index: 2;
 }
 
-.carousel-button:hover {
-    background: #ff6666;
-}
-
 .carousel-button.prev {
-    left: 10px;
+    left: 0;
 }
 
 .carousel-button.next {
-    right: 10px;
+    right: 0;
 }
 
+/* Make carousel dots more touch-friendly on mobile */
 .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
+    gap: 10px;
+    margin: 15px 0;
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: #444;
+    background: #ccc;
     cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 0;
+    border: none;
 }
 
-.dot.active {
-    background: #ff4444;
+@media (max-width: 767px) {
+    .dot {
+        width: 16px;  /* Larger dots on mobile */
+        height: 16px;
+    }
+    
+    .carousel-button {
+        padding: 20px;  /* Larger buttons on mobile */
+        font-size: 20px;
+    }
 }
 
 /* Video Popup Styles */
@@ -234,7 +234,8 @@ body.alliance .timezone-select select {
 .video-popup-content {
     position: relative;
     width: 95%;
-    max-width: 1400px;
+    max-width: 1200px;
+    margin: 20px auto;
     background: #1a1a1a;
     border-radius: 12px;
     padding: 1rem;
@@ -268,6 +269,12 @@ body.alliance .timezone-select select {
     border-radius: 8px;
     border: none;
     background: #000;
+}
+
+.video-popup-content iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
 }
 
 @media (max-width: 768px) {
