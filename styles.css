@@ -91,3 +91,228 @@ body.alliance .timezone-select select {
         padding: 4px;
     }
 }
+
+/* Twitch Clips Carousel Styles */
+.twitch-clips-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.twitch-clips-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    padding-top: 1rem;
+}
+
+.clips-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #2a2a2a;
+    border-radius: 8px;
+    padding: 1rem 0;
+}
+
+.clips-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.clip {
+    position: relative;
+    cursor: pointer;
+}
+
+.clip-content {
+    position: relative;
+    pointer-events: none;
+}
+
+.clip-content iframe {
+    pointer-events: none;
+}
+
+.clip-content p {
+    pointer-events: none;
+}
+
+.clip:hover {
+    opacity: 0.9;
+}
+
+.clip iframe {
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    border: 2px solid #ff4444;
+}
+
+.clip p {
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    z-index: 2;
+}
+
+.carousel-button:hover {
+    background: #ff6666;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #444;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background: #ff4444;
+}
+
+/* Video Popup Styles */
+.video-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-popup.active {
+    display: flex !important;
+}
+
+.video-popup-content {
+    position: relative;
+    width: 95%;
+    max-width: 1400px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid #ff4444;
+    z-index: 100000;
+}
+
+.video-popup-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s;
+    z-index: 100001;
+}
+
+.video-popup-close:hover {
+    color: #ff4444;
+}
+
+#popupVideo {
+    width: 100%;
+    height: 80vh;
+    border-radius: 8px;
+    border: none;
+    background: #000;
+}
+
+@media (max-width: 768px) {
+    .clip {
+        flex: 0 0 100%;
+    }
+    
+    .clip iframe {
+        width: 100%;
+        height: 240px;
+    }
+    
+    .carousel-button {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+    }
+
+    .video-popup-content {
+        width: 98%;
+        padding: 0.5rem;
+    }
+
+    #popupVideo {
+        height: 70vh;
+    }
+
+    .video-popup-close {
+        top: -40px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-popup-content {
+        width: 98%;
+        padding: 0.5rem;
+    }
+
+    #popupVideo {
+        height: 60vh;
+    }
+
+    .video-popup-close {
+        top: -35px;
+        font-size: 1.8rem;
+    }
+}
