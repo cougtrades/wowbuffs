@@ -55,12 +55,14 @@ def generate_embed_html(clips, num_clips=10, domain="hcbuffs.com"):
     # Sort clips by view_count and take top N
     top_clips = sorted(clips, key=lambda x: x["view_count"], reverse=True)[:num_clips]
     
-    html = '<div class="twitch-clips">\n    <h2>Top WoW Clips (Past 7 Days)</h2>\n'
+    html = '<div class="clips-wrapper">\n'  # Remove the title and change to clips-wrapper
     for clip in top_clips:
         embed_url = f"https://clips.twitch.tv/embed?clip={clip['id']}&parent={domain}"
         html += f'''    <div class="clip">
-        <iframe src="{embed_url}" frameborder="0" allowfullscreen="true" height="360" width="640"></iframe>
-        <p>{clip['title']} by {clip['broadcaster_name']} ({clip['view_count']} views)</p>
+        <div class="clip-content">
+            <iframe src="{embed_url}" frameborder="0" allowfullscreen="true" height="360" width="640"></iframe>
+            <p>{clip['title']} by {clip['broadcaster_name']} ({clip['view_count']} views)</p>
+        </div>
     </div>\n'''
     html += "</div>"
     return html
@@ -73,7 +75,7 @@ def main():
         embed_html = generate_embed_html(clips, num_clips=10, domain="hcbuffs.com")
         
         # Save to a file for use in your website
-        with open("twitch_clips.html", "w") as f:
+        with open("wowbuffs/twitch_clips.html", "w") as f:
             f.write(embed_html)
         print("Generated twitch_clips.html with top 10 clips.")
         print(f"Total clips fetched: {len(clips)}")
