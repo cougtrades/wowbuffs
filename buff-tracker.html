@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doomhowl Buff Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea { width: 100%; height: 300px; }
+        .form-group { margin-bottom: 10px; }
+        button { padding: 10px 20px; margin-top: 10px; }
+        #githubToken { width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Doomhowl Buff Tracker</h1>
+
+    <div class="form-group">
+        <label for="githubToken">GitHub Personal Access Token:</label>
+        <input type="password" id="githubToken" placeholder="Enter your GitHub token" required>
+    </div>
+
+    <h2>Horde Buffs</h2>
+    <textarea id="hordeBuffs" readonly></textarea>
+
+    <h2>Alliance Buffs</h2>
+    <textarea id="allianceBuffs" readonly></textarea>
+
+    <h2>Add New Buff</h2>
+    <div class="form-group">
+        <label for="faction">Faction:</label>
+        <select id="faction">
+            <option value="horde">Horde</option>
+            <option value="alliance">Alliance</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="guild">Guild Name (e.g., <Guild>):</label>
+        <input type="text" id="guild" required>
+    </div>
+    <div class="form-group">
+        <label for="notes">Notes:</label>
+        <input type="text" id="notes">
+    </div>
+    <div class="form-group">
+        <label for="date">Date (YYYY-MM-DD):</label>
+        <input type="text" id="date" placeholder="e.g., 2025-03-28" required>
+    </div>
+    <div class="form-group">
+        <label for="time">Time (HH:MM, 24-hour):</label>
+        <input type="text" id="time" placeholder="e.g., 18:30" required>
+    </div>
+    <button onclick="addBuff()">Add Buff</button>
+
+    <script>
+        // Function to fetch JSON files from GitHub
+        async function fetchBuffs() {
+            try {
+                const hordeResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/horde_buffs.json');
+                const allianceResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/alliance_buffs.json');
+                
+                const hordeBuffs = await hordeResponse.json();
+                const allianceBuffs = await allianceResponse.json();
+
+                document.getElementById('hordeBuffs').value = JSON.stringify(hordeBuffs, null, 4);
+                document.getElementById('allianceBuffs').value = JSON.stringify(allianceBuffs, null, 4);
+
+                return { hordeBuffs, allianceBuffs };
+            } catch (error) {
+                alert('Error fetching buffs: ' + error);
+                return { hordeBuffs: [], allianceBuffs: [] };
+            }
+        }
+
+        // Load buffs on page load
+        let buffs = { hordeBuffs: [], allianceBuffs: [] };
+        fetchBuffs().then(data => {
+            buffs.hordeBuffs = data.hordeBuffs;
+            buffs.allianceBuffs = data.allianceBuffs;
+        });
+
+        // Function to convert ST to UTC
+        function convertToUTC(stDate, stTime) {
+            const stDatetime = new Date(`${stDate}T${stTime}:00`);
+            const dstStart = new Date('2025-03-09T02:00:00');
+            const isDst = stDatetime >= dstStart;
+            const offset = isDst ? 6 : 7; // Hours to add to ST to get to UTC
+            stDatetime.setHours(stDatetime.getHours() + offset);
+            return stDatetime.toISOString().replace(/\.\d{3}Z$/, ':00Z');
+        }
+
+        // Function to get the SHA of a file (needed for GitHub API update)
+        async function getFileSha(token, path) {
+            const response = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
+                headers: {
+                    Authorization: `token ${token}`,
+                    Accept: 'application/vnd.github.v3+json'
+                }
+            });
+            const data = await response.json();
+            return data.sha;
+        }
+
+        // Function to update a file on GitHub
+        async function updateFile(token, path, content, sha) {
+            const response = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `token ${token}`,
+                    Accept: 'application/vnd.github.v3+json'
+                },
+                body: JSON.stringify({
+                    message: `Update ${path} with new buff`,
+                    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 4)))),
+                    sha: sha
+                })
+            });
+            if (!response.ok) {
+                throw new Error('Failed to update file: ' + response.statusText);
+            }
+        }
+
+        // Function to add a new buff
+        async function addBuff() {
+            const token = document.getElementById('githubToken').value;
+            if (!token) {
+                alert('Please enter your GitHub Personal Access Token.');
+                return;
+            }
+
+            const faction = document.getElementById('faction').value;
+            const guild = document.getElementById('guild').value;
+            const notes = document.getElementById('notes').value;
+            const stDate = document.getElementById('date').value;
+            const stTime = document.getElementById('time').value;
+
+            // Validate inputs
+            if (!guild || !stDate || !stTime) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            if (!stDate.match(/^\d{4}-\d{2}-\d{2}$/) || !stTime.match(/^\d{2}:\d{2}$/)) {
+                alert('Invalid date or time format. Use YYYY-MM-DD for date and HH:MM for time.');
+                return;
+            }
+
+            // Convert ST to UTC
+            const utcDate = convertToUTC(stDate, stTime);
+
+            // Create new buff entry
+            const newBuff = {
+                datetime: utcDate,
+                guild: guild,
+                notes: notes,
+                server: "Doomhowl"
+            };
+
+            try {
+                // Add to the appropriate array
+                if (faction === 'horde') {
+                    buffs.hordeBuffs.push(newBuff);
+                    buffs.hordeBuffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+                    document.getElementById('hordeBuffs').value = JSON.stringify(buffs.hordeBuffs, null, 4);
+
+                    // Update horde_buffs.json on GitHub
+                    const sha = await getFileSha(token, 'horde_buffs.json');
+                    await updateFile(token, 'horde_buffs.json', buffs.hordeBuffs, sha);
+                } else {
+                    buffs.allianceBuffs.push(newBuff);
+                    buffs.allianceBuffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+                    document.getElementById('allianceBuffs').value = JSON.stringify(buffs.allianceBuffs, null, 4);
+
+                    // Update alliance_buffs.json on GitHub
+                    const sha = await getFileSha(token, 'alliance_buffs.json');
+                    await updateFile(token, 'alliance_buffs.json', buffs.allianceBuffs, sha);
+                }
+
+                // Clear the form
+                document.getElementById('guild').value = '';
+                document.getElementById('notes').value = '';
+                document.getElementById('date').value = '';
+                document.getElementById('time').value = '';
+
+                alert('Buff added and committed to GitHub! Netlify will redeploy the site shortly.');
+            } catch (error) {
+                alert('Error adding buff: ' + error);
+            }
+        }
+    </script>
+</body>
+</html>
