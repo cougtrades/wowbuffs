@@ -12,12 +12,6 @@
         "server": "Doomhowl"
     },
     {
-    "datetime": "2025-03-29T03:00:00Z",
-    "guild": "Shadow Wizard Money Gang",
-    "notes": "",
-    "server": "Doomhowl"
-},
-    {
         "datetime": "2025-03-24T00:00:00Z",
         "guild": "Booty Bay Yacht Club",
         "notes": "",
@@ -102,6 +96,12 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-03-29T03:00:00Z",
+        "guild": "Shadow Wizard Money Gang",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-03-29T23:30:00Z",
         "guild": "Endless",
         "notes": "Dropping Dat",
@@ -128,6 +128,12 @@
     {
         "datetime": "2025-03-29T10:00:00:00Z",
         "guild": "Shadow Wizard Monkey Gang",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-03-30T07:00:00:00Z",
+        "guild": "Fatal",
         "notes": "",
         "server": "Doomhowl"
     }
