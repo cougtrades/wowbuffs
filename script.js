@@ -105,12 +105,12 @@ function updateTimezone() {
 
 async function loadBuffs() {
     try {
-        let url = `${faction}_buffs.json`;
+        let url = `${faction}_buffs.json?ts=${Date.now()}`;
         let response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         let data = await response.json();
         buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild, item])).values());
-        buffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+        buffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
         displayBuffs();
         startCountdown();
     } catch (error) {
