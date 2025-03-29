@@ -9,83 +9,56 @@
         textarea { width: 100%; height: 300px; }
         .form-group { margin-bottom: 10px; }
         button { padding: 10px 20px; margin-top: 10px; }
-        #content { display: none; }
+        #githubToken { width: 100%; }
     </style>
 </head>
 <body>
     <h1>Doomhowl Buff Tracker</h1>
 
-    <div id="passwordPrompt">
-        <div class="form-group">
-            <label for="password">Enter Password:</label>
-            <input type="password" id="password" placeholder="Enter password">
-        </div>
-        <button onclick="checkPassword()">Submit</button>
+    <div class="form-group">
+        <label for="githubToken">GitHub Personal Access Token:</label>
+        <input type="password" id="githubToken" placeholder="Enter your GitHub token" required>
     </div>
 
-    <div id="content">
-        <h2>Horde Buffs</h2>
-        <textarea id="hordeBuffs" readonly></textarea>
+    <h2>Horde Buffs</h2>
+    <textarea id="hordeBuffs" readonly></textarea>
 
-        <h2>Alliance Buffs</h2>
-        <textarea id="allianceBuffs" readonly></textarea>
+    <h2>Alliance Buffs</h2>
+    <textarea id="allianceBuffs" readonly></textarea>
 
-        <h2>Add New Buff</h2>
-        <div class="form-group">
-            <label for="faction">Faction:</label>
-            <select id="faction">
-                <option value="horde">Horde</option>
-                <option value="alliance">Alliance</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="guild">Guild Name (e.g., <Guild>):</label>
-            <input type="text" id="guild" required>
-        </div>
-        <div class="form-group">
-            <label for="notes">Notes:</label>
-            <input type="text" id="notes">
-        </div>
-        <div class="form-group">
-            <label for="date">Date (YYYY-MM-DD):</label>
-            <input type="text" id="date" placeholder="e.g., 2025-03-28" required>
-        </div>
-        <div class="form-group">
-            <label for="time">Time (HH:MM, 24-hour):</label>
-            <input type="text" id="time" placeholder="e.g., 18:30" required>
-        </div>
-        <button onclick="addBuff()">Add Buff</button>
+    <h2>Add New Buff</h2>
+    <div class="form-group">
+        <label for="faction">Faction:</label>
+        <select id="faction">
+            <option value="horde">Horde</option>
+            <option value="alliance">Alliance</option>
+        </select>
     </div>
+    <div class="form-group">
+        <label for="guild">Guild Name (e.g., <Guild>):</label>
+        <input type="text" id="guild" required>
+    </div>
+    <div class="form-group">
+        <label for="notes">Notes:</label>
+        <input type="text" id="notes">
+    </div>
+    <div class="form-group">
+        <label for="date">Date (YYYY-MM-DD):</label>
+        <input type="text" id="date" placeholder="e.g., 2025-03-28" required>
+    </div>
+    <div class="form-group">
+        <label for="time">Time (HH:MM, 24-hour):</label>
+        <input type="text" id="time" placeholder="e.g., 18:30" required>
+    </div>
+    <button onclick="addBuff()">Add Buff</button>
 
     <script>
-        // Password protection
-        function checkPassword() {
-            const password = document.getElementById('password').value;
-            if (password === 'coug') {
-                document.getElementById('passwordPrompt').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-                fetchBuffs().then(data => {
-                    buffs.hordeBuffs = data.hordeBuffs;
-                    buffs.allianceBuffs = data.allianceBuffs;
-                });
-            } else {
-                alert('Incorrect password. Please try again.');
-            }
-        }
-
-        // Hardcoded GitHub Personal Access Token
-        const githubToken = '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'; // Replace with your new PAT
-
         // Function to fetch JSON files from GitHub
         async function fetchBuffs() {
             try {
                 const hordeResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/horde_buffs.json');
                 const allianceResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/alliance_buffs.json');
                 
-                if (!hordeResponse.ok || !allianceResponse.ok) {
-                    throw new Error(`Failed to fetch buffs: Horde ${hordeResponse.statusText}, Alliance ${allianceResponse.statusText}`);
-                }
-
                 const hordeBuffs = await hordeResponse.json();
                 const allianceBuffs = await allianceResponse.json();
 
@@ -94,13 +67,17 @@
 
                 return { hordeBuffs, allianceBuffs };
             } catch (error) {
-                alert('Error fetching buffs: ' + error.message);
+                alert('Error fetching buffs: ' + error);
                 return { hordeBuffs: [], allianceBuffs: [] };
             }
         }
 
         // Load buffs on page load
         let buffs = { hordeBuffs: [], allianceBuffs: [] };
+        fetchBuffs().then(data => {
+            buffs.hordeBuffs = data.hordeBuffs;
+            buffs.allianceBuffs = data.allianceBuffs;
+        });
 
         // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
@@ -130,10 +107,6 @@
                     Accept: 'application/vnd.github.v3+json'
                 }
             });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Failed to fetch SHA for ${path}: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
-            }
             const data = await response.json();
             return data.sha;
         }
@@ -153,13 +126,18 @@
                 })
             });
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Failed to update file ${path}: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+                throw new Error('Failed to update file: ' + response.statusText);
             }
         }
 
         // Function to add a new buff
         async function addBuff() {
+            const token = document.getElementById('githubToken').value;
+            if (!token) {
+                alert('Please enter your GitHub Personal Access Token.');
+                return;
+            }
+
             const faction = document.getElementById('faction').value;
             const guild = document.getElementById('guild').value.replace(/^<|>$/g, '').toLowerCase();
             const notes = document.getElementById('notes').value;
@@ -195,16 +173,16 @@
                     document.getElementById('hordeBuffs').value = JSON.stringify(buffs.hordeBuffs, null, 4);
 
                     // Update horde_buffs.json on GitHub
-                    const sha = await getFileSha(githubToken, 'horde_buffs.json');
-                    await updateFile(githubToken, 'horde_buffs.json', buffs.hordeBuffs, sha);
+                    const sha = await getFileSha(token, 'horde_buffs.json');
+                    await updateFile(token, 'horde_buffs.json', buffs.hordeBuffs, sha);
                 } else {
                     buffs.allianceBuffs.push(newBuff);
                     buffs.allianceBuffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
                     document.getElementById('allianceBuffs').value = JSON.stringify(buffs.allianceBuffs, null, 4);
 
                     // Update alliance_buffs.json on GitHub
-                    const sha = await getFileSha(githubToken, 'alliance_buffs.json');
-                    await updateFile(githubToken, 'alliance_buffs.json', buffs.allianceBuffs, sha);
+                    const sha = await getFileSha(token, 'alliance_buffs.json');
+                    await updateFile(token, 'alliance_buffs.json', buffs.allianceBuffs, sha);
                 }
 
                 // Clear the form
@@ -215,7 +193,7 @@
 
                 alert('Buff added and committed to GitHub! Netlify will redeploy the site shortly.');
             } catch (error) {
-                alert('Error adding buff: ' + error.message);
+                alert('Error adding buff: ' + error);
             }
         }
     </script>
