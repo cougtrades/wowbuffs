@@ -81,12 +81,22 @@
 
         // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
-            const stDatetime = new Date(`${stDate}T${stTime}:00`);
-            const dstStart = new Date('2025-03-09T02:00:00');
+            // Parse the date and time as if it's in UTC initially
+            const stDatetime = new Date(`${stDate}T${stTime}:00Z`);
+            
+            // Determine if DST applies (after March 9, 2025, 2:00 AM ST)
+            const dstStart = new Date('2025-03-09T08:00:00Z'); // 2:00 AM ST (UTC-6) = 8:00 AM UTC
             const isDst = stDatetime >= dstStart;
-            const offset = isDst ? 6 : 7; // Hours to add to ST to get to UTC
-            stDatetime.setHours(stDatetime.getHours() + offset);
-            return stDatetime.toISOString().replace(/\.\d{3}Z$/, ':00Z');
+            
+            // ST is UTC-7 before DST, UTC-6 after DST
+            const stOffset = isDst ? 6 : 7; // Hours ST is behind UTC
+            // Subtract the ST offset to get the correct UTC time for ST
+            stDatetime.setHours(stDatetime.getHours() - stOffset);
+            // Add the offset to convert ST to UTC
+            stDatetime.setHours(stDatetime.getHours() + stOffset);
+            
+            // Format to UTC ISO string
+            return stDatetime.toISOString().replace(/\.\d{3}Z$/, 'Z');
         }
 
         // Function to get the SHA of a file (needed for GitHub API update)
