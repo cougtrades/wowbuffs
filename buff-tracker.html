@@ -64,6 +64,10 @@
             if (password === 'coug') {
                 document.getElementById('passwordPrompt').style.display = 'none';
                 document.getElementById('content').style.display = 'block';
+                fetchBuffs().then(data => {
+                    buffs.hordeBuffs = data.hordeBuffs;
+                    buffs.allianceBuffs = data.allianceBuffs;
+                });
             } else {
                 alert('Incorrect password. Please try again.');
             }
@@ -78,6 +82,10 @@
                 const hordeResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/horde_buffs.json');
                 const allianceResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/alliance_buffs.json');
                 
+                if (!hordeResponse.ok || !allianceResponse.ok) {
+                    throw new Error(`Failed to fetch buffs: Horde ${hordeResponse.statusText}, Alliance ${allianceResponse.statusText}`);
+                }
+
                 const hordeBuffs = await hordeResponse.json();
                 const allianceBuffs = await allianceResponse.json();
 
@@ -86,17 +94,13 @@
 
                 return { hordeBuffs, allianceBuffs };
             } catch (error) {
-                alert('Error fetching buffs: ' + error);
+                alert('Error fetching buffs: ' + error.message);
                 return { hordeBuffs: [], allianceBuffs: [] };
             }
         }
 
         // Load buffs on page load
         let buffs = { hordeBuffs: [], allianceBuffs: [] };
-        fetchBuffs().then(data => {
-            buffs.hordeBuffs = data.hordeBuffs;
-            buffs.allianceBuffs = data.allianceBuffs;
-        });
 
         // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
@@ -126,6 +130,10 @@
                     Accept: 'application/vnd.github.v3+json'
                 }
             });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Failed to fetch SHA for ${path}: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
+            }
             const data = await response.json();
             return data.sha;
         }
@@ -145,7 +153,8 @@
                 })
             });
             if (!response.ok) {
-                throw new Error('Failed to update file: ' + response.statusText);
+                const errorData = await response.json();
+                throw new Error(`Failed to update file ${path}: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
             }
         }
 
@@ -206,7 +215,7 @@
 
                 alert('Buff added and committed to GitHub! Netlify will redeploy the site shortly.');
             } catch (error) {
-                alert('Error adding buff: ' + error);
+                alert('Error adding buff: ' + error.message);
             }
         }
     </script>
