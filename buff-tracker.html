@@ -52,6 +52,7 @@
     </div>
     <button onclick="addBuff()">Add Buff</button>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script>
         // Function to fetch JSON files from GitHub
         async function fetchBuffs() {
@@ -81,7 +82,6 @@
 
         // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
-            // Parse the date and time without a timezone (treat as ST)
             const [year, month, day] = stDate.split('-').map(Number);
             const [hours, minutes] = stTime.split(':').map(Number);
             const stDatetime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
@@ -92,10 +92,8 @@
             
             // ST is UTC-7 before DST, UTC-6 after DST
             const stOffset = isDst ? 6 : 7; // Hours ST is behind UTC
-            // Add the offset to convert ST to UTC
             stDatetime.setHours(stDatetime.getHours() + stOffset);
             
-            // Format to UTC ISO string
             return stDatetime.toISOString().replace(/\.\d{3}Z$/, 'Z');
         }
 
@@ -155,21 +153,21 @@
             }
 
             // Convert ST to UTC
-            const utcDate = convertToUTC(stDate, stTime);
+            const datetime = convertToUTC(stDate, stTime);
 
             // Create new buff entry
             const newBuff = {
-                datetime: utcDate,
+                datetime: datetime,
                 guild: guild,
                 notes: notes,
                 server: "Doomhowl"
             };
 
             try {
-                // Add to the appropriate array
                 if (faction === 'horde') {
                     buffs.hordeBuffs.push(newBuff);
-                    buffs.hordeBuffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+                    // Sort using Moment.js for consistency
+                    buffs.hordeBuffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
                     document.getElementById('hordeBuffs').value = JSON.stringify(buffs.hordeBuffs, null, 4);
 
                     // Update horde_buffs.json on GitHub
@@ -177,7 +175,8 @@
                     await updateFile(token, 'horde_buffs.json', buffs.hordeBuffs, sha);
                 } else {
                     buffs.allianceBuffs.push(newBuff);
-                    buffs.allianceBuffs.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+                    // Sort using Moment.js for consistency
+                    buffs.allianceBuffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
                     document.getElementById('allianceBuffs').value = JSON.stringify(buffs.allianceBuffs, null, 4);
 
                     // Update alliance_buffs.json on GitHub
