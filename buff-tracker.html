@@ -81,17 +81,17 @@
 
         // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
-            // Parse the date and time as if it's in UTC initially
-            const stDatetime = new Date(`${stDate}T${stTime}:00Z`);
+            // Parse the date and time without a timezone (treat as ST)
+            const [year, month, day] = stDate.split('-').map(Number);
+            const [hours, minutes] = stTime.split(':').map(Number);
+            const stDatetime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
             
             // Determine if DST applies (after March 9, 2025, 2:00 AM ST)
-            const dstStart = new Date('2025-03-09T08:00:00Z'); // 2:00 AM ST (UTC-6) = 8:00 AM UTC
+            const dstStart = new Date(Date.UTC(2025, 2, 9, 8, 0)); // 2:00 AM ST (UTC-6) = 8:00 AM UTC
             const isDst = stDatetime >= dstStart;
             
             // ST is UTC-7 before DST, UTC-6 after DST
             const stOffset = isDst ? 6 : 7; // Hours ST is behind UTC
-            // Subtract the ST offset to get the correct UTC time for ST
-            stDatetime.setHours(stDatetime.getHours() - stOffset);
             // Add the offset to convert ST to UTC
             stDatetime.setHours(stDatetime.getHours() + stOffset);
             
@@ -139,7 +139,7 @@
             }
 
             const faction = document.getElementById('faction').value;
-            const guild = document.getElementById('guild').value;
+            const guild = document.getElementById('guild').value.replace(/^<|>$/g, '').toLowerCase();
             const notes = document.getElementById('notes').value;
             const stDate = document.getElementById('date').value;
             const stTime = document.getElementById('time').value;
