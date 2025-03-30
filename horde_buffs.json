@@ -138,12 +138,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-03-31T00:00:00Z",
-        "guild": "Booty Bay Yacht Club",
-        "notes": "Grats @Dismiss!",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-03-29T10:00:00:00Z",
         "guild": "Shadow Wizard Monkey Gang",
         "notes": "",
@@ -159,6 +153,12 @@
         "datetime": "2025-03-30T23:20:00Z",
         "guild": "death",
         "notes": "",
+        "server": "Doomhowl"
+    },
+        {
+        "datetime": "2025-03-31T00:00:00Z",
+        "guild": "Booty Bay Yacht Club",
+        "notes": "Grats @Dismiss!",
         "server": "Doomhowl"
     },
     {
