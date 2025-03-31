@@ -6,27 +6,33 @@
         "server": "Doomhowl"
     },
     {
-    "datetime": "2025-03-28T02:15:00Z",
-    "guild": "Tradition",
-    "notes": "",
-    "server": "Doomhowl"
-},
+        "datetime": "2025-03-24T01:50:00Z",
+        "guild": "Tradition",
+        "notes": "",
+        "server": "Doomhowl"
+    },
     {
-    "datetime": "2025-03-31T00:55:00Z",
-    "guild": "Resolve",
-    "notes": "",
-    "server": "Doomhowl"
-},
+        "datetime": "2025-03-27T00:55:00Z",
+        "guild": "Resolve",
+        "notes": "",
+        "server": "Doomhowl"
+    },
     {
-    "datetime": "2025-03-27T00:55:00Z",
-    "guild": "Resolve",
-    "notes": "",
-    "server": "Doomhowl"
-},
+        "datetime": "2025-03-28T02:15:00Z",
+        "guild": "Tradition",
+        "notes": "",
+        "server": "Doomhowl"
+    },
     {
-    "datetime": "2025-03-24T01:50:00Z",
-    "guild": "Tradition",
-    "notes": "",
-    "server": "Doomhowl"
-}
+        "datetime": "2025-03-31T00:55:00Z",
+        "guild": "Resolve",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-04-02T00:55:00Z",
+        "guild": "resolve",
+        "notes": "",
+        "server": "Doomhowl"
+    }
 ]
