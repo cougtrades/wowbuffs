@@ -48,6 +48,12 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-04-04T00:00:00Z",
+        "guild": "shadow wizard money gang",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-04-04T01:45:00Z",
         "guild": "washed up",
         "notes": "",
@@ -74,12 +80,6 @@
     {
         "datetime": "2025-04-07T00:00:00Z",
         "guild": "booty bay yacht club",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-07T00:50:00Z",
-        "guild": "endless",
         "notes": "",
         "server": "Doomhowl"
     }
