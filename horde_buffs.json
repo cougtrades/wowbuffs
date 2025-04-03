@@ -42,8 +42,20 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-04-03T03:25:00Z",
+        "guild": "power rangers",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-04-04T01:45:00Z",
         "guild": "washed up",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-04-04T02:45:00Z",
+        "guild": "unboon",
         "notes": "",
         "server": "Doomhowl"
     },
@@ -62,12 +74,6 @@
     {
         "datetime": "2025-04-07T00:00:00Z",
         "guild": "booty bay yacht club",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-        {
-        "datetime": "2025-04-03T03:25:00Z",
-        "guild": "power rangers",
         "notes": "",
         "server": "Doomhowl"
     }
