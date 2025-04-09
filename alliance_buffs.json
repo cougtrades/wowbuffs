@@ -58,5 +58,11 @@
         "guild": "Risk",
         "notes": "Give or take 10 mins",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-04-09T01:55:00Z",
+        "guild": "purpose",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
