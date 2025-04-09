@@ -31,37 +31,31 @@
     },
     {
         "datetime": "2025-04-02T00:55:00Z",
-        "guild": "resolve",
+        "guild": "Resolve",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-04-04T00:55:00Z",
-        "guild": "purpose",
+        "guild": "Purpose",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-04-06T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-06T00:55:00Z",
-        "guild": "resolve",
+        "guild": "Resolve",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-04-07T00:55:00Z",
-        "guild": "resolve",
+        "guild": "Resolve",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-04-08T03:20:00Z",
-        "guild": "risk",
+        "guild": "Risk",
         "notes": "Give or take 10 mins",
         "server": "Doomhowl"
     }
