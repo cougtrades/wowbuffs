@@ -288,12 +288,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-04-15T02:45:00Z",
-        "guild": "unboon",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-04-16T01:00:00Z",
         "guild": "warlords of rexxar",
         "notes": "",
@@ -302,6 +296,12 @@
     {
         "datetime": "2025-04-17T01:00:00Z",
         "guild": "ungoon",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-04-17T02:50:00Z",
+        "guild": "retention",
         "notes": "",
         "server": "Doomhowl"
     }
