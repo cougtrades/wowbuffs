@@ -438,12 +438,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-04-25T00:30:00Z",
-        "guild": "hordes finest",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-04-25T01:45:00Z",
         "guild": "washed up",
         "notes": "",
@@ -456,12 +450,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-04-26T01:00:00Z",
-        "guild": "zig life",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-04-26T01:50:00Z",
         "guild": "retention",
         "notes": "",
@@ -470,18 +458,6 @@
     {
         "datetime": "2025-04-26T20:00:00Z",
         "guild": "washed up",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-27T00:30:00Z",
-        "guild": "fatal",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-28T00:30:00Z",
-        "guild": "fatal",
         "notes": "",
         "server": "Doomhowl"
     }
