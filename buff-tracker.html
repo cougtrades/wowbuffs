@@ -5,11 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doomhowl Buff Tracker</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        textarea { width: 100%; height: 300px; }
-        .form-group { margin-bottom: 10px; }
-        button { padding: 10px 20px; margin-top: 10px; }
-        #githubToken { width: 100%; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6));
+            color: #e6e6e6;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://hcbuffs.com/ony.webp') center center/cover no-repeat fixed;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        h1, h2 { 
+            color: #ff6b6b; 
+            text-shadow: 1px 1px 4px rgba(0,0,0,.8);
+        }
+        textarea { 
+            width: 100%; 
+            height: 300px; 
+            background-color: #333; 
+            color: #e6e6e6; 
+            border: 1px solid #ff4d4d; 
+            border-radius: 5px; 
+            padding: 10px;
+        }
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        .form-group label { 
+            font-size: 1.1rem; 
+            margin-right: 10px; 
+            color: #e6e6e6; 
+        }
+        .form-group input, .form-group select { 
+            padding: 8px; 
+            font-size: 1rem; 
+            border: 1px solid #ff4d4d; 
+            border-radius: 5px; 
+            background-color: #333; 
+            color: #e6e6e6; 
+            width: calc(100% - 18px); 
+        }
+        #customGuildContainer {
+            display: none;
+            margin-top: 10px;
+        }
+        #githubToken { 
+            width: 100%; 
+        }
+        button { 
+            padding: 10px 20px; 
+            background-color: #ff6b6b; 
+            color: #fff; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+        }
+        button:hover { 
+            background-color: #ff4444; 
+        }
     </style>
 </head>
 <body>
@@ -35,11 +96,34 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="guild">Guild Name (e.g., <Guild>):</label>
-        <input type="text" id="guild" required>
+        <label for="buffType">Buff Type:</label>
+        <select id="buffType" required>
+            <option value="Onyxia">Onyxia</option>
+            <option value="Zandalar">Zandalar</option>
+            <option value="Nefarian">Nefarian</option>
+            <option value="Rend">Nefarian</option>
+        </select>
     </div>
     <div class="form-group">
-        <label for="notes">Notes:</label>
+        <label for="guild">Guild Name:</label>
+        <select id="guild" onchange="toggleCustomGuildInput()" required>
+            <option value="Zug Life">Zug Life</option>
+            <option value="Hordes Finest">Hordes Finest</option>
+            <option value="Power Rangers">Power Rangers</option>
+            <option value="Fractured">Fractured</option>
+            <option value="Ungoon">Ungoon</option>
+            <option value="Back in My Day">Back in My Day</option>
+            <option value="Heart and Solo">Heart and Solo</option>
+            <option value="Retention">Retention</option>
+            <option value="other">Other (Enter Custom Guild)</option>
+        </select>
+        <div id="customGuildContainer">
+            <label for="customGuild">Custom Guild Name:</label>
+            <input type="text" id="customGuild" placeholder="Enter custom guild name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="notes">Notes (optional):</label>
         <input type="text" id="notes">
     </div>
     <div class="form-group">
@@ -53,7 +137,17 @@
     <button onclick="addBuff()">Add Buff</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
     <script>
+        // Function to set default date
+        function setDefaultDate() {
+            const now = moment().tz("America/Denver");
+            const hour = now.hour();
+            // Use tomorrow's date if after midnight (adjust cutoff as needed)
+            const defaultDate = hour >= 0 ? now.add(1, 'day') : now;
+            document.getElementById('date').value = defaultDate.format('YYYY-MM-DD');
+        }
+
         // Function to fetch JSON files from GitHub
         async function fetchBuffs() {
             try {
@@ -79,6 +173,21 @@
             buffs.hordeBuffs = data.hordeBuffs;
             buffs.allianceBuffs = data.allianceBuffs;
         });
+
+        // Function to toggle custom guild input visibility
+        function toggleCustomGuildInput() {
+            const guildSelect = document.getElementById('guild');
+            const customGuildContainer = document.getElementById('customGuildContainer');
+            const customGuildInput = document.getElementById('customGuild');
+            if (guildSelect.value === 'other') {
+                customGuildContainer.style.display = 'block';
+                customGuildInput.required = true;
+            } else {
+                customGuildContainer.style.display = 'none';
+                customGuildInput.required = false;
+                customGuildInput.value = '';
+            }
+        }
 
         // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
@@ -137,14 +246,19 @@
             }
 
             const faction = document.getElementById('faction').value;
-            const guild = document.getElementById('guild').value.replace(/^<|>$/g, '').toLowerCase();
-            const notes = document.getElementById('notes').value;
+            const buffType = document.getElementById('buffType').value;
+            const guildSelect = document.getElementById('guild').value;
+            const customGuild = document.getElementById('customGuild').value.trim();
+            const notes = document.getElementById('notes').value.trim();
             const stDate = document.getElementById('date').value;
             const stTime = document.getElementById('time').value;
 
+            // Determine guild name
+            const guild = guildSelect === 'other' ? customGuild : guildSelect;
+
             // Validate inputs
-            if (!guild || !stDate || !stTime) {
-                alert('Please fill in all required fields.');
+            if (!buffType || !guild || !stDate || !stTime) {
+                alert('Please fill in all required fields, including guild name.');
                 return;
             }
             if (!stDate.match(/^\d{4}-\d{2}-\d{2}$/) || !stTime.match(/^\d{2}:\d{2}$/)) {
@@ -159,6 +273,7 @@
             const newBuff = {
                 datetime: datetime,
                 guild: guild,
+                buff: buffType,
                 notes: notes,
                 server: "Doomhowl"
             };
@@ -185,16 +300,26 @@
                 }
 
                 // Clear the form
-                document.getElementById('guild').value = '';
+                document.getElementById('buffType').value = 'Onyxia';
+                document.getElementById('guild').value = 'Zug Life';
+                document.getElementById('customGuild').value = '';
                 document.getElementById('notes').value = '';
                 document.getElementById('date').value = '';
                 document.getElementById('time').value = '';
+                toggleCustomGuildInput();
+                setDefaultDate(); // Reset to default date after submission
 
                 alert('Buff added and committed to GitHub! Netlify will redeploy the site shortly.');
             } catch (error) {
                 alert('Error adding buff: ' + error);
             }
         }
+
+        // Initialize custom guild input visibility and default date
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleCustomGuildInput();
+            setDefaultDate();
+        });
     </script>
 </body>
 </html>
