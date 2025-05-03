@@ -67,7 +67,7 @@
     <h2>Add New Buff</h2>
     <div class="form-group">
         <label for="faction">Faction:</label>
-        <select id="faction">
+        <select id="faction" onchange="updateGuildDropdown()">
             <option value="horde">Horde</option>
             <option value="alliance">Alliance</option>
         </select>
@@ -83,34 +83,7 @@
     <div class="form-group">
         <label for="guild">Guild Name:</label>
         <select id="guild" onchange="toggleCustomGuildInput()" required>
-    <option value="Aligned">Aligned</option>
-    <option value="BBYC">Booty Bay Yacht Club (BBYC)</option>
-    <option value="Back in My Day">Back In My Day (BIMD)</option>
-    <option value="Champions">Champions</option>
-    <option value="Collective">Collective</option>
-    <option value="Death">Death</option>
-    <option value="Eclipse">Eclipse</option>
-    <option value="Fangsly">Fangsly</option>
-    <option value="Fatal">Fatal</option>
-    <option value="Fractured">Fractured</option>
-    <option value="HC Cuties">HC Cuties</option>
-    <option value="Heart and Solo">Heart and Solo</option>
-    <option value="Hordes Finest">Hordes Finest</option>
-    <option value="Immortal">Immortal</option>
-    <option value="OnlyFangs">OnlyFangs</option>
-    <option value="Power Rangers">Power Rangers</option>
-    <option value="Purpose">Purpose</option>
-    <option value="Resolve">Resolve</option>
-    <option value="Retention">Retention</option>
-    <option value="Risk">Risk</option>
-    <option value="SWMG">Shadow Wizard Money Gang (SWMG)</option>
-    <option value="Tradition">Tradition</option>
-    <option value="UnBoon">UnBoon</option>
-    <option value="Ungoon">Ungoon</option>
-    <option value="Washed Up">Washed Up</option>
-    <option value="Zug Life">Zug Life</option>
-    <option value="other">Other (Enter Custom Guild)</option>
-</select>
+            <!-- Options will be populated dynamically -->
         </select>
         <div id="customGuildContainer">
             <label for="customGuild">Custom Guild Name:</label>
@@ -134,6 +107,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
     <script>
+        // Define guild lists for Horde and Alliance
+        const hordeGuilds = [
+            { value: "Aligned", name: "Aligned" },
+            { value: "BBYC", name: "Booty Bay Yacht Club (BBYC)" },
+            { value: "Back in My Day", name: "Back In My Day (BIMD)" },
+            { value: "Death", name: "Death" },
+            { value: "Fangsly", name: "Fangsly" },
+            { value: "Fatal", name: "Fatal" },
+            { value: "Fractured", name: "Fractured" },
+            { value: "Heart and Solo", name: "Heart and Solo" },
+            { value: "Hordes Finest", name: "Hordes Finest" },
+            { value: "OnlyFangs", name: "OnlyFangs" },
+            { value: "Power Rangers", name: "Power Rangers" },
+            { value: "Retention", name: "Retention" },
+            { value: "SWMG", name: "Shadow Wizard Money Gang (SWMG)" },
+            { value: "UnBoon", name: "UnBoon" },
+            { value: "Ungoon", name: "Ungoon" },
+            { value: "Washed Up", name: "Washed Up" },
+            { value: "Zug Life", name: "Zug Life" }
+        ];
+
+        const allianceGuilds = [
+            { value: "Champions", name: "Champions" },
+            { value: "Collective", name: "Collective" },
+            { value: "Eclipse", name: "Eclipse" },
+            { value: "HC Cuties", name: "HC Cuties" },
+            { value: "Immortal", name: "Immortal" },
+            { value: "Purpose", name: "Purpose" },
+            { value: "Resolve", name: "Resolve" },
+            { value: "Risk", name: "Risk" },
+            { value: "Tradition", name: "Tradition" }
+        ];
+
+        // Function to update guild dropdown based on selected faction
+        function updateGuildDropdown() {
+            const faction = document.getElementById('faction').value;
+            const guildSelect = document.getElementById('guild');
+            const guilds = faction === 'horde' ? hordeGuilds : allianceGuilds;
+
+            // Clear current options
+            guildSelect.innerHTML = '';
+
+            // Add guild options
+            guilds.forEach(guild => {
+                const option = document.createElement('option');
+                option.value = guild.value;
+                option.textContent = guild.name;
+                guildSelect.appendChild(option);
+            });
+
+            // Add "Other" option
+            const otherOption = document.createElement('option');
+            otherOption.value = 'other';
+            otherOption.textContent = 'Other (Enter Custom Guild)';
+            guildSelect.appendChild(otherOption);
+
+            // Reset custom guild input visibility
+            toggleCustomGuildInput();
+        }
+
         // Function to set default date
         function setDefaultDate() {
             const now = moment().tz("America/Denver");
@@ -258,7 +291,9 @@
 
                 // Clear the form
                 document.getElementById('buffType').value = 'Onyxia';
-                document.getElementById('guild').value = 'Zug Life';
+                document.getElementById('faction').value = 'horde'; // Reset to default faction
+                updateGuildDropdown(); // Update guild dropdown based on faction
+                document.getElementById('guild').value = faction === 'horde' ? 'Zug Life' : 'Purpose'; // Set default guild
                 document.getElementById('customGuild').value = '';
                 document.getElementById('notes').value = '';
                 document.getElementById('date').value = '';
@@ -272,8 +307,9 @@
             }
         }
 
-        // Initialize custom guild input visibility and default date
+        // Initialize custom guild input visibility, default date, and guild dropdown
         document.addEventListener('DOMContentLoaded', () => {
+            updateGuildDropdown(); // Populate guild dropdown on load
             toggleCustomGuildInput();
             setDefaultDate();
         });
