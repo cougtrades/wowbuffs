@@ -28,6 +28,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-05-05T00:00:00Z",
+        "guild": "test",
+        "buff": "Nefarian",
+        "notes": "test",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-05-05T00:55:00Z",
         "guild": "resolve",
         "buff": "Zandalar",
