@@ -59,6 +59,18 @@
         button:hover { 
             background-color: #ff4444; 
         }
+        #logoutButton {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #666;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #logoutButton:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -78,7 +90,6 @@
             <option value="Onyxia">Onyxia</option>
             <option value="Zandalar">Zandalar</option>
             <option value="Nefarian">Nefarian</option>
-            <option value="Rend">Rend</option>
         </select>
     </div>
     <div class="form-group">
@@ -104,10 +115,37 @@
         <input type="text" id="time" placeholder="e.g., 18:30" required>
     </div>
     <button onclick="addBuff()">Add Buff</button>
+    <button id="logoutButton" onclick="logout()">Logout</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
     <script>
+        // Password authentication with auto-remember
+        const pagePassword = "doomhowl2025"; // Set your password
+        let isAuthenticated = false;
+
+        // Check if password is stored in localStorage
+        const storedPassword = localStorage.getItem('buffTrackerPassword');
+        if (storedPassword === pagePassword) {
+            isAuthenticated = true;
+        } else {
+            const userPassword = prompt("Enter the password to access this page:");
+            if (userPassword === pagePassword) {
+                localStorage.setItem('buffTrackerPassword', userPassword);
+                isAuthenticated = true;
+            } else {
+                alert("Incorrect password!");
+                document.body.innerHTML = "<h1>Access Denied</h1>";
+                throw new Error("Access denied");
+            }
+        }
+
+        // Logout function to clear stored password
+        function logout() {
+            localStorage.removeItem('buffTrackerPassword');
+            location.reload(); // Reload the page to prompt for password again
+        }
+
         // Define guild lists for Horde and Alliance
         const hordeGuilds = [
             { value: "Aligned", name: "Aligned" },
@@ -310,9 +348,11 @@
 
         // Initialize custom guild input visibility, default date, and guild dropdown
         document.addEventListener('DOMContentLoaded', () => {
-            updateGuildDropdown(); // Populate guild dropdown on load
-            toggleCustomGuildInput();
-            setDefaultDate();
+            if (isAuthenticated) {
+                updateGuildDropdown(); // Populate guild dropdown on load
+                toggleCustomGuildInput();
+                setDefaultDate();
+            }
         });
     </script>
 </body>
