@@ -3,3 +3,10 @@
   to = "https://hcbuffs.com/:splat"
   status = 301
   force = true
+
+[build]
+  functions = "netlify/functions"
+  node_bundler = "esbuild"
+
+[build.environment]
+  NODE_VERSION = "16"
