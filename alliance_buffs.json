@@ -1,301 +1,71 @@
 [
     {
-        "datetime": "2025-03-23T03:10:00Z",
-        "guild": "Champions",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-03-24T01:50:00Z",
-        "guild": "Tradition",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-03-27T00:55:00Z",
-        "guild": "Resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-03-28T02:15:00Z",
-        "guild": "Tradition",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-03-31T00:55:00Z",
-        "guild": "Resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-02T00:55:00Z",
-        "guild": "Resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-04T00:55:00Z",
-        "guild": "Purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-06T00:55:00Z",
-        "guild": "Resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-07T00:55:00Z",
-        "guild": "Resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-08T03:20:00Z",
-        "guild": "Risk",
-        "notes": "Give or take 10 mins",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-09T01:55:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-11T00:55:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-11T01:50:00Z",
-        "guild": "tradition ",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-13T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-14T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-15T01:02:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-16T01:55:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-18T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-18T00:55:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-18T01:50:00Z",
-        "guild": "tradition",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-19T17:30:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-20T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-20T18:00:00Z",
-        "guild": "eclipse",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-20T23:50:00Z",
-        "guild": "hc cuties",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-21T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-22T00:00:00Z",
-        "guild": "risk",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-22T01:45:00Z",
-        "guild": "collective",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-23T01:55:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-24T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-25T00:55:00Z",
-        "guild": "purpose",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-27T03:35:00Z",
-        "guild": "risk",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-27T23:50:00Z",
-        "guild": "hc cuties",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-28T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-28T01:45:00Z",
-        "guild": "collective",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-29T00:00:00Z",
-        "guild": "risk",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-29T01:45:00Z",
-        "guild": "collective",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-04-30T20:00:00Z",
-        "guild": "eclipse",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-01T00:55:00Z",
-        "guild": "resolve",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-02T00:55:00Z",
-        "guild": "purpose",
-        "notes": "Spirit of Zandalar",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-05-02T00:57:00Z",
         "guild": "purpose",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-02T01:45:00Z",
         "guild": "collective",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-03T00:52:00Z",
         "guild": "purpose",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-04T01:15:00Z",
         "guild": "unknown hand",
-        "notes": "Spirit of Zandalar ",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-05T00:55:00Z",
         "guild": "resolve",
-        "notes": "Spirit of Zandalar",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-05T00:55:00Z",
-        "guild": "resolve",
-        "notes": "Spirit of Zandalar",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-05T00:57:00Z",
         "guild": "resolve",
-        "notes": "",
+        "buff": "Nefarian",
+        "notes": "nefarian",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-05T01:45:00Z",
         "guild": "collective",
-        "notes": "Spirit of Zandalar ",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-05T01:49:00Z",
         "guild": "collective",
+        "buff": "Onyxia",
         "notes": "May the fourth be with you",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-06T00:00:00Z",
         "guild": "risk",
-        "notes": "Spirit of Zandalar ",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
         "datetime": "2025-05-06T00:03:00Z",
         "guild": "risk",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     }
