@@ -1,23 +1,7 @@
 let buffs = [];
 let faction = "horde";
+let selectedBuffType = "all";
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-// Twitch Clips Carousel
-let currentSlide = 0;
-const clipsWrapper = document.querySelector('.clips-wrapper');
-const clips = document.querySelectorAll('.clip');
-const dotsContainer = document.querySelector('.carousel-dots');
-
-// Create dots
-clips.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goToSlide(index));
-    dotsContainer.appendChild(dot);
-});
-
-const dots = document.querySelectorAll('.dot');
 
 function populateTimezoneDropdown() {
     const timezoneSelect = document.getElementById("timezone");
@@ -62,7 +46,8 @@ function populateTimezoneDropdown() {
         "Malaysia": ["Asia/Kuala_Lumpur"],
         "Serbia": ["Europe/Belgrade"],
         "Uruguay": ["America/Montevideo"],
-        "Cyprus": ["Asia/Nicosia"]
+        "Cyprus": ["Asia/Nicosia"],
+        "Japan": ["Asia/Tokyo"]
     };
 
     let options = Object.entries(countryTimezones).map(([country, zones]) => {
@@ -100,7 +85,13 @@ function updateTimezone() {
     selectedTimezone = document.getElementById("timezone").value;
     localStorage.setItem("selectedTimezone", selectedTimezone);
     displayBuffs();
-    startCountdown(); // Restart countdown with new timezone
+    startCountdown();
+}
+
+function updateBuffType() {
+    selectedBuffType = document.getElementById("buffType").value;
+    displayBuffs();
+    startCountdown();
 }
 
 async function loadBuffs() {
@@ -109,7 +100,7 @@ async function loadBuffs() {
         let response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         let data = await response.json();
-        buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild, item])).values());
+        buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild + item.buff, item])).values());
         buffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
         displayBuffs();
         startCountdown();
@@ -147,16 +138,16 @@ function displayBuffs() {
         buffList.innerHTML = '<tr><td colspan="5">No buffs available.</td></tr>';
         return;
     }
-    let now = moment().tz("America/Denver"); // Base time in America/Denver
-    let upcomingBuffs = buffs.filter(buff => {
+    let now = moment().tz("America/Denver");
+    let filteredBuffs = buffs.filter(buff => {
         let buffDate = moment(buff.datetime).tz("America/Denver");
-        return buffDate.isAfter(now);
+        return buffDate.isAfter(now) && (selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
     });
-    if (upcomingBuffs.length === 0) {
+    if (filteredBuffs.length === 0) {
         buffList.innerHTML = '<tr><td colspan="5">No upcoming buffs available.</td></tr>';
         return;
     }
-    upcomingBuffs.forEach(buff => {
+    filteredBuffs.forEach(buff => {
         let buffDate = moment(buff.datetime);
         if (!buffDate.isValid()) buffDate = moment();
         let serverTime = formatDateTime(buffDate, true);
@@ -166,7 +157,7 @@ function displayBuffs() {
             <td>${serverTime}</td>
             <td>${localTime}</td>
             <td>${buff.guild}</td>
-            <td>Onyxia</td>
+            <td>${buff.buff}</td>
             <td>${buff.notes || ""}</td>
         `;
         buffList.appendChild(row);
@@ -181,12 +172,14 @@ function searchBuffs() {
         buffList.innerHTML = '<tr><td colspan="5">No buffs available.</td></tr>';
         return;
     }
-    let now = moment().tz("America/Denver"); // Base time in America/Denver
+    let now = moment().tz("America/Denver");
     let filteredBuffs = buffs.filter(buff => {
         let serverTime = formatDateTime(new Date(buff.datetime), true).toLowerCase();
         let guild = buff.guild.toLowerCase();
+        let buffType = buff.buff.toLowerCase();
         let notes = (buff.notes || "").toLowerCase();
-        return serverTime.includes(searchTerm) || guild.includes(searchTerm) || notes.includes(searchTerm);
+        return (serverTime.includes(searchTerm) || guild.includes(searchTerm) || buffType.includes(searchTerm) || notes.includes(searchTerm)) &&
+               (selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
     });
     let upcomingFilteredBuffs = filteredBuffs.filter(buff => {
         let buffDate = moment(buff.datetime).tz("America/Denver");
@@ -205,7 +198,7 @@ function searchBuffs() {
             <td>${serverTime}</td>
             <td>${localTime}</td>
             <td>${buff.guild}</td>
-            <td>Onyxia</td>
+            <td>${buff.buff}</td>
             <td>${buff.notes || ""}</td>
         `;
         buffList.appendChild(row);
@@ -222,23 +215,22 @@ function startCountdown() {
             return;
         }
 
-        let now = moment().tz("America/Denver"); // Base time in America/Denver
-
-        let nextBuff = buffs.find(e => {
+        let now = moment().tz("America/Denver");
+        let filteredBuffs = buffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
+        let nextBuff = filteredBuffs.find(e => {
             let buffDate = moment(e.datetime).tz("America/Denver");
             return buffDate.isAfter(now);
         });
 
-        // Find the last completed buff and calculate elapsed time
-        let pastBuffs = buffs.filter(e => {
+        let pastBuffs = filteredBuffs.filter(e => {
             let buffDate = moment(e.datetime).tz("America/Denver");
             return buffDate.isBefore(now);
         }).sort((a, b) => moment(b.datetime).tz("America/Denver") - moment(a.datetime).tz("America/Denver"));
 
-        let lastBuff = pastBuffs[0]; // Most recent past buff
+        let lastBuff = pastBuffs[0];
         if (lastBuff) {
             let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
-            let timeDiff = now.diff(lastBuffDate); // Time elapsed since last buff
+            let timeDiff = now.diff(lastBuffDate);
             let duration = moment.duration(timeDiff);
             let days = Math.floor(duration.asDays());
             let hours = duration.hours();
@@ -275,7 +267,7 @@ function startCountdown() {
         let buffDate = moment(nextBuff.datetime).tz("America/Denver");
         let timeDiff = buffDate.diff(now);
         let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
-        let buffKey = `${nextBuff.datetime}_${nextBuff.guild}`;
+        let buffKey = `${nextBuff.datetime}_${nextBuff.guild}_${nextBuff.buff}`;
 
         if (timeDiff <= 600000 && timeDiff > 0 && !alertedBuffs.has(buffKey)) {
             showCustomNotification(nextBuff);
@@ -285,7 +277,7 @@ function startCountdown() {
 
         if (timeDiff <= 0) {
             document.getElementById("countdownTimer").textContent = "Buff is now!";
-            let upcomingBuffs = buffs.filter(e => {
+            let upcomingBuffs = filteredBuffs.filter(e => {
                 let d = moment(e.datetime).tz("America/Denver");
                 return d.isAfter(now);
             });
@@ -324,7 +316,7 @@ function startCountdown() {
         let notification = document.createElement("div");
         notification.className = "custom-notification";
         notification.innerHTML = `
-            <p>Onyxia buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)</p>
+            <p>${buff.buff} buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)</p>
             <button onclick="this.parentElement.remove()">Close</button>
         `;
         document.body.appendChild(notification);
@@ -340,7 +332,7 @@ function startCountdown() {
 
         if ("Notification" in window && Notification.permission === "granted") {
             new Notification("Buff Alert!", {
-                body: `Onyxia buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)`,
+                body: `${buff.buff} buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)`,
                 icon: "/favicon.ico"
             });
         } else if ("Notification" in window && Notification.permission !== "denied") {
@@ -352,77 +344,10 @@ function startCountdown() {
     setInterval(updateCountdown, 1000);
 }
 
-function updateCarousel() {
-    const translateX = -currentSlide * 100;
-    clipsWrapper.style.transform = `translateX(${translateX}%)`;
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-    });
-}
-
-function moveCarousel(direction) {
-    const totalSlides = clips.length;
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-    updateCarousel();
-}
-
-function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
-}
-
-// Auto-advance carousel every 30 seconds
-setInterval(() => moveCarousel(1), 30000);
-
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     populateTimezoneDropdown();
     loadBuffs();
     setInterval(loadBuffs, 60000);
     displayBuffs();
-});
-
-// Video Popup Functions
-function openVideoPopup(videoUrl) {
-    const popup = document.getElementById('videoPopup');
-    const video = document.getElementById('popupVideo');
-    
-    // Set the video source
-    video.src = videoUrl;
-    
-    // Show the popup
-    popup.style.display = 'flex';
-    popup.classList.add('active');
-    
-    // Prevent body scrolling
-    document.body.style.overflow = 'hidden';
-    
-    // Add event listeners for closing
-    popup.addEventListener('click', function(e) {
-        if (e.target === popup) {
-            closeVideoPopup();
-        }
-    });
-}
-
-function closeVideoPopup() {
-    const popup = document.getElementById('videoPopup');
-    const video = document.getElementById('popupVideo');
-    
-    // Hide the popup
-    popup.style.display = 'none';
-    popup.classList.remove('active');
-    
-    // Clear the video source
-    video.src = '';
-    
-    // Restore body scrolling
-    document.body.style.overflow = '';
-}
-
-// Close popup with Escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeVideoPopup();
-    }
 });
