@@ -56,9 +56,6 @@
             display: none;
             margin-top: 10px;
         }
-        #githubToken { 
-            width: 100%; 
-        }
         button { 
             padding: 10px 20px; 
             background-color: #ff6b6b; 
@@ -75,11 +72,6 @@
 </head>
 <body>
     <h1>Doomhowl Buff Tracker</h1>
-
-    <div class="form-group">
-        <label for="githubToken">GitHub Personal Access Token:</label>
-        <input type="password" id="githubToken" placeholder="Enter your GitHub token" required>
-    </div>
 
     <h2>Horde Buffs</h2>
     <textarea id="hordeBuffs" readonly></textarea>
@@ -101,7 +93,6 @@
             <option value="Onyxia">Onyxia</option>
             <option value="Zandalar">Zandalar</option>
             <option value="Nefarian">Nefarian</option>
-            <option value="Rend">Rend</option>
         </select>
     </div>
     <div class="form-group">
@@ -206,45 +197,8 @@
             return stDatetime.toISOString().replace(/\.\d{3}Z$/, 'Z');
         }
 
-        // Function to get the SHA of a file (needed for GitHub API update)
-        async function getFileSha(token, path) {
-            const response = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
-                headers: {
-                    Authorization: `token ${token}`,
-                    Accept: 'application/vnd.github.v3+json'
-                }
-            });
-            const data = await response.json();
-            return data.sha;
-        }
-
-        // Function to update a file on GitHub
-        async function updateFile(token, path, content, sha) {
-            const response = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
-                method: 'PUT',
-                headers: {
-                    Authorization: `token ${token}`,
-                    Accept: 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                    message: `Update ${path} with new buff`,
-                    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 4)))),
-                    sha: sha
-                })
-            });
-            if (!response.ok) {
-                throw new Error('Failed to update file: ' + response.statusText);
-            }
-        }
-
         // Function to add a new buff
         async function addBuff() {
-            const token = document.getElementById('githubToken').value;
-            if (!token) {
-                alert('Please enter your GitHub Personal Access Token.');
-                return;
-            }
-
             const faction = document.getElementById('faction').value;
             const buffType = document.getElementById('buffType').value;
             const guildSelect = document.getElementById('guild').value;
@@ -279,24 +233,28 @@
             };
 
             try {
+                // Send buff data to Netlify Function
+                const response = await fetch('/.netlify/functions/add-buff', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ faction, newBuff })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add buff: ' + response.statusText);
+                }
+
+                // Update local textarea
                 if (faction === 'horde') {
                     buffs.hordeBuffs.push(newBuff);
-                    // Sort using Moment.js for consistency
                     buffs.hordeBuffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
                     document.getElementById('hordeBuffs').value = JSON.stringify(buffs.hordeBuffs, null, 4);
-
-                    // Update horde_buffs.json on GitHub
-                    const sha = await getFileSha(token, 'horde_buffs.json');
-                    await updateFile(token, 'horde_buffs.json', buffs.hordeBuffs, sha);
                 } else {
                     buffs.allianceBuffs.push(newBuff);
-                    // Sort using Moment.js for consistency
                     buffs.allianceBuffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
                     document.getElementById('allianceBuffs').value = JSON.stringify(buffs.allianceBuffs, null, 4);
-
-                    // Update alliance_buffs.json on GitHub
-                    const sha = await getFileSha(token, 'alliance_buffs.json');
-                    await updateFile(token, 'alliance_buffs.json', buffs.allianceBuffs, sha);
                 }
 
                 // Clear the form
@@ -307,7 +265,7 @@
                 document.getElementById('date').value = '';
                 document.getElementById('time').value = '';
                 toggleCustomGuildInput();
-                setDefaultDate(); // Reset to default date after submission
+                setDefaultDate();
 
                 alert('Buff added and committed to GitHub! Netlify will redeploy the site shortly.');
             } catch (error) {
