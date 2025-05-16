@@ -320,5 +320,12 @@
         "buff": "Onyxia",
         "notes": "ish",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-05-18T00:55:00Z",
+        "guild": "Risk",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
