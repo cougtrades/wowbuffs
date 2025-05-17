@@ -362,5 +362,12 @@
         "buff": "Nefarian",
         "notes": "Ish",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-05-20T00:58:00Z",
+        "guild": "Resolve",
+        "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
