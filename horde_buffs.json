@@ -1036,23 +1036,9 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-05-21T01:30:00Z",
-        "guild": "R I T U A L",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-05-21T23:00:00Z",
         "guild": "Warlords of Rexxar",
         "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-22T00:30:00Z",
-        "guild": "Zug Life",
-        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     },
