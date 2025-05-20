@@ -1015,6 +1015,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-05-21T23:00:00Z",
+        "guild": "Warlords of Rexxar",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-05-23T00:30:00Z",
         "guild": "Ungoon",
         "buff": "Onyxia",
