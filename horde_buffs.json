@@ -1365,6 +1365,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-05-25T09:00:00Z",
+        "guild": "test",
+        "buff": "Rend",
+        "notes": "test",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-05-25T18:00:00Z",
         "guild": "OnlyFangs",
         "buff": "Zandalar",
