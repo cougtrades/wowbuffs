@@ -463,17 +463,19 @@
                     });
                 }
 
-                // Send all buffs to Netlify Function
-                const response = await fetch('/.netlify/functions/add-buff', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ buffs: newBuffs })
-                });
+                // Send each buff individually to match the expected format
+                for (const buff of newBuffs) {
+                    const response = await fetch('/.netlify/functions/add-buff', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(buff)
+                    });
 
-                if (!response.ok) {
-                    throw new Error('Failed to add buffs: ' + response.statusText);
+                    if (!response.ok) {
+                        throw new Error(`Failed to add buff: ${response.statusText}`);
+                    }
                 }
 
                 alert('Buffs added and committed to GitHub! Netlify will redeploy the site shortly.');
