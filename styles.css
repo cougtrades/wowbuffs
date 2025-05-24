@@ -427,6 +427,21 @@ body.alliance .timer-container {
   font-family: 'Courier New', monospace;
 }
 
+/* Time Disclaimer */
+.time-disclaimer {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.time-disclaimer p {
+  margin: 0;
+}
+
 /* Footer */
 footer {
   margin-top: clamp(20px, 3vw, 30px);
