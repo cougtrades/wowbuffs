@@ -495,5 +495,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-05-26T00:58:00Z",
+        "guild": "Resolve",
+        "buff": "Nefarian",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
