@@ -367,8 +367,11 @@ function startCountdown() {
     `;
     document.body.appendChild(notification);
 
-    let audio = new Audio("/10minalert.mp3");
-    audio.play().catch(e => console.warn("Sound playback failed:", e));
+    // Only play sound for Onyxia buffs
+    if (buff.buff.toLowerCase() === 'onyxia') {
+      let audio = new Audio("/10minalert.mp3");
+      audio.play().catch(e => console.warn("Sound playback failed:", e));
+    }
 
     setTimeout(() => {
       if (notification.parentElement) {
