@@ -1309,13 +1309,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-05-24T09:05:00Z",
-        "guild": "test",
-        "buff": "Onyxia",
-        "notes": "test",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-05-24T18:28:00Z",
         "guild": "Big Business",
         "buff": "Zandalar",
@@ -1369,13 +1362,6 @@
         "guild": "Zug Life",
         "buff": "Onyxia",
         "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-25T09:00:00Z",
-        "guild": "test",
-        "buff": "Rend",
-        "notes": "test",
         "server": "Doomhowl"
     },
     {
