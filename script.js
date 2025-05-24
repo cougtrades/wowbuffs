@@ -81,9 +81,14 @@ async function loadBuffs() {
     let response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     let data = await response.json();
-    buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild + item.buff, item])).values());
-    buffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
-    console.log(`Loaded ${buffs.length} buffs:`, buffs);
+    
+    // Filter out past buffs and sort by datetime
+    let now = moment().tz("America/Denver");
+    buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild + item.buff, item])).values())
+      .filter(buff => moment(buff.datetime).tz("America/Denver").isAfter(now))
+      .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
+    
+    console.log(`Loaded ${buffs.length} upcoming buffs:`, buffs);
     displayBuffs();
     startCountdown();
   } catch (error) {
