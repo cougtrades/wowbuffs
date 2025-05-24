@@ -2,15 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ff3333">
     <title>Doomhowl Buff Tracker</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/android-chrome-512x512.png" sizes="512x512">
     <style>
+        :root {
+            --horde-color: #ff3333;
+            --alliance-color: #3399ff;
+            --text-color: #e6e6e6;
+            --background-dark: rgba(0, 0, 0, 0.8);
+            --background-light: rgba(50, 50, 50, 0.9);
+            --border-radius: 10px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body { 
             font-family: Arial, sans-serif; 
-            margin: 20px; 
+            margin: 0;
+            padding: 20px;
             background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6));
-            color: #e6e6e6;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+
         body::before {
             content: '';
             position: fixed;
@@ -21,44 +50,130 @@
             background: url('https://hcbuffs.com/ony.webp') center center/cover no-repeat fixed;
             filter: blur(5px);
             z-index: -1;
+            opacity: 0.9;
+            will-change: transform;
         }
+
         h1, h2 { 
-            color: #ff6b6b; 
+            color: var(--horde-color); 
             text-shadow: 1px 1px 4px rgba(0,0,0,.8);
+            text-align: center;
+            margin: 20px 0;
         }
+
+        body.alliance h1, 
+        body.alliance h2 {
+            color: var(--alliance-color);
+        }
+
+        .container {
+            max-width: min(1200px, 95%);
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--background-dark);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--horde-color);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        body.alliance .container {
+            border: 2px solid var(--alliance-color);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+        }
+
         .form-group { 
             margin-bottom: 15px; 
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
+
         .form-group label { 
             font-size: 1.1rem; 
-            margin-right: 10px; 
-            color: #e6e6e6; 
+            color: var(--text-color); 
         }
-        .form-group input, .form-group select { 
+
+        .form-group input, 
+        .form-group select { 
             padding: 8px; 
             font-size: 1rem; 
-            border: 1px solid #ff4d4d; 
+            border: 1px solid var(--horde-color); 
             border-radius: 5px; 
-            background-color: #333; 
-            color: #e6e6e6; 
-            width: calc(100% - 18px); 
+            background-color: var(--background-light); 
+            color: var(--text-color); 
+            width: 100%;
         }
-        #customGuildContainer {
-            display: none;
-            margin-top: 10px;
+
+        body.alliance .form-group input,
+        body.alliance .form-group select {
+            border: 1px solid var(--alliance-color);
         }
+
+        .buff-entry {
+            background: var(--background-light);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--horde-color);
+            position: relative;
+        }
+
+        body.alliance .buff-entry {
+            border: 1px solid var(--alliance-color);
+        }
+
+        .remove-buff {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--horde-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.alliance .remove-buff {
+            background: var(--alliance-color);
+        }
+
         button { 
             padding: 10px 20px; 
-            background-color: #ff6b6b; 
+            background-color: var(--horde-color); 
             color: #fff; 
             border: none; 
             border-radius: 5px; 
             cursor: pointer; 
-            font-size: 1.1rem; 
+            font-size: 1.1rem;
+            transition: all var(--transition-speed) ease;
         }
+
+        body.alliance button {
+            background-color: var(--alliance-color);
+        }
+
         button:hover { 
-            background-color: #ff4444; 
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
+
+        .add-buff-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
         #logoutButton {
             margin-top: 10px;
             padding: 5px 10px;
@@ -68,55 +183,84 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         #logoutButton:hover {
             background-color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .form-section {
+                padding: 15px;
+            }
+
+            .form-group label {
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Doomhowl Buff Tracker</h1>
 
-    <h2>Add New Buff</h2>
-    <div class="form-group">
-        <label for="faction">Faction:</label>
-        <select id="faction" onchange="updateGuildDropdown()">
-            <option value="horde">Horde</option>
-            <option value="alliance">Alliance</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="buffType">Buff Type:</label>
-        <select id="buffType" required>
-            <option value="Onyxia">Onyxia</option>
-            <option value="Zandalar">Zandalar</option>
-            <option value="Nefarian">Nefarian</option>
-            <option value="Rend">Rend</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="guild">Guild Name:</label>
-        <select id="guild" onchange="toggleCustomGuildInput()" required>
-            <!-- Options will be populated dynamically -->
-        </select>
-        <div id="customGuildContainer">
-            <label for="customGuild">Custom Guild Name:</label>
-            <input type="text" id="customGuild" placeholder="Enter custom guild name">
+    <div class="container">
+        <div class="form-section">
+            <h2>Add New Buffs</h2>
+            <div id="buffEntries">
+                <div class="buff-entry">
+                    <div class="form-group">
+                        <label for="faction">Faction:</label>
+                        <select id="faction" onchange="updateGuildDropdown(this)">
+                            <option value="horde">Horde</option>
+                            <option value="alliance">Alliance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="buffType">Buff Type:</label>
+                        <select id="buffType" required>
+                            <option value="Onyxia">Onyxia</option>
+                            <option value="Zandalar">Zandalar</option>
+                            <option value="Nefarian">Nefarian</option>
+                            <option value="Rend">Rend</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guild">Guild Name:</label>
+                        <select id="guild" onchange="toggleCustomGuildInput(this)" required>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                        <div class="custom-guild-container" style="display: none;">
+                            <label for="customGuild">Custom Guild Name:</label>
+                            <input type="text" id="customGuild" placeholder="Enter custom guild name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes (optional):</label>
+                        <input type="text" id="notes">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date (YYYY-MM-DD):</label>
+                        <input type="text" id="date" placeholder="e.g., 2025-03-28" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time (HH:MM, 24-hour):</label>
+                        <input type="text" id="time" placeholder="e.g., 18:30" required>
+                    </div>
+                </div>
+            </div>
+            <button class="add-buff-btn" onclick="addBuffEntry()">Add Another Buff</button>
+            <button onclick="submitAllBuffs()">Submit All Buffs</button>
+            <button id="logoutButton" onclick="logout()">Logout</button>
         </div>
     </div>
-    <div class="form-group">
-        <label for="notes">Notes (optional):</label>
-        <input type="text" id="notes">
-    </div>
-    <div class="form-group">
-        <label for="date">Date (YYYY-MM-DD):</label>
-        <input type="text" id="date" placeholder="e.g., 2025-03-28" required>
-    </div>
-    <div class="form-group">
-        <label for="time">Time (HH:MM, 24-hour):</label>
-        <input type="text" id="time" placeholder="e.g., 18:30" required>
-    </div>
-    <button onclick="addBuff()">Add Buff</button>
-    <button id="logoutButton" onclick="logout()">Logout</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
@@ -146,6 +290,8 @@
             localStorage.removeItem('buffTrackerPassword');
             location.reload(); // Reload the page to prompt for password again
         }
+
+        let entryCounter = 1;
 
         // Define guild lists for Horde and Alliance
         const hordeGuilds = [
@@ -181,10 +327,17 @@
             { value: "Tradition", name: "Tradition" }
         ];
 
-        // Function to update guild dropdown based on selected faction
-        function updateGuildDropdown() {
-            const faction = document.getElementById('faction').value;
-            const guildSelect = document.getElementById('guild');
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (isAuthenticated) {
+                setDefaultDate();
+                updateGuildDropdown(document.querySelector('#faction'));
+            }
+        });
+
+        function updateGuildDropdown(select) {
+            const faction = select.value;
+            const guildSelect = select.closest('.buff-entry').querySelector('#guild');
             const guilds = faction === 'horde' ? hordeGuilds : allianceGuilds;
 
             // Clear current options
@@ -205,157 +358,143 @@
             guildSelect.appendChild(otherOption);
 
             // Reset custom guild input visibility
-            toggleCustomGuildInput();
+            toggleCustomGuildInput(guildSelect);
         }
 
-        // Function to set default date
         function setDefaultDate() {
             const now = moment().tz("America/Denver");
             const hour = now.hour();
-            // Use tomorrow's date if after midnight (adjust cutoff as needed)
             const defaultDate = hour >= 0 ? now.add(1, 'day') : now;
-            document.getElementById('date').value = defaultDate.format('YYYY-MM-DD');
+            document.querySelectorAll('#date').forEach(input => {
+                input.value = defaultDate.format('YYYY-MM-DD');
+            });
         }
 
-        // Function to fetch JSON files from GitHub
-        async function fetchBuffs() {
-            try {
-                const hordeResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/horde_buffs.json');
-                const allianceResponse = await fetch('https://raw.githubusercontent.com/cougtrades/wowbuffs/main/alliance_buffs.json');
-                
-                const hordeBuffs = await hordeResponse.json();
-                const allianceBuffs = await allianceResponse.json();
-
-                return { hordeBuffs, allianceBuffs };
-            } catch (error) {
-                alert('Error fetching buffs: ' + error);
-                return { hordeBuffs: [], allianceBuffs: [] };
-            }
+        function toggleCustomGuildInput(select) {
+            const container = select.closest('.buff-entry').querySelector('.custom-guild-container');
+            const customInput = container.querySelector('input');
+            container.style.display = select.value === 'other' ? 'block' : 'none';
+            customInput.required = select.value === 'other';
         }
 
-        // Load buffs on page load
-        let buffs = { hordeBuffs: [], allianceBuffs: [] };
-        fetchBuffs().then(data => {
-            buffs.hordeBuffs = data.hordeBuffs;
-            buffs.allianceBuffs = data.allianceBuffs;
-        });
+        function addBuffEntry() {
+            const template = document.querySelector('.buff-entry').cloneNode(true);
+            const newId = `buff-entry-${++entryCounter}`;
+            template.id = newId;
+            
+            // Clear values
+            template.querySelectorAll('input').forEach(input => input.value = '');
+            template.querySelectorAll('select').forEach(select => {
+                select.selectedIndex = 0;
+                if (select.id === 'guild') {
+                    toggleCustomGuildInput(select);
+                }
+            });
 
-        // Function to toggle custom guild input visibility
-        function toggleCustomGuildInput() {
-            const guildSelect = document.getElementById('guild');
-            const customGuildContainer = document.getElementById('customGuildContainer');
-            const customGuildInput = document.getElementById('customGuild');
-            if (guildSelect.value === 'other') {
-                customGuildContainer.style.display = 'block';
-                customGuildInput.required = true;
-            } else {
-                customGuildContainer.style.display = 'none';
-                customGuildInput.required = false;
-                customGuildInput.value = '';
-            }
+            // Add remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'remove-buff';
+            removeBtn.innerHTML = '×';
+            removeBtn.onclick = () => template.remove();
+            template.appendChild(removeBtn);
+
+            document.getElementById('buffEntries').appendChild(template);
+            setDefaultDate();
         }
 
-        // Function to convert ST to UTC
         function convertToUTC(stDate, stTime) {
             const [year, month, day] = stDate.split('-').map(Number);
             const [hours, minutes] = stTime.split(':').map(Number);
             const stDatetime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
             
-            // Determine if DST applies (after March 9, 2025, 2:00 AM ST)
-            const dstStart = new Date(Date.UTC(2025, 2, 9, 8, 0)); // 2:00 AM ST (UTC-6) = 8:00 AM UTC
+            const dstStart = new Date(Date.UTC(2025, 2, 9, 8, 0));
             const isDst = stDatetime >= dstStart;
-            
-            // ST is UTC-7 before DST, UTC-6 after DST
-            const stOffset = isDst ? 6 : 7; // Hours ST is behind UTC
+            const stOffset = isDst ? 6 : 7;
             stDatetime.setHours(stDatetime.getHours() + stOffset);
             
             return stDatetime.toISOString().replace(/\.\d{3}Z$/, 'Z');
         }
 
-        // Function to add a new buff
-        async function addBuff() {
-            const faction = document.getElementById('faction').value;
-            const buffType = document.getElementById('buffType').value;
-            const guildSelect = document.getElementById('guild').value;
-            const customGuild = document.getElementById('customGuild').value.trim();
-            const notes = document.getElementById('notes').value.trim();
-            const stDate = document.getElementById('date').value;
-            const stTime = document.getElementById('time').value;
+        function validateBuffEntry(entry) {
+            const faction = entry.querySelector('#faction').value;
+            const buffType = entry.querySelector('#buffType').value;
+            const guildSelect = entry.querySelector('#guild');
+            const customGuild = entry.querySelector('#customGuild')?.value.trim();
+            const stDate = entry.querySelector('#date').value;
+            const stTime = entry.querySelector('#time').value;
 
-            // Determine guild name
-            const guild = guildSelect === 'other' ? customGuild : guildSelect;
+            const guild = guildSelect.value === 'other' ? customGuild : guildSelect.value;
 
-            // Validate inputs
             if (!buffType || !guild || !stDate || !stTime) {
-                alert('Please fill in all required fields, including guild name.');
-                return;
+                throw new Error('Please fill in all required fields, including guild name.');
             }
             if (!stDate.match(/^\d{4}-\d{2}-\d{2}$/) || !stTime.match(/^\d{2}:\d{2}$/)) {
-                alert('Invalid date or time format. Use YYYY-MM-DD for date and HH:MM for time.');
-                return;
+                throw new Error('Invalid date or time format. Use YYYY-MM-DD for date and HH:MM for time.');
             }
 
-            // Convert ST to UTC
-            const datetime = convertToUTC(stDate, stTime);
-
-            // Create new buff entry
-            const newBuff = {
-                datetime: datetime,
-                guild: guild,
-                buff: buffType,
-                notes: notes,
-                server: "Doomhowl"
+            return {
+                faction,
+                buffType,
+                guild,
+                notes: entry.querySelector('#notes').value.trim(),
+                stDate,
+                stTime
             };
+        }
+
+        async function submitAllBuffs() {
+            const entries = document.querySelectorAll('.buff-entry');
+            const newBuffs = [];
 
             try {
-                // Send buff data to Netlify Function
+                for (const entry of entries) {
+                    const buffData = validateBuffEntry(entry);
+                    const datetime = convertToUTC(buffData.stDate, buffData.stTime);
+                    
+                    newBuffs.push({
+                        faction: buffData.faction,
+                        newBuff: {
+                            datetime,
+                            guild: buffData.guild,
+                            buff: buffData.buffType,
+                            notes: buffData.notes,
+                            server: "Doomhowl"
+                        }
+                    });
+                }
+
+                // Send all buffs to Netlify Function
                 const response = await fetch('/.netlify/functions/add-buff', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ faction, newBuff })
+                    body: JSON.stringify({ buffs: newBuffs })
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to add buff: ' + response.statusText);
+                    throw new Error('Failed to add buffs: ' + response.statusText);
                 }
 
-                // Update local buffs object (no UI update since textareas are removed)
-                if (faction === 'horde') {
-                    buffs.hordeBuffs.push(newBuff);
-                    buffs.hordeBuffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
-                } else {
-                    buffs.allianceBuffs.push(newBuff);
-                    buffs.allianceBuffs.sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
+                alert('Buffs added and committed to GitHub! Netlify will redeploy the site shortly.');
+                
+                // Clear all entries except the first one
+                while (document.querySelectorAll('.buff-entry').length > 1) {
+                    document.querySelector('.buff-entry:not(:first-child)').remove();
                 }
-
-                // Clear the form
-                document.getElementById('buffType').value = 'Onyxia';
-                document.getElementById('faction').value = 'horde'; // Reset to default faction
-                updateGuildDropdown(); // Update guild dropdown based on faction
-                document.getElementById('guild').value = faction === 'horde' ? 'Zug Life' : 'Purpose'; // Set default guild
-                document.getElementById('customGuild').value = '';
-                document.getElementById('notes').value = '';
-                document.getElementById('date').value = '';
-                document.getElementById('time').value = '';
-                toggleCustomGuildInput();
+                document.querySelector('.buff-entry').querySelectorAll('input').forEach(input => input.value = '');
+                document.querySelector('.buff-entry').querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                    if (select.id === 'guild') {
+                        toggleCustomGuildInput(select);
+                    }
+                });
                 setDefaultDate();
 
-                alert('Buff added and committed to GitHub! Netlify will redeploy the site shortly.');
             } catch (error) {
-                alert('Error adding buff: ' + error);
+                alert('Error adding buffs: ' + error);
             }
         }
-
-        // Initialize custom guild input visibility, default date, and guild dropdown
-        document.addEventListener('DOMContentLoaded', () => {
-            if (isAuthenticated) {
-                updateGuildDropdown(); // Populate guild dropdown on load
-                toggleCustomGuildInput();
-                setDefaultDate();
-            }
-        });
     </script>
 </body>
 </html>
