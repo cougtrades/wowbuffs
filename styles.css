@@ -212,44 +212,10 @@ body.alliance #timezoneSearch:focus {
 /* Timeline Styles */
 .timeline-wrapper {
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(10px);
-  }
-}
-
-.timeline-wrapper.has-more::after {
-  content: '';
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  animation: bounce 1.5s infinite;
-  pointer-events: none;
-}
-
-.timeline-wrapper.has-more::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 60px;
-  background: linear-gradient(to right, transparent, var(--bg-color));
-  pointer-events: none;
-  z-index: 1;
+  max-width: 100%;
+  margin: 20px auto;
+  overflow: visible;
+  padding: 0 40px;
 }
 
 #buffTimeline {
