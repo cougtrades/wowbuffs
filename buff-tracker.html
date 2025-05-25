@@ -206,12 +206,63 @@
                 font-size: 1rem;
             }
         }
+
+        .active-buffs-section {
+            margin-top: 20px;
+        }
+
+        .active-buff-card {
+            background: var(--background-light);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--horde-color);
+            position: relative;
+        }
+
+        body.alliance .active-buff-card {
+            border: 1px solid var(--alliance-color);
+        }
+
+        .edit-buff-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--horde-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        body.alliance .edit-buff-btn {
+            background: var(--alliance-color);
+        }
+
+        .edit-buff-form {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--background-dark);
+            border-radius: var(--border-radius);
+        }
+
+        .edit-buff-form.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <h1>Doomhowl Buff Tracker</h1>
 
     <div class="container">
+        <div class="form-section">
+            <h2>Active Buffs</h2>
+            <div id="activeBuffs" class="active-buffs-section">
+                <!-- Active buffs will be displayed here -->
+            </div>
+        </div>
         <div class="form-section">
             <h2>Add New Buffs</h2>
             <div id="buffEntries">
@@ -332,6 +383,7 @@
             if (isAuthenticated) {
                 setDefaultDate();
                 updateGuildDropdown(document.querySelector('#faction'));
+                loadActiveBuffs();
             }
         });
 
@@ -495,6 +547,123 @@
 
             } catch (error) {
                 alert('Error adding buffs: ' + error);
+            }
+        }
+
+        // Function to load and display active buffs
+        async function loadActiveBuffs() {
+            try {
+                const [hordeResponse, allianceResponse] = await Promise.all([
+                    fetch('horde_buffs.json'),
+                    fetch('alliance_buffs.json')
+                ]);
+
+                const hordeBuffs = await hordeResponse.json();
+                const allianceBuffs = await allianceResponse.json();
+
+                const now = moment().tz("America/Denver");
+                const activeBuffs = [...hordeBuffs, ...allianceBuffs]
+                    .filter(buff => moment(buff.datetime).tz("America/Denver").isAfter(now))
+                    .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
+
+                const activeBuffsContainer = document.getElementById('activeBuffs');
+                activeBuffsContainer.innerHTML = '';
+
+                activeBuffs.forEach(buff => {
+                    const buffDate = moment(buff.datetime).tz("America/Denver");
+                    const buffCard = document.createElement('div');
+                    buffCard.className = 'active-buff-card';
+                    buffCard.innerHTML = `
+                        <button class="edit-buff-btn" onclick="toggleEditForm(this)">Edit</button>
+                        <div class="buff-info">
+                            <p><strong>Guild:</strong> ${buff.guild}</p>
+                            <p><strong>Buff:</strong> ${buff.buff}</p>
+                            <p><strong>Time:</strong> ${buffDate.format('YYYY-MM-DD HH:mm')}</p>
+                            ${buff.notes ? `<p><strong>Notes:</strong> ${buff.notes}</p>` : ''}
+                        </div>
+                        <div class="edit-buff-form">
+                            <div class="form-group">
+                                <label for="editGuild">Guild:</label>
+                                <input type="text" id="editGuild" value="${buff.guild}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editBuffType">Buff Type:</label>
+                                <select id="editBuffType">
+                                    <option value="Onyxia" ${buff.buff === 'Onyxia' ? 'selected' : ''}>Onyxia</option>
+                                    <option value="Zandalar" ${buff.buff === 'Zandalar' ? 'selected' : ''}>Zandalar</option>
+                                    <option value="Nefarian" ${buff.buff === 'Nefarian' ? 'selected' : ''}>Nefarian</option>
+                                    <option value="Rend" ${buff.buff === 'Rend' ? 'selected' : ''}>Rend</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDate">Date:</label>
+                                <input type="text" id="editDate" value="${buffDate.format('YYYY-MM-DD')}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTime">Time:</label>
+                                <input type="text" id="editTime" value="${buffDate.format('HH:mm')}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editNotes">Notes:</label>
+                                <input type="text" id="editNotes" value="${buff.notes || ''}">
+                            </div>
+                            <button onclick="updateBuff(this, '${buff.datetime}', '${buff.guild}', '${buff.buff}')">Save Changes</button>
+                        </div>
+                    `;
+                    activeBuffsContainer.appendChild(buffCard);
+                });
+            } catch (error) {
+                console.error('Error loading active buffs:', error);
+            }
+        }
+
+        function toggleEditForm(button) {
+            const form = button.closest('.active-buff-card').querySelector('.edit-buff-form');
+            form.classList.toggle('active');
+        }
+
+        async function updateBuff(button, oldDatetime, oldGuild, oldBuff) {
+            const card = button.closest('.active-buff-card');
+            const newGuild = card.querySelector('#editGuild').value;
+            const newBuffType = card.querySelector('#editBuffType').value;
+            const newDate = card.querySelector('#editDate').value;
+            const newTime = card.querySelector('#editTime').value;
+            const newNotes = card.querySelector('#editNotes').value;
+
+            try {
+                const newDatetime = convertToUTC(newDate, newTime);
+                const faction = oldGuild.toLowerCase() in hordeGuilds.map(g => g.value.toLowerCase()) ? 'horde' : 'alliance';
+
+                const response = await fetch('/.netlify/functions/update-buff', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        faction,
+                        oldBuff: {
+                            datetime: oldDatetime,
+                            guild: oldGuild,
+                            buff: oldBuff
+                        },
+                        newBuff: {
+                            datetime: newDatetime,
+                            guild: newGuild,
+                            buff: newBuffType,
+                            notes: newNotes,
+                            server: "Doomhowl"
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to update buff: ${response.statusText}`);
+                }
+
+                alert('Buff updated successfully!');
+                loadActiveBuffs(); // Reload the active buffs
+            } catch (error) {
+                alert('Error updating buff: ' + error);
             }
         }
     </script>
