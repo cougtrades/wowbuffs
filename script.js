@@ -90,8 +90,7 @@ async function loadBuffs() {
     // Store past buffs for time since last buff calculation
     pastBuffs = allBuffs
       .filter(buff => moment(buff.datetime).tz("America/Denver").isBefore(now))
-      .sort((a, b) => moment(b.datetime).valueOf() - moment(a.datetime).valueOf())
-      .reverse(); // Reverse to get most recent first
+      .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
     
     // Filter for upcoming buffs only for display
     buffs = allBuffs
@@ -280,8 +279,8 @@ function startCountdown() {
       return;
     }
 
-    // Get the most recent past buff (first in the array since we reversed the sort)
-    let lastBuff = filteredPastBuffs[0];
+    // Get the most recent past buff (last in the array since we sorted ascending)
+    let lastBuff = filteredPastBuffs[filteredPastBuffs.length - 1];
     if (lastBuff) {
       let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
       let timeDiff = now.diff(lastBuffDate);
