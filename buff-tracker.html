@@ -578,7 +578,7 @@
                         <div class="buff-info">
                             <p><strong>Guild:</strong> ${buff.guild}</p>
                             <p><strong>Buff:</strong> ${buff.buff}</p>
-                            <p><strong>Time:</strong> ${buffDate.format('YYYY-MM-DD HH:mm')}</p>
+                            <p><strong>Time:</strong> ${buffDate.format('h:mm A')} ST</p>
                             ${buff.notes ? `<p><strong>Notes:</strong> ${buff.notes}</p>` : ''}
                         </div>
                         <div class="edit-buff-form">
@@ -600,7 +600,7 @@
                                 <input type="text" id="editDate" value="${buffDate.format('YYYY-MM-DD')}">
                             </div>
                             <div class="form-group">
-                                <label for="editTime">Time:</label>
+                                <label for="editTime">Time (ST):</label>
                                 <input type="text" id="editTime" value="${buffDate.format('HH:mm')}">
                             </div>
                             <div class="form-group">
