@@ -192,14 +192,12 @@ function groupBuffsByDate() {
 function displayBuffs() {
   groupBuffsByDate();
   let buffTimeline = document.getElementById("buffTimeline");
-  let timelineWrapper = document.querySelector(".timeline-wrapper");
   buffTimeline.innerHTML = "";
   let now = moment().tz("America/Denver");
 
   if (groupedBuffs.length === 0) {
     console.log("No buffs to display for Today/Tomorrow.");
     buffTimeline.innerHTML = '<div class="timeline-card"><p class="summary">No Buffs</p><div class="details"><p>No upcoming buffs for today or tomorrow.</p></div></div>';
-    timelineWrapper.classList.remove("has-more");
     return;
   }
 
@@ -241,19 +239,6 @@ function displayBuffs() {
       card.classList.toggle('expanded');
     });
   });
-
-  // Check if there are multiple columns
-  setTimeout(() => {
-    const firstGroup = buffTimeline.querySelector('.timeline-group');
-    if (firstGroup) {
-      const groupWidth = firstGroup.offsetWidth;
-      const containerWidth = buffTimeline.offsetWidth;
-      const hasMultipleColumns = groupWidth * groupedBuffs.length > containerWidth;
-      timelineWrapper.classList.toggle('has-more', hasMultipleColumns);
-    } else {
-      timelineWrapper.classList.remove('has-more');
-    }
-  }, 0);
 
   console.log("Buffs rendered successfully");
 }
