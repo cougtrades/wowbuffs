@@ -267,17 +267,14 @@ function startCountdown() {
 
     let now = moment().tz("America/Denver");
     let filteredBuffs = buffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
-    let nextBuff = filteredBuffs.find(e => {
-      let buffDate = moment(e.datetime).tz("America/Denver");
-      return buffDate.isAfter(now);
-    });
-
+    
+    // Find the most recent past buff
     let pastBuffs = filteredBuffs.filter(e => {
       let buffDate = moment(e.datetime).tz("America/Denver");
       return buffDate.isBefore(now);
     }).sort((a, b) => moment(b.datetime).tz("America/Denver") - moment(a.datetime).tz("America/Denver"));
 
-    let lastBuff = pastBuffs[0];
+    let lastBuff = pastBuffs[pastBuffs.length - 1]; // Get the most recent past buff
     if (lastBuff) {
       let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
       let timeDiff = now.diff(lastBuffDate);
@@ -286,24 +283,31 @@ function startCountdown() {
       let hours = duration.hours();
       let minutes = duration.minutes();
       let seconds = duration.seconds();
+      
       let timeString;
       if (days === 0) {
         if (hours === 0) {
           if (minutes === 0) {
-            timeString = `-${seconds}`;
+            timeString = `${seconds}s`;
           } else {
-            timeString = `-${minutes}:${seconds.toString().padStart(2, "0")}`;
+            timeString = `${minutes}m ${seconds}s`;
           }
         } else {
-          timeString = `-${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+          timeString = `${hours}h ${minutes}m ${seconds}s`;
         }
       } else {
-        timeString = `-${days}d ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
       document.getElementById("lastBuffTime").textContent = timeString;
     } else {
       document.getElementById("lastBuffTime").textContent = "--:--:--";
     }
+
+    // Find the next upcoming buff
+    let nextBuff = filteredBuffs.find(e => {
+      let buffDate = moment(e.datetime).tz("America/Denver");
+      return buffDate.isAfter(now);
+    });
 
     if (!nextBuff) {
       document.getElementById("countdownTimer").textContent = "No upcoming buffs";
@@ -346,19 +350,20 @@ function startCountdown() {
     let hours = duration.hours();
     let minutes = duration.minutes();
     let seconds = duration.seconds();
+    
     let timeString;
     if (days === 0) {
       if (hours === 0) {
         if (minutes === 0) {
-          timeString = `${seconds}`;
+          timeString = `${seconds}s`;
         } else {
-          timeString = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+          timeString = `${minutes}m ${seconds}s`;
         }
       } else {
-        timeString = `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        timeString = `${hours}h ${minutes}m ${seconds}s`;
       }
     } else {
-      timeString = `${days}d ${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
     document.getElementById("countdownTimer").textContent = timeString;
   }
