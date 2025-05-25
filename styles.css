@@ -238,6 +238,13 @@ body.alliance #timezoneSearch:focus {
   max-width: calc(50% - 10px);
 }
 
+/* When there's only one group, make it fill the container */
+.timeline-group:only-child {
+  flex: 0 0 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
 .timeline-group h2 {
   font-family: 'Morpheus', Georgia, serif;
   font-size: 1.8rem;
