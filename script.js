@@ -1,4 +1,5 @@
 let buffs = [];
+let pastBuffs = [];
 let faction = "horde";
 let selectedBuffType = "all";
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -82,19 +83,28 @@ async function loadBuffs() {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     let data = await response.json();
     
-    // Filter out past buffs and sort by datetime
+    // Separate past and future buffs
     let now = moment().tz("America/Denver");
-    buffs = Array.from(new Map(data.map(item => [item.datetime + item.guild + item.buff, item])).values())
+    let allBuffs = Array.from(new Map(data.map(item => [item.datetime + item.guild + item.buff, item])).values());
+    
+    // Store past buffs for time since last buff calculation
+    pastBuffs = allBuffs
+      .filter(buff => moment(buff.datetime).tz("America/Denver").isBefore(now))
+      .sort((a, b) => moment(b.datetime).valueOf() - moment(a.datetime).valueOf());
+    
+    // Filter for upcoming buffs only for display
+    buffs = allBuffs
       .filter(buff => moment(buff.datetime).tz("America/Denver").isAfter(now))
       .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
     
-    console.log(`Loaded ${buffs.length} upcoming buffs:`, buffs);
+    console.log(`Loaded ${buffs.length} upcoming buffs and ${pastBuffs.length} past buffs`);
     displayBuffs();
     startCountdown();
   } catch (error) {
     console.error(`Error loading buffs: ${error.message}`);
     document.getElementById("buffTimeline").innerHTML = `<div class="timeline-card"><p class="summary">Error</p><div class="details"><p>Error loading buffs: ${error.message}</p></div></div>`;
     buffs = [];
+    pastBuffs = [];
   }
 }
 
@@ -259,22 +269,18 @@ function startCountdown() {
   let lastBuffs = null;
 
   function updateCountdown() {
-    if (buffs.length === 0) {
+    let now = moment().tz("America/Denver");
+    let filteredBuffs = buffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
+    let filteredPastBuffs = pastBuffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
+
+    if (filteredBuffs.length === 0 && filteredPastBuffs.length === 0) {
       document.getElementById("countdownTimer").textContent = "--:--:--";
       document.getElementById("lastBuffTime").textContent = "--:--:--";
       return;
     }
 
-    let now = moment().tz("America/Denver");
-    let filteredBuffs = buffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
-    
-    // Find the most recent past buff
-    let pastBuffs = filteredBuffs.filter(e => {
-      let buffDate = moment(e.datetime).tz("America/Denver");
-      return buffDate.isBefore(now);
-    }).sort((a, b) => moment(b.datetime).tz("America/Denver") - moment(a.datetime).tz("America/Denver"));
-
-    let lastBuff = pastBuffs[pastBuffs.length - 1]; // Get the most recent past buff
+    // Get the most recent past buff
+    let lastBuff = filteredPastBuffs[filteredPastBuffs.length - 1];
     if (lastBuff) {
       let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
       let timeDiff = now.diff(lastBuffDate);
