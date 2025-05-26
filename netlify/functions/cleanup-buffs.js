@@ -11,6 +11,7 @@ exports.handler = async function(event, context) {
     try {
         const token = process.env.GITHUB_TOKEN;
         if (!token) {
+            console.error('GitHub token not configured');
             return {
                 statusCode: 500,
                 body: JSON.stringify({ error: 'GitHub token not configured' })
@@ -26,55 +27,65 @@ exports.handler = async function(event, context) {
         const results = {};
 
         for (const faction of factions) {
-            const path = faction === 'horde' ? 'horde_buffs.json' : 'alliance_buffs.json';
-            
-            // Fetch current file content and SHA
-            const fileResponse = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
-                headers: {
-                    Authorization: `token ${token}`,
-                    Accept: 'application/vnd.github.v3+json'
-                }
-            });
-            const fileData = await fileResponse.json();
-            if (!fileResponse.ok) {
-                throw new Error(`Failed to fetch ${faction} file: ${fileData.message}`);
-            }
-
-            const currentContent = JSON.parse(Buffer.from(fileData.content, 'base64').toString('utf8'));
-            
-            // Filter out old entries
-            const oldEntries = currentContent.filter(buff => new Date(buff.datetime) < cutoffDate);
-            const newContent = currentContent.filter(buff => new Date(buff.datetime) >= cutoffDate);
-
-            // If there are entries to remove, update the file
-            if (oldEntries.length > 0) {
-                const updateResponse = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
-                    method: 'PUT',
+            try {
+                const path = faction === 'horde' ? 'horde_buffs.json' : 'alliance_buffs.json';
+                
+                // Fetch current file content and SHA
+                const fileResponse = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
                     headers: {
                         Authorization: `token ${token}`,
                         Accept: 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        message: `Cleanup ${faction} buffs: Remove ${oldEntries.length} old entries`,
-                        content: Buffer.from(JSON.stringify(newContent, null, 4)).toString('base64'),
-                        sha: fileData.sha
-                    })
+                    }
                 });
 
-                if (!updateResponse.ok) {
-                    throw new Error(`Failed to update ${faction} file: ${(await updateResponse.json()).message}`);
+                if (!fileResponse.ok) {
+                    const errorData = await fileResponse.json();
+                    throw new Error(`Failed to fetch ${faction} file: ${errorData.message || fileResponse.statusText}`);
                 }
 
+                const fileData = await fileResponse.json();
+                const currentContent = JSON.parse(Buffer.from(fileData.content, 'base64').toString('utf8'));
+                
+                // Filter out old entries
+                const oldEntries = currentContent.filter(buff => new Date(buff.datetime) < cutoffDate);
+                const newContent = currentContent.filter(buff => new Date(buff.datetime) >= cutoffDate);
+
+                // If there are entries to remove, update the file
+                if (oldEntries.length > 0) {
+                    const updateResponse = await fetch(`https://api.github.com/repos/cougtrades/wowbuffs/contents/${path}`, {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `token ${token}`,
+                            Accept: 'application/vnd.github.v3+json'
+                        },
+                        body: JSON.stringify({
+                            message: `Cleanup ${faction} buffs: Remove ${oldEntries.length} old entries`,
+                            content: Buffer.from(JSON.stringify(newContent, null, 4)).toString('base64'),
+                            sha: fileData.sha
+                        })
+                    });
+
+                    if (!updateResponse.ok) {
+                        const errorData = await updateResponse.json();
+                        throw new Error(`Failed to update ${faction} file: ${errorData.message || updateResponse.statusText}`);
+                    }
+
+                    results[faction] = {
+                        removed: oldEntries.length,
+                        remaining: newContent.length,
+                        removedEntries: oldEntries
+                    };
+                } else {
+                    results[faction] = {
+                        removed: 0,
+                        remaining: currentContent.length,
+                        message: 'No old entries to remove'
+                    };
+                }
+            } catch (factionError) {
+                console.error(`Error processing ${faction} file:`, factionError);
                 results[faction] = {
-                    removed: oldEntries.length,
-                    remaining: newContent.length,
-                    removedEntries: oldEntries
-                };
-            } else {
-                results[faction] = {
-                    removed: 0,
-                    remaining: currentContent.length,
-                    message: 'No old entries to remove'
+                    error: factionError.message
                 };
             }
         }
@@ -90,7 +101,10 @@ exports.handler = async function(event, context) {
         console.error('Error in cleanup-buffs:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: error.message })
+            body: JSON.stringify({ 
+                error: error.message,
+                details: error.stack
+            })
         };
     }
 }; 
