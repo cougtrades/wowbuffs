@@ -1470,13 +1470,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-05-27T00:30:00Z",
-        "guild": "Ungoon",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-05-26T23:50:00Z",
         "guild": "Zug Life",
         "buff": "Zandalar",
@@ -1487,6 +1480,20 @@
         "datetime": "2025-05-26T23:52:00Z",
         "guild": "Zug Life",
         "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-05-27T00:30:00Z",
+        "guild": "Ungoon",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-05-27T01:45:00Z",
+        "guild": "Washed Up",
+        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     },
