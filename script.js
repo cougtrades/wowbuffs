@@ -217,13 +217,13 @@ function displayBuffs() {
       let countdown = formatCountdown(buffDate);
       let iconSrc = `${buff.buff.toLowerCase()}-icon.png`;
       groupContent += `
-        <div class="timeline-card ${isGlowing ? 'glowing' : ''}">
+        <div class="timeline-card ${isGlowing ? 'glowing' : ''}" data-datetime="${buff.datetime}">
           <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon"><strong>${serverTime} - ${buff.buff}</strong></p>
           <div class="details">
             <p><strong>Dropped by:</strong> ${buff.guild}</p>
             <p><strong>Your Time:</strong> ${localTime}</p>
             ${buff.notes ? `<p><strong>Notes:</strong> ${buff.notes}</p>` : ''}
-            <p><strong>Countdown:</strong> ${countdown}</p>
+            <p><strong>Countdown:</strong> <span class="buff-countdown">${countdown}</span></p>
           </div>
         </div>
       `;
@@ -240,7 +240,24 @@ function displayBuffs() {
     });
   });
 
+  // Start updating all countdown timers
+  updateAllCountdowns();
+
   console.log("Buffs rendered successfully");
+}
+
+function updateAllCountdowns() {
+  const cards = document.querySelectorAll('.timeline-card');
+  const now = moment().tz("America/Denver");
+
+  cards.forEach(card => {
+    const datetime = card.dataset.datetime;
+    const countdownElement = card.querySelector('.buff-countdown');
+    if (datetime && countdownElement) {
+      const buffDate = moment(datetime).tz("America/Denver");
+      countdownElement.textContent = formatCountdown(buffDate);
+    }
+  });
 }
 
 function searchBuffs() {
@@ -372,6 +389,9 @@ function startCountdown() {
       timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
     document.getElementById("countdownTimer").textContent = timeString;
+
+    // Update all countdown timers in expanded cards
+    updateAllCountdowns();
   }
 
   function showCustomNotification(buff) {
