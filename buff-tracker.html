@@ -643,39 +643,53 @@
             const newNotes = card.querySelector('#editNotes').value;
 
             try {
+                // Validate date and time format
+                if (!newDate.match(/^\d{4}-\d{2}-\d{2}$/) || !newTime.match(/^\d{2}:\d{2}$/)) {
+                    throw new Error('Invalid date or time format. Use YYYY-MM-DD for date and HH:MM for time.');
+                }
+
                 const newDatetime = convertToUTC(newDate, newTime);
                 const faction = oldGuild.toLowerCase() in hordeGuilds.map(g => g.value.toLowerCase()) ? 'horde' : 'alliance';
+
+                const updateData = {
+                    faction,
+                    oldBuff: {
+                        datetime: oldDatetime,
+                        guild: oldGuild,
+                        buff: oldBuff
+                    },
+                    newBuff: {
+                        datetime: newDatetime,
+                        guild: newGuild,
+                        buff: newBuffType,
+                        notes: newNotes,
+                        server: "Doomhowl"
+                    }
+                };
+
+                console.log('Sending update data:', updateData); // Debug log
 
                 const response = await fetch('/.netlify/functions/update-buff', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        faction,
-                        oldBuff: {
-                            datetime: oldDatetime,
-                            guild: oldGuild,
-                            buff: oldBuff
-                        },
-                        newBuff: {
-                            datetime: newDatetime,
-                            guild: newGuild,
-                            buff: newBuffType,
-                            notes: newNotes,
-                            server: "Doomhowl"
-                        }
-                    })
+                    body: JSON.stringify(updateData)
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Failed to update buff: ${response.statusText}`);
+                    const errorText = await response.text();
+                    throw new Error(`Failed to update buff: ${response.status} ${response.statusText} - ${errorText}`);
                 }
+
+                const result = await response.json();
+                console.log('Update response:', result); // Debug log
 
                 alert('Buff updated successfully!');
                 loadActiveBuffs(); // Reload the active buffs
             } catch (error) {
-                alert('Error updating buff: ' + error);
+                console.error('Error updating buff:', error); // Debug log
+                alert('Error updating buff: ' + error.message);
             }
         }
 
