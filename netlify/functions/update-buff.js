@@ -53,41 +53,55 @@ exports.handler = async function(event, context) {
             const buffDate = new Date(buff.datetime).toISOString();
             const oldBuffDate = new Date(oldBuff.datetime).toISOString();
             
-            const match = buffDate === oldBuffDate && 
+            // First try exact match
+            const exactMatch = buff.datetime === oldBuff.datetime && 
+                buff.guild === oldBuff.guild && 
+                buff.buff === oldBuff.buff;
+            
+            // If no exact match, try case-insensitive
+            const caseInsensitiveMatch = buffDate === oldBuffDate && 
                 buff.guild.toLowerCase() === oldBuff.guild.toLowerCase() && 
                 buff.buff === oldBuff.buff;
             
-            if (match) {
+            if (exactMatch || caseInsensitiveMatch) {
                 console.log('Found matching buff:', buff);
-            } else {
-                console.log('Buff comparison:', {
-                    buff: {
-                        datetime: buffDate,
-                        guild: buff.guild.toLowerCase(),
-                        buff: buff.buff
-                    },
-                    searchFor: {
-                        datetime: oldBuffDate,
-                        guild: oldBuff.guild.toLowerCase(),
-                        buff: oldBuff.buff
-                    },
-                    matches: {
-                        datetime: buffDate === oldBuffDate,
-                        guild: buff.guild.toLowerCase() === oldBuff.guild.toLowerCase(),
-                        buff: buff.buff === oldBuff.buff
-                    }
-                });
+                return true;
             }
-            return match;
+            
+            // Log the comparison for debugging
+            console.log('Buff comparison:', {
+                buff: {
+                    datetime: buffDate,
+                    guild: buff.guild,
+                    buff: buff.buff
+                },
+                searchFor: {
+                    datetime: oldBuffDate,
+                    guild: oldBuff.guild,
+                    buff: oldBuff.buff
+                },
+                matches: {
+                    datetime: buffDate === oldBuffDate,
+                    guild: buff.guild.toLowerCase() === oldBuff.guild.toLowerCase(),
+                    buff: buff.buff === oldBuff.buff
+                }
+            });
+            return false;
         });
 
         if (buffIndex === -1) {
+            // Find all matching guild entries to help debug
+            const matchingGuildEntries = currentContent.filter(buff => 
+                buff.guild.toLowerCase() === oldBuff.guild.toLowerCase()
+            );
+            
             console.log('Buff not found. Looking for:', {
                 datetime: oldBuff.datetime,
                 guild: oldBuff.guild,
                 buff: oldBuff.buff
             });
-            console.log('First few available buffs:', currentContent.slice(0, 5));
+            console.log('All entries for this guild:', matchingGuildEntries);
+            
             return {
                 statusCode: 404,
                 body: JSON.stringify({ 
@@ -97,7 +111,7 @@ exports.handler = async function(event, context) {
                         guild: oldBuff.guild,
                         buff: oldBuff.buff
                     },
-                    sampleBuffs: currentContent.slice(0, 3)
+                    matchingGuildEntries: matchingGuildEntries
                 })
             };
         }
