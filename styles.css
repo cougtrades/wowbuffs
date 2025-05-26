@@ -434,6 +434,33 @@ body.alliance .timer-container {
   font-family: 'Courier New', monospace;
 }
 
+.time-format-toggle {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid var(--horde-color);
+  border-radius: var(--border-radius);
+  color: var(--horde-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+body.alliance .time-format-toggle {
+  border-color: var(--alliance-color);
+  color: var(--alliance-color);
+}
+
+.time-format-toggle:hover {
+  background: rgba(255, 85, 85, 0.1);
+  box-shadow: 0 0 10px var(--horde-color);
+}
+
+body.alliance .time-format-toggle:hover {
+  background: rgba(85, 170, 255, 0.1);
+  box-shadow: 0 0 10px var(--alliance-color);
+}
+
 /* Time Disclaimer */
 .time-disclaimer {
   margin-top: 20px;
