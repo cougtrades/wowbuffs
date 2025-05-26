@@ -313,6 +313,7 @@
             </div>
             <button class="add-buff-btn" onclick="addBuffEntry()">Add Another Buff</button>
             <button onclick="submitAllBuffs()">Submit All Buffs</button>
+            <button onclick="runCleanup()" style="background-color: #ff4444;">Cleanup Old Buffs</button>
             <button id="logoutButton" onclick="logout()">Logout</button>
         </div>
 
@@ -732,6 +733,42 @@
                 loadActiveBuffs(); // Reload the active buffs
             } catch (error) {
                 alert('Error deleting buff: ' + error);
+            }
+        }
+
+        async function runCleanup() {
+            if (!confirm('Are you sure you want to remove all buffs older than 1 day?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/.netlify/functions/cleanup-buffs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to run cleanup: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('Cleanup results:', result);
+
+                // Show detailed results
+                let message = 'Cleanup completed:\n\n';
+                for (const [faction, data] of Object.entries(result.results)) {
+                    message += `${faction.toUpperCase()}:\n`;
+                    message += `- Removed: ${data.removed} entries\n`;
+                    message += `- Remaining: ${data.remaining} entries\n\n`;
+                }
+
+                alert(message);
+                loadActiveBuffs(); // Reload the active buffs display
+            } catch (error) {
+                console.error('Error running cleanup:', error);
+                alert('Error running cleanup: ' + error.message);
             }
         }
     </script>
