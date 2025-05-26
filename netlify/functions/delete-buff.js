@@ -41,17 +41,38 @@ exports.handler = async function(event, context) {
 
         const currentContent = JSON.parse(Buffer.from(fileData.content, 'base64').toString('utf8'));
         
+        // Create a function to normalize buff data for comparison
+        const normalizeBuff = (b) => ({
+            datetime: new Date(b.datetime).toISOString(),
+            guild: b.guild.toLowerCase().trim(),
+            buff: b.buff
+        });
+
         // Find and remove the buff
-        const buffIndex = currentContent.findIndex(b => 
-            b.datetime === buff.datetime && 
-            b.guild === buff.guild && 
-            b.buff === buff.buff
-        );
+        const searchBuff = normalizeBuff(buff);
+        const buffIndex = currentContent.findIndex(b => {
+            const normalizedBuff = normalizeBuff(b);
+            return normalizedBuff.datetime === searchBuff.datetime &&
+                   normalizedBuff.guild === searchBuff.guild &&
+                   normalizedBuff.buff === searchBuff.buff;
+        });
 
         if (buffIndex === -1) {
+            // Find all matching guild entries to help debug
+            const matchingGuildEntries = currentContent.filter(b => 
+                b.guild.toLowerCase().trim() === buff.guild.toLowerCase().trim()
+            );
+
+            console.log('Buff not found. Looking for:', searchBuff);
+            console.log('All entries for this guild:', matchingGuildEntries);
+
             return {
                 statusCode: 404,
-                body: JSON.stringify({ error: 'Buff not found' })
+                body: JSON.stringify({ 
+                    error: 'Buff not found',
+                    searchCriteria: searchBuff,
+                    matchingGuildEntries: matchingGuildEntries
+                })
             };
         }
 
@@ -81,6 +102,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({ message: 'Buff deleted successfully' })
         };
     } catch (error) {
+        console.error('Error in delete-buff:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: error.message })
