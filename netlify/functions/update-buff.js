@@ -41,76 +41,42 @@ exports.handler = async function(event, context) {
 
         const currentContent = JSON.parse(Buffer.from(fileData.content, 'base64').toString('utf8'));
         
+        // Create a function to normalize buff data for comparison
+        const normalizeBuff = (b) => ({
+            datetime: new Date(b.datetime).toISOString(),
+            guild: b.guild.toLowerCase().trim(),
+            buff: b.buff
+        });
+
         console.log('Received update request:', {
             faction,
             oldBuff,
             newBuff
         });
         
-        // Find and update the buff with case-insensitive guild comparison and datetime normalization
-        const buffIndex = currentContent.findIndex(buff => {
-            // Normalize datetimes for comparison
-            const buffDate = new Date(buff.datetime).toISOString();
-            const oldBuffDate = new Date(oldBuff.datetime).toISOString();
-            
-            // First try exact match
-            const exactMatch = buff.datetime === oldBuff.datetime && 
-                buff.guild === oldBuff.guild && 
-                buff.buff === oldBuff.buff;
-            
-            // If no exact match, try case-insensitive
-            const caseInsensitiveMatch = buffDate === oldBuffDate && 
-                buff.guild.toLowerCase() === oldBuff.guild.toLowerCase() && 
-                buff.buff === oldBuff.buff;
-            
-            if (exactMatch || caseInsensitiveMatch) {
-                console.log('Found matching buff:', buff);
-                return true;
-            }
-            
-            // Log the comparison for debugging
-            console.log('Buff comparison:', {
-                buff: {
-                    datetime: buffDate,
-                    guild: buff.guild,
-                    buff: buff.buff
-                },
-                searchFor: {
-                    datetime: oldBuffDate,
-                    guild: oldBuff.guild,
-                    buff: oldBuff.buff
-                },
-                matches: {
-                    datetime: buffDate === oldBuffDate,
-                    guild: buff.guild.toLowerCase() === oldBuff.guild.toLowerCase(),
-                    buff: buff.buff === oldBuff.buff
-                }
-            });
-            return false;
+        // Find and update the buff with normalized comparison
+        const searchBuff = normalizeBuff(oldBuff);
+        const buffIndex = currentContent.findIndex(b => {
+            const normalizedBuff = normalizeBuff(b);
+            return normalizedBuff.datetime === searchBuff.datetime &&
+                   normalizedBuff.guild === searchBuff.guild &&
+                   normalizedBuff.buff === searchBuff.buff;
         });
 
         if (buffIndex === -1) {
             // Find all matching guild entries to help debug
-            const matchingGuildEntries = currentContent.filter(buff => 
-                buff.guild.toLowerCase() === oldBuff.guild.toLowerCase()
+            const matchingGuildEntries = currentContent.filter(b => 
+                b.guild.toLowerCase().trim() === oldBuff.guild.toLowerCase().trim()
             );
             
-            console.log('Buff not found. Looking for:', {
-                datetime: oldBuff.datetime,
-                guild: oldBuff.guild,
-                buff: oldBuff.buff
-            });
+            console.log('Buff not found. Looking for:', searchBuff);
             console.log('All entries for this guild:', matchingGuildEntries);
             
             return {
                 statusCode: 404,
                 body: JSON.stringify({ 
                     error: 'Buff not found',
-                    searchCriteria: {
-                        datetime: oldBuff.datetime,
-                        guild: oldBuff.guild,
-                        buff: oldBuff.buff
-                    },
+                    searchCriteria: searchBuff,
                     matchingGuildEntries: matchingGuildEntries
                 })
             };
