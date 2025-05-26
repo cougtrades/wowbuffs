@@ -41,12 +41,23 @@ exports.handler = async function(event, context) {
 
         const currentContent = JSON.parse(Buffer.from(fileData.content, 'base64').toString('utf8'));
         
+        console.log('Received update request:', {
+            faction,
+            oldBuff,
+            newBuff
+        });
+        
         // Find and update the buff with case-insensitive guild comparison
-        const buffIndex = currentContent.findIndex(buff => 
-            buff.datetime === oldBuff.datetime && 
-            buff.guild.toLowerCase() === oldBuff.guild.toLowerCase() && 
-            buff.buff === oldBuff.buff
-        );
+        const buffIndex = currentContent.findIndex(buff => {
+            const match = buff.datetime === oldBuff.datetime && 
+                buff.guild.toLowerCase() === oldBuff.guild.toLowerCase() && 
+                buff.buff === oldBuff.buff;
+            
+            if (match) {
+                console.log('Found matching buff:', buff);
+            }
+            return match;
+        });
 
         if (buffIndex === -1) {
             console.log('Buff not found. Looking for:', {
@@ -54,10 +65,17 @@ exports.handler = async function(event, context) {
                 guild: oldBuff.guild,
                 buff: oldBuff.buff
             });
-            console.log('Available buffs:', currentContent);
+            console.log('First few available buffs:', currentContent.slice(0, 5));
             return {
                 statusCode: 404,
-                body: JSON.stringify({ error: 'Buff not found' })
+                body: JSON.stringify({ 
+                    error: 'Buff not found',
+                    searchCriteria: {
+                        datetime: oldBuff.datetime,
+                        guild: oldBuff.guild,
+                        buff: oldBuff.buff
+                    }
+                })
             };
         }
 
