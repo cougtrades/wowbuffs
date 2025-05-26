@@ -750,7 +750,14 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Failed to run cleanup: ${response.statusText}`);
+                    const errorText = await response.text();
+                    console.error('Server error:', errorText);
+                    try {
+                        const errorData = JSON.parse(errorText);
+                        throw new Error(errorData.error || `Failed to run cleanup: ${response.status} ${response.statusText}`);
+                    } catch (e) {
+                        throw new Error(`Failed to run cleanup: ${response.status} ${response.statusText} - ${errorText}`);
+                    }
                 }
 
                 const result = await response.json();
