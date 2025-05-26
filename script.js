@@ -127,7 +127,7 @@ function updateFaction() {
 function formatDateTime(date, isServerTime = false) {
   const timezone = isServerTime ? "America/Denver" : selectedTimezone;
   return moment(date).tz(timezone).format(
-    isServerTime ? "dddd, MMMM D, h:mm A" : "dddd, h:mm A"
+    isServerTime ? "dddd, MMMM D, h:mm A" : "dddd, MMMM D, h:mm A"
   );
 }
 
