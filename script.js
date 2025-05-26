@@ -4,6 +4,7 @@ let faction = "horde";
 let selectedBuffType = "all";
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 let groupedBuffs = [];
+let showLocalTime = false;
 
 function populateTimezoneDropdown() {
   const timezoneSelect = document.getElementById("timezone");
@@ -189,6 +190,22 @@ function groupBuffsByDate() {
   console.log(`Grouped into ${groupedBuffs.length} groups:`, groupedBuffs);
 }
 
+function toggleTimeFormat() {
+  showLocalTime = !showLocalTime;
+  const button = document.getElementById('timeFormatToggle');
+  const disclaimer = document.getElementById('timeFormatText');
+  
+  if (showLocalTime) {
+    button.textContent = 'Show Server Time';
+    disclaimer.textContent = 'Times shown are in your local time. Click any buff to see server time.';
+  } else {
+    button.textContent = 'Show Local Time';
+    disclaimer.textContent = 'Times shown are in server time. Click any buff to see your local time.';
+  }
+  
+  displayBuffs();
+}
+
 function displayBuffs() {
   groupBuffsByDate();
   let buffTimeline = document.getElementById("buffTimeline");
@@ -212,16 +229,16 @@ function displayBuffs() {
       let buffDate = moment(buff.datetime).tz("America/Denver");
       let timeDiff = buffDate.diff(now);
       let isGlowing = timeDiff <= 600000 && timeDiff > 0;
-      let serverTime = formatDateTime(buffDate, true);
-      let localTime = formatDateTime(buffDate, false);
+      let displayTime = showLocalTime ? formatDateTime(buffDate, false) : formatDateTime(buffDate, true);
+      let alternateTime = showLocalTime ? formatDateTime(buffDate, true) : formatDateTime(buffDate, false);
       let countdown = formatCountdown(buffDate);
       let iconSrc = `${buff.buff.toLowerCase()}-icon.png`;
       groupContent += `
         <div class="timeline-card ${isGlowing ? 'glowing' : ''}" data-datetime="${buff.datetime}">
-          <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon"><strong>${serverTime} - ${buff.buff}</strong></p>
+          <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon"><strong>${displayTime} - ${buff.buff}</strong></p>
           <div class="details">
             <p><strong>Dropped by:</strong> ${buff.guild}</p>
-            <p><strong>Your Time:</strong> ${localTime}</p>
+            <p><strong>${showLocalTime ? 'Server Time' : 'Your Time'}:</strong> ${alternateTime}</p>
             ${buff.notes ? `<p><strong>Notes:</strong> ${buff.notes}</p>` : ''}
             <p><strong>Countdown:</strong> <span class="buff-countdown">${countdown}</span></p>
           </div>
