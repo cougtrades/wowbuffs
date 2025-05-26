@@ -685,6 +685,8 @@
 
                 if (!response.ok) {
                     const errorText = await response.text();
+                    const errorData = JSON.parse(errorText);
+                    console.error('Server error details:', errorData);
                     throw new Error(`Failed to update buff: ${response.status} ${response.statusText} - ${errorText}`);
                 }
 
