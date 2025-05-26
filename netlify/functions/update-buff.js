@@ -47,14 +47,36 @@ exports.handler = async function(event, context) {
             newBuff
         });
         
-        // Find and update the buff with case-insensitive guild comparison
+        // Find and update the buff with case-insensitive guild comparison and datetime normalization
         const buffIndex = currentContent.findIndex(buff => {
-            const match = buff.datetime === oldBuff.datetime && 
+            // Normalize datetimes for comparison
+            const buffDate = new Date(buff.datetime).toISOString();
+            const oldBuffDate = new Date(oldBuff.datetime).toISOString();
+            
+            const match = buffDate === oldBuffDate && 
                 buff.guild.toLowerCase() === oldBuff.guild.toLowerCase() && 
                 buff.buff === oldBuff.buff;
             
             if (match) {
                 console.log('Found matching buff:', buff);
+            } else {
+                console.log('Buff comparison:', {
+                    buff: {
+                        datetime: buffDate,
+                        guild: buff.guild.toLowerCase(),
+                        buff: buff.buff
+                    },
+                    searchFor: {
+                        datetime: oldBuffDate,
+                        guild: oldBuff.guild.toLowerCase(),
+                        buff: oldBuff.buff
+                    },
+                    matches: {
+                        datetime: buffDate === oldBuffDate,
+                        guild: buff.guild.toLowerCase() === oldBuff.guild.toLowerCase(),
+                        buff: buff.buff === oldBuff.buff
+                    }
+                });
             }
             return match;
         });
@@ -74,7 +96,8 @@ exports.handler = async function(event, context) {
                         datetime: oldBuff.datetime,
                         guild: oldBuff.guild,
                         buff: oldBuff.buff
-                    }
+                    },
+                    sampleBuffs: currentContent.slice(0, 3)
                 })
             };
         }
