@@ -563,7 +563,7 @@
         "datetime": "2025-05-30T18:00:00Z",
         "guild": "TEST",
         "buff": "Rend",
-        "notes": "",
+        "notes": "test",
         "server": "Doomhowl"
     }
 ]
