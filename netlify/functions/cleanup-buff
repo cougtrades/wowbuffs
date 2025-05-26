@@ -1,6 +1,13 @@
 const fetch = require('node-fetch');
 
 exports.handler = async function(event, context) {
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            body: JSON.stringify({ error: 'Method not allowed' })
+        };
+    }
+
     try {
         const token = process.env.GITHUB_TOKEN;
         if (!token) {
