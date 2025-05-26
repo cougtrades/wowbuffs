@@ -12,6 +12,9 @@
 [build.environment]
   NODE_VERSION = "16"
 
-[[functions]]
+[functions]
+  node_bundler = "esbuild"
+
+[[functions.schedule]]
   function = "cleanup-buffs"
-  schedule = "@daily" 
+  cron = "0 0 * * *" 
