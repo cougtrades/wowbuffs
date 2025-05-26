@@ -75,6 +75,9 @@
    <div class="countdown" id="countdown" role="timer" aria-live="polite">
     Next Buff in: <span id="countdownTimer">--:--:--</span>
    </div>
+   <button id="timeFormatToggle" class="time-format-toggle" onclick="toggleTimeFormat()">
+    Show Local Time
+   </button>
   </div>
   <div class="timeline-wrapper">
    <button class="nav-arrow left" onclick="scrollTimeline(-450)" aria-label="Scroll left">&#9664;</button>
@@ -82,7 +85,7 @@
    <button class="nav-arrow right" onclick="scrollTimeline(450)" aria-label="Scroll right">&#9654;</button>
   </div>
   <div class="time-disclaimer">
-   <p>Times shown are in server time. Click any buff to see your local time.</p>
+   <p id="timeFormatText">Times shown are in server time. Click any buff to see your local time.</p>
   </div>
  </div>
  <footer>
