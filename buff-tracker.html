@@ -650,7 +650,7 @@
 
                 const newDatetime = convertToUTC(newDate, newTime);
                 
-                // Find the exact guild name from our lists to maintain case sensitivity
+                // Find the exact guild name from our lists to maintain proper case
                 const guildList = [...hordeGuilds, ...allianceGuilds];
                 const exactGuild = guildList.find(g => g.value.toLowerCase() === newGuild.toLowerCase())?.value || newGuild;
                 const exactOldGuild = guildList.find(g => g.value.toLowerCase() === oldGuild.toLowerCase())?.value || oldGuild;
