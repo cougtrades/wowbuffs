@@ -41,14 +41,20 @@ exports.handler = async function(event, context) {
 
         const currentContent = JSON.parse(Buffer.from(fileData.content, 'base64').toString('utf8'));
         
-        // Find and update the buff
+        // Find and update the buff with case-insensitive guild comparison
         const buffIndex = currentContent.findIndex(buff => 
             buff.datetime === oldBuff.datetime && 
-            buff.guild === oldBuff.guild && 
+            buff.guild.toLowerCase() === oldBuff.guild.toLowerCase() && 
             buff.buff === oldBuff.buff
         );
 
         if (buffIndex === -1) {
+            console.log('Buff not found. Looking for:', {
+                datetime: oldBuff.datetime,
+                guild: oldBuff.guild,
+                buff: oldBuff.buff
+            });
+            console.log('Available buffs:', currentContent);
             return {
                 statusCode: 404,
                 body: JSON.stringify({ error: 'Buff not found' })
