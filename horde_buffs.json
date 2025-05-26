@@ -1545,5 +1545,12 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-05-30T00:30:00Z",
+        "guild": "SWMG",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
