@@ -737,7 +737,7 @@
         }
 
         async function runCleanup() {
-            if (!confirm('Are you sure you want to remove all buffs older than 1 day?')) {
+            if (!confirm('Are you sure you want to remove all buff entries older than 1 day?')) {
                 return;
             }
 
@@ -749,32 +749,33 @@
                     }
                 });
 
+                const data = await response.json();
+                
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('Server error:', errorText);
-                    try {
-                        const errorData = JSON.parse(errorText);
-                        throw new Error(errorData.error || `Failed to run cleanup: ${response.status} ${response.statusText}`);
-                    } catch (e) {
-                        throw new Error(`Failed to run cleanup: ${response.status} ${response.statusText} - ${errorText}`);
-                    }
+                    throw new Error(data.error || 'Failed to run cleanup');
                 }
-
-                const result = await response.json();
-                console.log('Cleanup results:', result);
 
                 // Show detailed results
                 let message = 'Cleanup completed:\n\n';
-                for (const [faction, data] of Object.entries(result.results)) {
+                for (const [faction, result] of Object.entries(data.results)) {
                     message += `${faction.toUpperCase()}:\n`;
-                    message += `- Removed: ${data.removed} entries\n`;
-                    message += `- Remaining: ${data.remaining} entries\n\n`;
+                    if (result.error) {
+                        message += `Error: ${result.error}\n`;
+                    } else {
+                        message += `Removed: ${result.removed} entries\n`;
+                        message += `Remaining: ${result.remaining} entries\n`;
+                        if (result.message) {
+                            message += `${result.message}\n`;
+                        }
+                    }
+                    message += '\n';
                 }
-
                 alert(message);
-                loadActiveBuffs(); // Reload the active buffs display
+
+                // Refresh the display
+                await loadActiveBuffs();
             } catch (error) {
-                console.error('Error running cleanup:', error);
+                console.error('Cleanup error:', error);
                 alert('Error running cleanup: ' + error.message);
             }
         }
