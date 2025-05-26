@@ -429,8 +429,11 @@
             const now = moment().tz("America/Denver");
             const hour = now.hour();
             const defaultDate = hour >= 0 ? now.add(1, 'day') : now;
+            // Only set date for empty date inputs
             document.querySelectorAll('#date').forEach(input => {
-                input.value = defaultDate.format('YYYY-MM-DD');
+                if (!input.value) {
+                    input.value = defaultDate.format('YYYY-MM-DD');
+                }
             });
         }
 
@@ -463,7 +466,14 @@
             template.appendChild(removeBtn);
 
             document.getElementById('buffEntries').appendChild(template);
-            setDefaultDate();
+            // Set default date only for the new entry
+            const newDateInput = template.querySelector('#date');
+            if (newDateInput) {
+                const now = moment().tz("America/Denver");
+                const hour = now.hour();
+                const defaultDate = hour >= 0 ? now.add(1, 'day') : now;
+                newDateInput.value = defaultDate.format('YYYY-MM-DD');
+            }
         }
 
         function convertToUTC(stDate, stTime) {
