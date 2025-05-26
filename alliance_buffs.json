@@ -558,12 +558,5 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-31T18:00:00Z",
-        "guild": "TEST",
-        "buff": "Rend",
-        "notes": "test",
-        "server": "Doomhowl"
     }
 ]
