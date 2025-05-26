@@ -15,6 +15,5 @@
 [functions]
   node_bundler = "esbuild"
 
-[[functions.schedule]]
-  function = "cleanup-buffs"
-  cron = "0 0 * * *" 
+[functions.cleanup-buffs]
+  schedule = "0 0 * * *" 
