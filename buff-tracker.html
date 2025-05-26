@@ -649,18 +649,24 @@
                 }
 
                 const newDatetime = convertToUTC(newDate, newTime);
-                const faction = oldGuild.toLowerCase() in hordeGuilds.map(g => g.value.toLowerCase()) ? 'horde' : 'alliance';
+                
+                // Find the exact guild name from our lists to maintain case sensitivity
+                const guildList = [...hordeGuilds, ...allianceGuilds];
+                const exactGuild = guildList.find(g => g.value.toLowerCase() === newGuild.toLowerCase())?.value || newGuild;
+                const exactOldGuild = guildList.find(g => g.value.toLowerCase() === oldGuild.toLowerCase())?.value || oldGuild;
+                
+                const faction = exactOldGuild.toLowerCase() in hordeGuilds.map(g => g.value.toLowerCase()) ? 'horde' : 'alliance';
 
                 const updateData = {
                     faction,
                     oldBuff: {
                         datetime: oldDatetime,
-                        guild: oldGuild,
+                        guild: exactOldGuild,
                         buff: oldBuff
                     },
                     newBuff: {
                         datetime: newDatetime,
-                        guild: newGuild,
+                        guild: exactGuild,
                         buff: newBuffType,
                         notes: newNotes,
                         server: "Doomhowl"
