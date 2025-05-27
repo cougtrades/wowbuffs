@@ -220,13 +220,14 @@ body.alliance #timezoneSearch:focus {
 
 #buffTimeline {
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
   gap: clamp(10px, 2vw, 20px);
   padding: clamp(10px, 2vw, 20px);
   justify-content: flex-start;
   max-width: 100%;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
 
 .timeline-group {
@@ -236,6 +237,7 @@ body.alliance #timezoneSearch:focus {
   gap: 10px;
   min-width: calc(50% - 10px);
   max-width: calc(50% - 10px);
+  scroll-snap-align: start;
 }
 
 /* When there's only one group, make it fill the container */
