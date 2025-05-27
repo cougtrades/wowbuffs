@@ -451,15 +451,20 @@ function scrollTimeline(direction) {
   const groups = timeline.getElementsByClassName("timeline-group");
   if (groups.length === 0) return;
 
-  // Get the width of a single group including its gap
-  const groupStyle = window.getComputedStyle(groups[0]);
-  const groupWidth = groups[0].offsetWidth + parseInt(groupStyle.marginRight) + parseInt(groupStyle.marginLeft);
+  // Get the width of the timeline container
+  const containerWidth = timeline.clientWidth;
+  
+  // Calculate how many groups are visible at once
+  const visibleGroups = window.innerWidth >= 769 ? 2 : 1;
+  
+  // Calculate the scroll distance (one group width)
+  const scrollDistance = containerWidth / visibleGroups;
   
   // Calculate the current scroll position
   const currentScroll = timeline.scrollLeft;
   
-  // Calculate the next scroll position (one group width at a time)
-  const nextScroll = currentScroll + (direction * groupWidth);
+  // Calculate the next scroll position
+  const nextScroll = currentScroll + (direction * scrollDistance);
   
   // Ensure we don't scroll past the start or end
   const maxScroll = timeline.scrollWidth - timeline.clientWidth;
