@@ -455,13 +455,18 @@ function scrollTimeline(direction) {
   const groupStyle = window.getComputedStyle(groups[0]);
   const groupWidth = groups[0].offsetWidth + parseInt(groupStyle.marginRight) + parseInt(groupStyle.marginLeft);
   
-  // Calculate the current scroll position and the next position
+  // Calculate the current scroll position
   const currentScroll = timeline.scrollLeft;
-  const nextScroll = currentScroll + (direction * groupWidth);
   
-  // Scroll to the next position
+  // Find the current visible group
+  const currentGroupIndex = Math.round(currentScroll / groupWidth);
+  
+  // Calculate the next group index
+  const nextGroupIndex = Math.max(0, Math.min(groups.length - 1, currentGroupIndex + direction));
+  
+  // Scroll to the next group
   timeline.scrollTo({
-    left: nextScroll,
+    left: nextGroupIndex * groupWidth,
     behavior: 'smooth'
   });
 }
