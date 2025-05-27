@@ -458,8 +458,19 @@ function scrollTimeline(direction) {
   // Calculate the current scroll position
   const currentScroll = timeline.scrollLeft;
   
-  // Find the current visible group
-  const currentGroupIndex = Math.round(currentScroll / groupWidth);
+  // Find the current visible group by checking which group is most visible
+  let currentGroupIndex = 0;
+  let maxVisible = 0;
+  
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
+    const rect = group.getBoundingClientRect();
+    const visible = Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0);
+    if (visible > maxVisible) {
+      maxVisible = visible;
+      currentGroupIndex = i;
+    }
+  }
   
   // Calculate the next group index
   const nextGroupIndex = Math.max(0, Math.min(groups.length - 1, currentGroupIndex + direction));
