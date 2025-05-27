@@ -214,7 +214,7 @@ body.alliance #timezoneSearch:focus {
   position: relative;
   max-width: 100%;
   margin: 20px auto;
-  overflow: visible;
+  overflow: hidden;
   padding: 0 40px;
 }
 
@@ -227,24 +227,25 @@ body.alliance #timezoneSearch:focus {
   max-width: 100%;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
 }
 
 .timeline-group {
-  flex: 0 0 calc(50% - 10px);
+  flex: 0 0 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: calc(50% - 10px);
-  max-width: calc(50% - 10px);
+  min-width: 100%;
+  max-width: 100%;
   scroll-snap-align: start;
 }
 
-/* When there's only one group, make it fill the container */
-.timeline-group:only-child {
-  flex: 0 0 100%;
-  min-width: 100%;
-  max-width: 100%;
+@media (min-width: 769px) {
+  .timeline-group {
+    flex: 0 0 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
 }
 
 .timeline-group h2 {
