@@ -244,6 +244,7 @@ body.alliance #timezoneSearch:focus {
   max-width: 100%;
   margin: 20px auto;
   padding: 0 20px;
+  order: 1;
 }
 
 #buffTimeline {
@@ -420,6 +421,75 @@ body.alliance .timer-container {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+  position: relative;
+  text-shadow: 
+    0 0 2px #fff,
+    0 0 5px #ff3333;
+  animation: sparkle 3s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    text-shadow: 
+      0 0 2px #fff,
+      0 0 5px #ff3333;
+  }
+  50% {
+    text-shadow: 
+      0 0 3px #fff,
+      0 0 8px #ff3333;
+  }
+}
+
+.countdown::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle at center, transparent 50%, rgba(255, 51, 51, 0.05) 100%);
+  animation: glow 3s infinite alternate;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+}
+
+body.alliance .countdown {
+  text-shadow: 
+    0 0 2px #fff,
+    0 0 5px #3399ff;
+}
+
+body.alliance .countdown::before {
+  background: radial-gradient(circle at center, transparent 50%, rgba(51, 153, 255, 0.05) 100%);
+}
+
+@keyframes sparkle-alliance {
+  0%, 100% {
+    text-shadow: 
+      0 0 2px #fff,
+      0 0 5px #3399ff;
+  }
+  50% {
+    text-shadow: 
+      0 0 3px #fff,
+      0 0 8px #3399ff;
+  }
+}
+
+body.alliance .countdown {
+  animation: sparkle-alliance 3s infinite;
 }
 
 #lastBuffTime {
@@ -471,13 +541,13 @@ body.alliance .time-format-toggle:hover {
 
 /* Time Disclaimer */
 .time-disclaimer {
-  margin-top: 20px;
+  margin: -10px 0 20px 0;
   padding: 10px;
   text-align: center;
   font-size: 0.9rem;
   color: var(--text-color);
   opacity: 0.8;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .time-disclaimer p {
