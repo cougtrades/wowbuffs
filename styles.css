@@ -650,13 +650,19 @@ body.alliance .custom-notification button {
       min-width: 100px;
     }
 
-    #buffSearch,
     .faction-select,
     .buff-select {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
+    }
+
+    .faction-select label,
+    .buff-select label {
+      text-align: center;
+      min-width: auto;
+      margin-bottom: 5px;
     }
 
     #buffSearch,
