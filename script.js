@@ -4,7 +4,7 @@ let faction = "horde";
 let selectedBuffType = "all";
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 let groupedBuffs = [];
-let showLocalTime = false;
+let showLocalTime = localStorage.getItem("showLocalTime") !== "false";
 
 function populateTimezoneDropdown() {
   const timezoneSelect = document.getElementById("timezone");
@@ -168,7 +168,18 @@ function groupBuffsByDate() {
     return diffDays >= 0 && diffDays <= 7 && (selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
   });
 
-  console.log(`Filtered ${filteredBuffs.length} buffs for next 7 days:`, filteredBuffs);
+  // Sort buffs by date, with today's buffs first
+  filteredBuffs.sort((a, b) => {
+    let dateA = moment(a.datetime).tz("America/Denver");
+    let dateB = moment(b.datetime).tz("America/Denver");
+    let diffDaysA = dateA.startOf('day').diff(now.startOf('day'), 'days');
+    let diffDaysB = dateB.startOf('day').diff(now.startOf('day'), 'days');
+    
+    if (diffDaysA !== diffDaysB) {
+      return diffDaysA - diffDaysB;
+    }
+    return dateA.valueOf() - dateB.valueOf();
+  });
 
   let currentDate = null;
   let currentGroup = null;
@@ -186,12 +197,11 @@ function groupBuffsByDate() {
     }
     currentGroup.buffs.push(buff);
   });
-
-  console.log(`Grouped into ${groupedBuffs.length} groups:`, groupedBuffs);
 }
 
 function toggleTimeFormat() {
   showLocalTime = !showLocalTime;
+  localStorage.setItem("showLocalTime", showLocalTime);
   const button = document.getElementById('timeFormatToggle');
   const disclaimer = document.getElementById('timeFormatText');
   
@@ -203,6 +213,8 @@ function toggleTimeFormat() {
     disclaimer.textContent = 'Times shown are in server time. Click any buff to see your local time.';
   }
   
+  // Force a complete refresh of the buff display
+  groupBuffsByDate();
   displayBuffs();
 }
 
@@ -233,11 +245,17 @@ function displayBuffs() {
       let alternateTime = showLocalTime ? formatDateTime(buffDate, true) : formatDateTime(buffDate, false);
       let countdown = formatCountdown(buffDate);
       let iconSrc = `${buff.buff.toLowerCase()}-icon.png`;
+      
+      // Extract just the time from the displayTime
+      let timeOnly = showLocalTime ? 
+        moment(buffDate).tz(selectedTimezone).format('h:mm A') : 
+        moment(buffDate).tz("America/Denver").format('h:mm A');
+      
       groupContent += `
         <div class="timeline-card ${isGlowing ? 'glowing' : ''}" data-datetime="${buff.datetime}">
-          <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon"><strong>${displayTime} - ${buff.buff}</strong></p>
+          <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon"><strong>${timeOnly} - ${buff.buff}</strong></p>
           <div class="details">
-            <p><strong>Dropped by:</strong> ${buff.guild}</p>
+            <p><strong>Guild:</strong> ${buff.guild}</p>
             <p><strong>${showLocalTime ? 'Server Time' : 'Your Time'}:</strong> ${alternateTime}</p>
             ${buff.notes ? `<p><strong>Notes:</strong> ${buff.notes}</p>` : ''}
             <p><strong>Countdown:</strong> <span class="buff-countdown">${countdown}</span></p>
@@ -301,6 +319,7 @@ function searchBuffs() {
 
 function startCountdown() {
   let lastBuffs = null;
+  let alertedBuffsInSession = new Set(); // Track alerts in current session
 
   function updateCountdown() {
     let now = moment().tz("America/Denver");
@@ -363,9 +382,11 @@ function startCountdown() {
     let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
     let buffKey = `${nextBuff.datetime}_${nextBuff.guild}_${nextBuff.buff}`;
 
-    if (timeDiff <= 600000 && timeDiff > 0 && !alertedBuffs.has(buffKey)) {
+    // Only alert if the buff is still upcoming (timeDiff > 0) and within 10 minutes
+    if (timeDiff <= 600000 && timeDiff > 0 && !alertedBuffs.has(buffKey) && !alertedBuffsInSession.has(buffKey) && buffDate.isAfter(now)) {
       showCustomNotification(nextBuff);
       alertedBuffs.add(buffKey);
+      alertedBuffsInSession.add(buffKey);
       localStorage.setItem("alertedBuffs", JSON.stringify([...alertedBuffs]));
       displayBuffs();
     }
@@ -446,68 +467,19 @@ function startCountdown() {
   setInterval(updateCountdown, 1000);
 }
 
-function scrollTimeline(direction) {
-  const timeline = document.getElementById("buffTimeline");
-  const groups = timeline.getElementsByClassName("timeline-group");
-  if (groups.length === 0) return;
-
-  // Get the width of the timeline container
-  const containerWidth = timeline.clientWidth;
-  
-  // Calculate how many groups are visible at once
-  const visibleGroups = window.innerWidth >= 769 ? 2 : 1;
-  
-  // Calculate the scroll distance (one group width)
-  const scrollDistance = containerWidth / visibleGroups;
-  
-  // Calculate the current scroll position
-  const currentScroll = timeline.scrollLeft;
-  
-  // Calculate the next scroll position
-  const nextScroll = currentScroll + (direction * scrollDistance);
-  
-  // Ensure we don't scroll past the start or end
-  const maxScroll = timeline.scrollWidth - timeline.clientWidth;
-  const boundedScroll = Math.max(0, Math.min(maxScroll, nextScroll));
-  
-  // Scroll to the next position
-  timeline.scrollTo({
-    left: boundedScroll,
-    behavior: 'smooth'
-  });
-}
-
 // Swipe Gestures for Mobile
 document.addEventListener('DOMContentLoaded', () => {
-  const buffTimeline = document.getElementById('buffTimeline');
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  buffTimeline.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  buffTimeline.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    const groups = buffTimeline.getElementsByClassName("timeline-group");
-    if (groups.length === 0) return;
-
-    const groupStyle = window.getComputedStyle(groups[0]);
-    const groupWidth = groups[0].offsetWidth + parseInt(groupStyle.marginRight) + parseInt(groupStyle.marginLeft);
-    
-    if (touchStartX - touchEndX > 50) {
-      buffTimeline.scrollTo({
-        left: buffTimeline.scrollLeft + groupWidth,
-        behavior: 'smooth'
-      });
-    }
-    if (touchEndX - touchStartX > 50) {
-      buffTimeline.scrollTo({
-        left: buffTimeline.scrollLeft - groupWidth,
-        behavior: 'smooth'
-      });
-    }
-  });
+  const button = document.getElementById('timeFormatToggle');
+  const disclaimer = document.getElementById('timeFormatText');
+  
+  // Set initial button and disclaimer text based on stored preference
+  if (showLocalTime) {
+    button.textContent = 'Show Server Time';
+    disclaimer.textContent = 'Times shown are in your local time. Click any buff to see server time.';
+  } else {
+    button.textContent = 'Show Local Time';
+    disclaimer.textContent = 'Times shown are in server time. Click any buff to see your local time.';
+  }
 
   populateTimezoneDropdown();
   loadBuffs();
