@@ -7,6 +7,10 @@
   --background-light: rgba(50, 50, 50, 0.9);
   --border-radius: 10px;
   --transition-speed: 0.3s;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  --text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  --hover-transition: all var(--transition-speed) ease;
+  --card-padding: clamp(10px, 2vw, 15px);
 }
 
 * {
@@ -121,6 +125,10 @@ body.alliance .container {
 .search-container {
   text-align: center;
   margin-bottom: clamp(15px, 3vw, 25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .timezone-select,
@@ -133,9 +141,10 @@ body.alliance .container {
 .buff-select label {
   font-family: 'Morpheus', Georgia, serif;
   font-size: clamp(1.1rem, 2vw, 1.3rem);
-  margin-right: 15px;
   color: var(--text-color);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  min-width: 80px;
+  text-align: right;
 }
 
 .faction-select select,
@@ -145,11 +154,21 @@ body.alliance .container {
   color: var(--text-color);
   padding: clamp(6px, 2vw, 10px) clamp(8px, 2vw, 15px);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
-  min-width: min(150px, 100%);
+  width: 150px;
   border: 1px solid var(--horde-color);
   border-radius: 5px;
   appearance: none;
-  transition: all var(--transition-speed) ease;
+  transition: var(--hover-transition);
+  text-align: left;
+  text-align-last: left;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px,
+                   5px 5px;
+  background-repeat: no-repeat;
 }
 
 body.alliance .faction-select select,
@@ -170,6 +189,12 @@ body.alliance .timezone-select select:hover {
   box-shadow: 0 0 10px var(--alliance-color);
 }
 
+.faction-select select option,
+.buff-select select option,
+.timezone-select select option {
+  text-align: left;
+}
+
 #buffSearch,
 #timezoneSearch {
   background: var(--background-light);
@@ -179,8 +204,12 @@ body.alliance .timezone-select select:hover {
   width: 200px;
   border: 1px solid var(--horde-color);
   border-radius: 5px;
-  transition: all var(--transition-speed) ease;
+  transition: var(--hover-transition);
   position: relative;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-left: 35px;
 }
 
 #buffSearch::before,
@@ -214,38 +243,22 @@ body.alliance #timezoneSearch:focus {
   position: relative;
   max-width: 100%;
   margin: 20px auto;
-  overflow: hidden;
-  padding: 0 40px;
+  padding: 0 20px;
 }
 
 #buffTimeline {
   display: flex;
-  overflow-x: auto;
-  gap: clamp(10px, 2vw, 20px);
-  padding: clamp(10px, 2vw, 20px);
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
   max-width: 100%;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x proximity;
 }
 
 .timeline-group {
-  flex: 0 0 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 100%;
-  max-width: 100%;
-  scroll-snap-align: start;
-}
-
-@media (min-width: 769px) {
-  .timeline-group {
-    flex: 0 0 calc(50% - 10px);
-    min-width: calc(50% - 10px);
-    max-width: calc(50% - 10px);
-  }
+  width: 100%;
 }
 
 .timeline-group h2 {
@@ -265,11 +278,14 @@ body.alliance .timeline-group h2 {
   background: var(--background-light);
   border: 2px solid var(--horde-color);
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 85, 85, 0.3);
   color: var(--text-color);
   cursor: pointer;
-  transition: all var(--transition-speed) ease;
+  transition: var(--hover-transition);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 body.alliance .timeline-card {
@@ -309,7 +325,10 @@ body.alliance .timeline-card.glowing {
   margin: 5px 0;
   font-size: 1rem;
   position: relative;
-  padding-left: 30px;
+  padding-left: 45px;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
 }
 
 .timeline-card .summary .buff-icon {
@@ -317,16 +336,25 @@ body.alliance .timeline-card.glowing {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  transition: transform var(--transition-speed) ease;
+}
+
+.timeline-card:hover .summary .buff-icon {
+  transform: translateY(-50%) scale(1.1);
 }
 
 .timeline-card .summary strong {
-  color: var(--horde-color);
+  color: #f0f0f0;
+  font-weight: 900;
+  font-size: 1.2rem;
 }
 
 body.alliance .timeline-card .summary strong {
-  color: var(--alliance-color);
+  color: #f0f0f0;
 }
 
 .timeline-card .details {
@@ -346,55 +374,12 @@ body.alliance .timeline-card .summary strong {
 }
 
 .timeline-card .details p strong {
-  color: var(--horde-color);
+  color: #f0f0f0;
+  font-weight: 600;
 }
 
 body.alliance .timeline-card .details p strong {
-  color: var(--alliance-color);
-}
-
-/* Navigation Arrows */
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--background-dark);
-  color: var(--horde-color);
-  border: 2px solid var(--horde-color);
-  border-radius: 50%;
-  width: clamp(30px, 5vw, 40px);
-  height: clamp(30px, 5vw, 40px);
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  cursor: pointer;
-  transition: all var(--transition-speed) ease;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  touch-action: manipulation;
-}
-
-body.alliance .nav-arrow {
-  color: var(--alliance-color);
-  border: 2px solid var(--alliance-color);
-}
-
-.nav-arrow:hover {
-  background: rgba(255, 85, 85, 0.8);
-  box-shadow: 0 0 10px var(--horde-color);
-}
-
-body.alliance .nav-arrow:hover {
-  background: rgba(85, 170, 255, 0.8);
-  box-shadow: 0 0 10px var(--alliance-color);
-}
-
-.nav-arrow.left {
-  left: 0;
-}
-
-.nav-arrow.right {
-  right: 0;
+  color: #f0f0f0;
 }
 
 /* Timer Container */
@@ -405,6 +390,9 @@ body.alliance .nav-arrow:hover {
   border: 2px solid var(--horde-color);
   border-radius: var(--border-radius);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 body.alliance .timer-container {
@@ -421,10 +409,17 @@ body.alliance .timer-container {
 
 .last-buff {
   color: #ffffff;
+  order: 2;
 }
 
 .countdown {
   color: #ffffff;
+  order: 1;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
 }
 
 #lastBuffTime {
@@ -434,7 +429,10 @@ body.alliance .timer-container {
 
 #countdownTimer {
   color: #af0;
-  font-family: 'Courier New', monospace;
+  font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(170, 255, 0, 0.5);
 }
 
 .time-format-toggle {
@@ -447,7 +445,9 @@ body.alliance .timer-container {
   color: var(--horde-color);
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all var(--transition-speed) ease;
+  transition: var(--hover-transition);
+  position: relative;
+  overflow: hidden;
 }
 
 body.alliance .time-format-toggle {
@@ -463,6 +463,10 @@ body.alliance .time-format-toggle {
 body.alliance .time-format-toggle:hover {
   background: rgba(85, 170, 255, 0.1);
   box-shadow: 0 0 10px var(--alliance-color);
+}
+
+.time-format-toggle:active {
+  transform: scale(0.98);
 }
 
 /* Time Disclaimer */
@@ -503,7 +507,7 @@ footer a {
   margin: 0 10px;
   padding: 5px 15px;
   border-radius: 5px;
-  transition: all var(--transition-speed) ease;
+  transition: var(--hover-transition);
 }
 
 body.alliance footer a {
@@ -531,6 +535,8 @@ body.alliance footer a:hover {
   z-index: 1000;
   max-width: 300px;
   font-size: 1rem;
+  animation: slideIn 0.3s ease-out;
+  transform-origin: top right;
 }
 
 body.alliance .custom-notification {
@@ -562,7 +568,7 @@ body.alliance .custom-notification button {
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 4vw, 2rem);
     margin-bottom: 15px;
   }
 
@@ -614,11 +620,6 @@ body.alliance .custom-notification button {
     font-size: 0.9rem;
   }
 
-  .nav-arrow {
-    width: 35px;
-    height: 35px;
-  }
-
   .timer-container {
     padding: 10px;
   }
@@ -638,83 +639,150 @@ body.alliance .custom-notification button {
     padding: 10px;
     font-size: 1rem;
   }
-}
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.8rem;
-  }
+  /* Mobile-specific styles */
+  @media (max-width: 480px) {
+    .faction-select select,
+    .buff-select select,
+    .timezone-select select {
+      padding: 6px;
+      font-size: 0.9rem;
+      min-width: 100px;
+    }
 
-  .faction-select select,
-  .buff-select select,
-  .timezone-select select {
-    padding: 6px;
-    font-size: 0.9rem;
-    min-width: 100px;
-  }
+    #buffSearch,
+    .faction-select,
+    .buff-select {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
 
-  #buffSearch,
-  .faction-select,
-  .buff-select {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+    #buffSearch,
+    #timezoneSearch {
+      width: 120px;
+      font-size: 0.8rem;
+      padding: 4px 15px 4px 30px;
+    }
 
-  #buffSearch,
-  #timezoneSearch {
-    width: 120px;
-    font-size: 0.8rem;
-    padding: 4px 15px 4px 30px;
-  }
+    .timeline-group {
+      flex: 0 0 250px;
+    }
 
-  .timeline-group {
-    flex: 0 0 250px;
-  }
+    .timeline-group h2 {
+      font-size: 1.3rem;
+    }
 
-  .timeline-group h2 {
-    font-size: 1.3rem;
-  }
-
-  .timeline-card .summary,
-  .timeline-card .details p {
-    font-size: 0.8rem;
-  }
-
-  .nav-arrow {
-    width: 30px;
-    height: 30px;
-  }
-
-  .last-buff,
-  .countdown {
-    font-size: 1rem;
-  }
-
-  #lastBuffTime,
-  #countdownTimer {
-    font-size: 0.9rem;
-  }
-
-  footer {
-    font-size: 0.9rem;
+    .timeline-card .summary,
+    .timeline-card .details p {
+      font-size: 0.8rem;
+    }
   }
 }
 
-/* Print Styles */
-@media print {
-  body::before {
-    display: none;
-  }
+/* Optimize transitions and animations */
+.timeline-card,
+.faction-select select,
+.buff-select select,
+.timezone-select select,
+#buffSearch,
+#timezoneSearch,
+footer a,
+.time-format-toggle {
+  transition: var(--hover-transition);
+  will-change: transform, box-shadow;
+}
 
-  .container {
-    background: none;
-    box-shadow: none;
-    border: none;
-  }
+/* Optimize card hover effects */
+.timeline-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow), 0 0 15px var(--horde-color);
+}
 
-  .nav-arrow {
-    display: none;
+body.alliance .timeline-card:hover {
+  box-shadow: var(--box-shadow), 0 0 15px var(--alliance-color);
+}
+
+/* Optimize select elements */
+.faction-select select,
+.buff-select select,
+.timezone-select select {
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px,
+                   5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* Optimize search inputs */
+#buffSearch,
+#timezoneSearch {
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-left: 35px;
+}
+
+/* Optimize button interactions */
+.time-format-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+.time-format-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Optimize timeline card interactions */
+.timeline-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card:active {
+  transform: scale(0.99);
+}
+
+/* Optimize loading states */
+.timeline-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Optimize focus states for accessibility */
+.faction-select select:focus,
+.buff-select select:focus,
+.timezone-select select:focus,
+#buffSearch:focus,
+#timezoneSearch:focus,
+.time-format-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--horde-color);
+}
+
+body.alliance .faction-select select:focus,
+body.alliance .buff-select select:focus,
+body.alliance .timezone-select select:focus,
+body.alliance #buffSearch:focus,
+body.alliance #timezoneSearch:focus,
+body.alliance .time-format-toggle:focus {
+  box-shadow: 0 0 0 2px var(--alliance-color);
+}
+
+/* Optimize notification animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
+
+/* Remove unused print styles */
