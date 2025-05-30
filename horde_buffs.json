@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-05-28T00:27:00Z",
-        "guild": "Hordes Finest",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-28T00:30:00Z",
-        "guild": "Hordes Finest",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-28T23:55:00Z",
-        "guild": "Power Rangers",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-05-29T00:00:00Z",
-        "guild": "Power Rangers",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-05-29T00:01:00Z",
         "guild": "Power Rangers",
         "buff": "Rend",
