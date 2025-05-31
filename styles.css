@@ -394,6 +394,10 @@ body.alliance .timeline-card .details p strong {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
+  min-width: 400px;
+  min-height: 120px;
+  justify-content: center;
 }
 
 body.alliance .timer-container {
@@ -406,11 +410,13 @@ body.alliance .timer-container {
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   margin: 10px 0;
+  width: 100%;
 }
 
 .last-buff {
   color: #ffffff;
   order: 2;
+  min-height: 30px;
 }
 
 .countdown {
@@ -426,6 +432,10 @@ body.alliance .timer-container {
     0 0 2px #fff,
     0 0 5px #ff3333;
   animation: sparkle 3s infinite;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes sparkle {
@@ -503,6 +513,9 @@ body.alliance .countdown {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 900;
   text-shadow: 0 0 10px rgba(170, 255, 0, 0.5);
+  min-width: 300px;
+  display: inline-block;
+  text-align: center;
 }
 
 .time-format-toggle {
