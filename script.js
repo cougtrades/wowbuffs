@@ -392,7 +392,7 @@ function startCountdown() {
     }
 
     if (timeDiff <= 0) {
-      document.getElementById("countdownTimer").textContent = "Buff is now!";
+      document.getElementById("countdownTimer").textContent = `${nextBuff.buff} buff is now!`;
       let upcomingBuffs = filteredBuffs.filter(e => {
         let d = moment(e.datetime).tz("America/Denver");
         return d.isAfter(now);
@@ -426,7 +426,7 @@ function startCountdown() {
     } else {
       timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
-    document.getElementById("countdownTimer").textContent = timeString;
+    document.getElementById("countdownTimer").textContent = `${nextBuff.buff} drops in ${timeString}`;
 
     // Update all countdown timers in expanded cards
     updateAllCountdowns();
