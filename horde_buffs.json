@@ -119,13 +119,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-06-02T00:30:00Z",
-        "guild": "Ungoon",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-02T00:40:00Z",
         "guild": "Warlords of Rexxar",
         "buff": "Zandalar",
@@ -143,13 +136,6 @@
         "datetime": "2025-06-02T23:00:00Z",
         "guild": "Heart and Solo",
         "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-03T00:25:00Z",
-        "guild": "Ungoon",
-        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     },
