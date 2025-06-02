@@ -386,19 +386,19 @@ body.alliance .timeline-card .details p strong {
 /* Timer Container */
 .timer-container {
   margin: clamp(10px, 2vw, 20px) 0;
-  padding: clamp(10px, 2vw, 15px);
+  padding: clamp(6px, 1.5vw, 10px);
   background: transparent;
   border: 2px solid var(--horde-color);
   border-radius: var(--border-radius);
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
-  width: 100%; /* Ensure it takes the full width of the parent */
-  min-height: 120px;
+  width: 100%;
+  min-height: auto;
   justify-content: center;
-  box-sizing: border-box; /* Ensure padding and border are included in width */
+  box-sizing: border-box;
 }
 
 body.alliance .timer-container {
@@ -407,39 +407,37 @@ body.alliance .timer-container {
 
 .last-buff,
 .countdown {
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin: 10px 0;
+  margin: 5px 0;
   width: 100%;
-  white-space: normal; /* Allow text to wrap */
-  word-break: break-word; /* Break long words if necessary */
-  text-align: center; /* Center the text */
+  white-space: nowrap;
+  text-align: center;
+  display: block;
 }
 
 .last-buff {
   color: #ffffff;
   order: 2;
-  min-height: 30px;
+  min-height: auto;
 }
 
 .countdown {
   color: #ffffff;
   order: 1;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: normal;
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
   position: relative;
   text-shadow: 
     0 0 2px #fff,
     0 0 5px #ff3333;
   animation: sparkle 3s infinite;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: auto;
+  display: block;
 }
 
 @keyframes sparkle {
@@ -514,13 +512,12 @@ body.alliance .countdown {
 #countdownTimer {
   color: #af0;
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
   font-weight: 900;
   text-shadow: 0 0 10px rgba(170, 255, 0, 0.5);
-  display: inline-block;
+  display: inline;
   text-align: center;
-  white-space: normal; /* Allow wrapping */
-  word-break: break-word; /* Break long words */
+  white-space: nowrap;
 }
 
 .time-format-toggle {
@@ -709,17 +706,21 @@ body.alliance .custom-notification button {
   }
 
   .timer-container {
-    padding: 10px;
-    width: 100%; /* Ensure it fits within the parent */
+    padding: 6px;
+    width: 100%;
   }
 
   .last-buff,
   .countdown {
-    font-size: clamp(0.9rem, 2vw, 1.1rem); /* Slightly smaller for smaller screens */
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    white-space: normal;
+    word-break: break-word;
   }
 
   #countdownTimer {
-    font-size: clamp(1.2rem, 3vw, 1.5rem); /* Adjust font size for better fit */
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    white-space: normal;
+    word-break: break-word;
   }
 
   footer {
@@ -727,64 +728,67 @@ body.alliance .custom-notification button {
     padding: 10px;
     font-size: 1rem;
   }
+}
 
-  /* Mobile-specific styles */
-  @media (max-width: 480px) {
-    .faction-select select,
-    .buff-select select,
-    .timezone-select select {
-      padding: 6px;
-      font-size: 0.9rem;
-      min-width: 100px;
-    }
+@media (max-width: 480px) {
+  .faction-select select,
+  .buff-select select,
+  .timezone-select select {
+    padding: 6px;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
 
-    .faction-select,
-    .buff-select {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
+  .faction-select,
+  .buff-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 
-    .faction-select label,
-    .buff-select label {
-      text-align: center;
-      min-width: auto;
-      margin-bottom: 5px;
-    }
+  .faction-select label,
+  .buff-select label {
+    text-align: center;
+    min-width: auto;
+    margin-bottom: 5px;
+  }
 
-    #buffSearch,
-    #timezoneSearch {
-      width: 120px;
-      font-size: 0.8rem;
-      padding: 4px 15px 4px 30px;
-    }
+  #buffSearch,
+  #timezoneSearch {
+    width: 120px;
+    font-size: 0.8rem;
+    padding: 4px 15px 4px 30px;
+  }
 
-    .timeline-group {
-      flex: 0 0 250px;
-    }
+  .timeline-group {
+    flex: 0 0 250px;
+  }
 
-    .timeline-group h2 {
-      font-size: 1.3rem;
-    }
+  .timeline-group h2 {
+    font-size: 1.3rem;
+  }
 
-    .timeline-card .summary,
-    .timeline-card .details p {
-      font-size: 0.8rem;
-    }
+  .timeline-card .summary,
+  .timeline-card .details p {
+    font-size: 0.8rem;
+  }
 
-    .timer-container {
-      padding: 8px;
-    }
+  .timer-container {
+    padding: 4px;
+  }
 
-    .last-buff,
-    .countdown {
-      font-size: clamp(0.8rem, 2vw, 1rem);
-    }
+  .last-buff,
+  .countdown {
+    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    white-space: normal;
+    word-break: break-word;
+  }
 
-    #countdownTimer {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-    }
+  #countdownTimer {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    white-space: normal;
+    word-break: break-word;
   }
 }
 
