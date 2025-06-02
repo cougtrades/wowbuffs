@@ -395,9 +395,10 @@ body.alliance .timeline-card .details p strong {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  min-width: 400px;
+  width: 100%; /* Ensure it takes the full width of the parent */
   min-height: 120px;
   justify-content: center;
+  box-sizing: border-box; /* Ensure padding and border are included in width */
 }
 
 body.alliance .timer-container {
@@ -411,6 +412,9 @@ body.alliance .timer-container {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   margin: 10px 0;
   width: 100%;
+  white-space: normal; /* Allow text to wrap */
+  word-break: break-word; /* Break long words if necessary */
+  text-align: center; /* Center the text */
 }
 
 .last-buff {
@@ -513,9 +517,10 @@ body.alliance .countdown {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 900;
   text-shadow: 0 0 10px rgba(170, 255, 0, 0.5);
-  min-width: 300px;
   display: inline-block;
   text-align: center;
+  white-space: normal; /* Allow wrapping */
+  word-break: break-word; /* Break long words */
 }
 
 .time-format-toggle {
@@ -705,16 +710,16 @@ body.alliance .custom-notification button {
 
   .timer-container {
     padding: 10px;
+    width: 100%; /* Ensure it fits within the parent */
   }
 
   .last-buff,
   .countdown {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem); /* Slightly smaller for smaller screens */
   }
 
-  #lastBuffTime,
   #countdownTimer {
-    font-size: 1rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem); /* Adjust font size for better fit */
   }
 
   footer {
@@ -766,6 +771,19 @@ body.alliance .custom-notification button {
     .timeline-card .summary,
     .timeline-card .details p {
       font-size: 0.8rem;
+    }
+
+    .timer-container {
+      padding: 8px;
+    }
+
+    .last-buff,
+    .countdown {
+      font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+
+    #countdownTimer {
+      font-size: clamp(1rem, 3vw, 1.3rem);
     }
   }
 }
@@ -873,5 +891,3 @@ body.alliance .time-format-toggle:focus {
     opacity: 1;
   }
 }
-
-/* Remove unused print styles */
