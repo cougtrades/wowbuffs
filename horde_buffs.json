@@ -84,6 +84,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-06-05T01:00:00Z",
+        "guild": "Death",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-06-05T21:30:00Z",
         "guild": "Fatal",
         "buff": "Zandalar",
