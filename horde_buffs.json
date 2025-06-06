@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-06-04T22:28:00Z",
-        "guild": "Hordes Finest",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-04T22:30:00Z",
-        "guild": "Hordes Finest",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-04T23:00:00Z",
-        "guild": "Fractured",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-05T00:00:00Z",
-        "guild": "Back in My Day",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-05T00:02:00Z",
         "guild": "Back in My Day",
         "buff": "Onyxia",
