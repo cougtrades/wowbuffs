@@ -140,6 +140,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-06-08T00:01:00Z",
+        "guild": "Power Rangers",
+        "buff": "Rend",
+        "notes": "if layer permits",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-06-08T22:58:00Z",
         "guild": "BBYC",
         "buff": "Zandalar",
