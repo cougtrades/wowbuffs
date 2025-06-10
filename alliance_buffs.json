@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-06-08T00:25:00Z",
-        "guild": "Immortal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T01:00:00Z",
-        "guild": "Immortal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T02:30:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "estimated",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T02:35:00Z",
-        "guild": "Eclipse",
-        "buff": "Onyxia",
-        "notes": "estimated",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-09T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
