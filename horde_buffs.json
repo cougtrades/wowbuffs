@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-06-08T03:15:00Z",
-        "guild": "SWMG",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T03:17:00Z",
-        "guild": "\\",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T03:18:00Z",
-        "guild": "/",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T22:58:00Z",
-        "guild": "BBYC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-08T23:00:00Z",
-        "guild": "BBYC",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-09T00:48:00Z",
         "guild": "Death",
         "buff": "Zandalar",
