@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-06-09T00:48:00Z",
-        "guild": "Death",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-09T00:50:00Z",
-        "guild": "Death",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-09T01:58:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-09T02:00:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-09T23:00:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-09T23:18:00Z",
-        "guild": "Fractured",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-09T23:20:00Z",
-        "guild": "Fractured",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-10T01:00:00Z",
         "guild": "Ungoon",
         "buff": "Zandalar",
