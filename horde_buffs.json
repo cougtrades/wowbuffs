@@ -175,20 +175,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-06-13T21:30:00Z",
-        "guild": "Fatal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-13T21:32:00Z",
-        "guild": "Fatal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-13T00:30:00Z",
         "guild": "Shadow Wizard Monkey Gang",
         "buff": "Zandalar",
@@ -199,6 +185,13 @@
         "datetime": "2025-06-13T00:32:00Z",
         "guild": "Shadow Wizard Monkey Gang",
         "buff": "Nefarian",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-13T01:40:00Z",
+        "guild": "Aligned",
+        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     },
@@ -214,6 +207,20 @@
         "guild": "Washed Up",
         "buff": "Onyxia",
         "notes": "have nef backup",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-13T21:30:00Z",
+        "guild": "Fatal",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-13T21:32:00Z",
+        "guild": "Fatal",
+        "buff": "Onyxia",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
