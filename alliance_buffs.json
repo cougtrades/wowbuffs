@@ -145,19 +145,5 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-15T04:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "to be dropped after raids, estimating 10ish server time, will update.",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-15T04:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Onyxia",
-        "notes": "to be dropped after raids, estimating 10ish server time, will update.",
-        "server": "Doomhowl"
     }
 ]
