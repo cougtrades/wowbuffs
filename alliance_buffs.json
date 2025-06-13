@@ -1,12 +1,5 @@
 [
     {
-        "datetime": "2025-06-10T23:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-12T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
@@ -143,6 +136,13 @@
         "datetime": "2025-06-13T23:58:00Z",
         "guild": "Trashgirl",
         "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-14T23:00:00Z",
+        "guild": "Eclipse",
+        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     },
