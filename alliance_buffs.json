@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-06-11T01:54:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-11T01:55:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-11T23:55:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-12T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
