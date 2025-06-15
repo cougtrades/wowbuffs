@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-06-13T00:54:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-13T00:55:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-13T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-13T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-13T23:55:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-13T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-14T23:00:00Z",
         "guild": "Eclipse",
         "buff": "Zandalar",
