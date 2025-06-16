@@ -1,12 +1,5 @@
 [
     {
-        "datetime": "2025-06-15T00:30:00Z",
-        "guild": "Immortal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-15T01:00:00Z",
         "guild": "Risk",
         "buff": "Zandalar",
@@ -59,6 +52,13 @@
         "datetime": "2025-06-17T00:58:00Z",
         "guild": "Resolve",
         "buff": "Nefarian",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-22T00:30:00Z",
+        "guild": "Immortal",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     }
