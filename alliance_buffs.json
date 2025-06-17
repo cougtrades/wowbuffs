@@ -1,19 +1,5 @@
 [
     {
-        "datetime": "2025-06-15T01:00:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-15T01:05:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "Being dropped after <Risk> drops ZG buff",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-16T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
