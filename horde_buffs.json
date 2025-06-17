@@ -105,6 +105,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-06-18T23:00:00Z",
+        "guild": "Booty Bay Yacht Club",
+        "buff": "Rend",
+        "notes": "Contingent on layers being available",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-06-20T03:50:00Z",
         "guild": "SALAMI",
         "buff": "Zandalar",
