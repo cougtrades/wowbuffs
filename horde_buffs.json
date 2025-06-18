@@ -194,5 +194,12 @@
         "buff": "Onyxia",
         "notes": "or Nefarian",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-24T04:30:00Z",
+        "guild": "Death Wish",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
