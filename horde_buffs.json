@@ -159,5 +159,12 @@
         "buff": "Nefarian",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-21T04:00:00Z",
+        "guild": "Death Wish",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
