@@ -84,20 +84,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-06-20T00:50:00Z",
-        "guild": "Zug Life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T00:52:00Z",
-        "guild": "Zug Life",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-20T01:45:00Z",
         "guild": "Washed Up",
         "buff": "Zandalar",
@@ -120,6 +106,13 @@
     },
     {
         "datetime": "2025-06-21T00:50:00Z",
+        "guild": "Zug Life",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-21T00:52:00Z",
         "guild": "Zug Life",
         "buff": "Nefarian",
         "notes": "",
