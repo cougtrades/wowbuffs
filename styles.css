@@ -675,32 +675,15 @@ body.alliance .custom-notification button {
   .container {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
   }
   .timer-container {
     order: 1;
   }
   .faction-select {
     order: 2;
-    width: 100%;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
   }
   .buff-select {
     order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
   }
   .timeline-wrapper {
     order: 4;
