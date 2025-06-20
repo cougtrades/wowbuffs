@@ -412,7 +412,10 @@ body.alliance .timer-container {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   margin: 5px 0;
   width: 100%;
-  white-space: nowrap;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word;
   text-align: center;
   display: block;
 }
@@ -424,20 +427,23 @@ body.alliance .timer-container {
 }
 
 .countdown {
-  color: #ffffff;
-  order: 1;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: normal;
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
-  position: relative;
   text-shadow: 
     0 0 2px #fff,
     0 0 5px #ff3333;
   animation: sparkle 3s infinite;
-  min-height: auto;
-  display: block;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word;
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.1;
 }
 
 @keyframes sparkle {
@@ -512,12 +518,14 @@ body.alliance .countdown {
 #countdownTimer {
   color: #af0;
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 900;
   text-shadow: 0 0 10px rgba(170, 255, 0, 0.5);
   display: inline;
-  text-align: center;
-  white-space: nowrap;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word;
 }
 
 .time-format-toggle {
@@ -894,4 +902,147 @@ body.alliance .time-format-toggle:focus {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+/* ---- Widen intro + main container on bigger viewports ---- */
+@media (min-width: 1024px) {
+  .intro {
+    /* 90 % of the viewport, but never more than 1400 px */
+    max-width: clamp(900px, 90%, 1400px);
+  }
+
+  .container {
+    /* 85 % of the viewport, cap at 1600 px */
+    max-width: clamp(1000px, 85%, 1600px);
+  }
+}
+
+/* Bigger headline-style timer */
+.countdown       { font-size: clamp(2.5rem, 6vw, 5rem); }
+#countdownTimer  { font-size: clamp(3rem, 6vw, 4.5rem); }
+
+.faction-btn {
+  padding: 10px 24px;
+  margin: 0 8px;
+  font-size: 1.1rem;
+  font-family: 'Morpheus', Georgia, serif;
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
+  background: var(--background-light);
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--hover-transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  outline: none;
+}
+.faction-btn.horde {
+  border-color: var(--horde-color);
+  color: var(--horde-color);
+}
+.faction-btn.alliance {
+  border-color: var(--alliance-color);
+  color: var(--alliance-color);
+}
+.faction-btn.active,
+.faction-btn.horde.active {
+  background: var(--horde-color);
+  color: #fff;
+  box-shadow: 0 0 10px var(--horde-color);
+}
+.faction-btn.alliance.active {
+  background: var(--alliance-color);
+  color: #fff;
+  box-shadow: 0 0 10px var(--alliance-color);
+}
+.faction-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px) scale(1.04);
+}
+
+.buff-select {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 8px;
+  margin-bottom: clamp(15px, 3vw, 25px);
+}
+.buff-btn {
+  margin: 0 0 8px 0;
+}
+
+.buff-btn {
+  padding: 8px 18px 8px 12px;
+  margin: 0 6px 8px 0;
+  font-size: 1rem;
+  font-family: 'Morpheus', Georgia, serif;
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
+  background: var(--background-light);
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--hover-transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  outline: none;
+}
+.buff-btn-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 4px;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+}
+.buff-btn.all {
+  border-color: #aaa;
+  color: #aaa;
+}
+.buff-btn.onyxia {
+  border-color: #ff3333;
+  color: #ff3333;
+}
+.buff-btn.zandalar {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+.buff-btn.nefarian {
+  border-color: #b388ff;
+  color: #b388ff;
+}
+.buff-btn.rend {
+  border-color: #ff9800;
+  color: #ff9800;
+}
+.buff-btn.active,
+.buff-btn.all.active {
+  background: #aaa;
+  color: #fff;
+  box-shadow: 0 0 10px #aaa;
+}
+.buff-btn.onyxia.active {
+  background: #ff3333;
+  color: #fff;
+  box-shadow: 0 0 10px #ff3333;
+}
+.buff-btn.zandalar.active {
+  background: #4caf50;
+  color: #fff;
+  box-shadow: 0 0 10px #4caf50;
+}
+.buff-btn.nefarian.active {
+  background: #b388ff;
+  color: #222;
+  box-shadow: 0 0 10px #b388ff;
+}
+.buff-btn.rend.active {
+  background: #ff9800;
+  color: #222;
+  box-shadow: 0 0 10px #ff9800;
+}
+.buff-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px) scale(1.04);
 }
