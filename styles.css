@@ -784,21 +784,21 @@ body.alliance .custom-notification button {
 
   .faction-select,
   .buff-select {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 15px !important;
   }
 
   .faction-select button,
   .buff-select button {
-    flex: 1 1 auto;
-    max-width: 45%;
-    white-space: nowrap;
-    font-size: 0.9rem;
-    padding: 10px 15px;
+    flex: 1 1 auto !important;
+    max-width: 45% !important;
+    white-space: nowrap !important;
+    font-size: 0.9rem !important;
+    padding: 10px 15px !important;
   }
 }
 
