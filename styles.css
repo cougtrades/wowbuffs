@@ -688,8 +688,18 @@ body.alliance .custom-notification button {
   .buff-select {
     order: 4;
   }
-  .timeline-wrapper {
+  #timeFormatToggle {
     order: 5;
+    margin-bottom: 10px;
+  }
+  .timeline-wrapper {
+    order: 6;
+  }
+  .time-disclaimer {
+    order: 7;
+  }
+  .search-container {
+    display: none !important;
   }
 
   .faction-select select,
