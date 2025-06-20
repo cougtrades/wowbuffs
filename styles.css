@@ -674,9 +674,29 @@ body.alliance .custom-notification button {
   }
 
   .container {
-    max-width: 100%;
-    padding: 15px;
-    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .timer-container {
+    order: 1;
+  }
+  .faction-select {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  .buff-select {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .timeline-wrapper {
+    order: 4;
   }
 
   .faction-select select,
