@@ -655,151 +655,35 @@ body.alliance .custom-notification button {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: clamp(1.8rem, 4vw, 2rem);
-    margin-bottom: 15px;
-  }
-
-  .intro {
-    padding: 10px;
-  }
-
-  .intro p {
-    font-size: 1rem;
-  }
-
-  .container {
+  .main-wrapper {
+    transform: scale(0.8);
+    transform-origin: top center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100vw;
   }
-  .intro {
-    order: 1;
+  body {
+    min-width: unset;
+    overflow-x: auto;
+    display: block;
   }
-  .timer-container {
-    order: 2;
+  /* Only show buff icons, hide text for buff-btn */
+  .buff-btn {
+    font-size: 0 !important;
+    padding: 8px !important;
   }
-  .faction-select {
-    order: 3;
+  .buff-btn .buff-btn-icon {
+    width: 28px !important;
+    height: 28px !important;
+    margin-right: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle;
   }
-  .buff-select {
-    order: 4;
-  }
-  #timeFormatToggle {
-    order: 5;
-    margin-bottom: 10px;
-  }
-  .timeline-wrapper {
-    order: 6;
-  }
-  .time-disclaimer {
-    order: 7;
-  }
-  .search-container {
-    display: none !important;
-  }
-
-  .faction-select select,
-  .buff-select select,
-  .timezone-select select {
-    padding: 8px;
-    font-size: 1rem;
-    min-width: 120px;
-  }
-
-  #buffSearch,
-  #timezoneSearch {
-    width: 150px;
-    font-size: 0.9rem;
-    padding: 6px 15px 6px 30px;
-  }
-
-  .timeline-group {
-    flex: 0 0 100%;
-    min-width: 100%;
-    max-width: 100%;
-  }
-
-  .timeline-group h2 {
-    font-size: 1.5rem;
-  }
-
-  .timeline-card {
-    padding: 8px;
-  }
-
-  .timeline-card .summary,
-  .timeline-card .details p {
-    font-size: 0.9rem;
-  }
-
-  .timer-container {
-    padding: 6px;
-    width: 100%;
-  }
-
-  .last-buff,
-  .countdown {
-    font-size: clamp(0.8rem, 1.8vw, 1rem);
-    white-space: normal;
-    word-break: break-word;
-  }
-
-  #countdownTimer {
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    white-space: normal;
-    word-break: break-word;
-  }
-
-  footer {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1rem;
-  }
-
-  .buff-select .buff-btn {
-    padding: 4px 10px 4px 8px;
-    font-size: 0.85rem;
-    margin: 0 4px 6px 0;
-    gap: 4px;
-  }
-  .buff-btn-icon {
-    width: 18px;
-    height: 18px;
-    margin-right: 2px;
-  }
-  .faction-select .faction-btn {
-    padding: 6px 12px;
-    font-size: 0.95rem;
-    margin: 0 4px 6px 0;
-  }
-
-  .faction-select,
-  .buff-select {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin-bottom: 15px !important;
-  }
-
-  .faction-select button,
-  .buff-select button {
-    flex: 0 1 auto !important;
-    max-width: 120px !important;
-    min-width: 60px !important;
-    padding: 4px 6px !important;
-    font-size: 0.8rem !important;
-    margin: 2px !important;
-  }
-  .buff-btn-icon {
-    width: 16px !important;
-    height: 16px !important;
-    margin-right: 2px !important;
+  /* Keep text for faction-btn */
+  .faction-btn {
+    font-size: 1.1rem !important;
+    padding: 10px 24px !important;
   }
 }
 
@@ -1053,7 +937,7 @@ body.alliance .time-format-toggle:focus {
 /* ———————————————————————————————
    FINAL MOBILE FLEX STYLES (must be last!)
    ——————————————————————————————— */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .faction-select,
   .buff-select {
     display: flex !important;
@@ -1078,4 +962,4 @@ body.alliance .time-format-toggle:focus {
     height: 16px !important;
     margin-right: 2px !important;
   }
-}
+} */
