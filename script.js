@@ -69,8 +69,18 @@ function updateTimezone() {
   startCountdown();
 }
 
-function updateBuffType() {
-  selectedBuffType = document.getElementById("buffType").value;
+function updateBuffType(type) {
+  if (type) {
+    selectedBuffType = type;
+  } else {
+    selectedBuffType = 'all';
+  }
+  // Set active button state
+  const buffTypes = ['all', 'onyxia', 'zandalar', 'nefarian', 'rend'];
+  buffTypes.forEach(bt => {
+    const btn = document.getElementById(`buff${bt.charAt(0).toUpperCase() + bt.slice(1)}Btn`);
+    if (btn) btn.classList.toggle('active', selectedBuffType === bt);
+  });
   console.log(`Selected buff type: ${selectedBuffType}`);
   displayBuffs();
   startCountdown();
@@ -109,8 +119,17 @@ async function loadBuffs() {
   }
 }
 
-function updateFaction() {
-  faction = document.getElementById("faction").value;
+function updateFaction(selected) {
+  if (selected) {
+    faction = selected;
+  }
+  // Set active button state
+  const hordeBtn = document.getElementById('hordeBtn');
+  const allianceBtn = document.getElementById('allianceBtn');
+  if (hordeBtn && allianceBtn) {
+    hordeBtn.classList.toggle('active', faction === 'horde');
+    allianceBtn.classList.toggle('active', faction === 'alliance');
+  }
   console.log(`Selected faction: ${faction}`);
   document.getElementById("buffTimeline").innerHTML = "";
   document.getElementById("countdownTimer").textContent = "--:--:--";
@@ -485,4 +504,11 @@ document.addEventListener('DOMContentLoaded', () => {
   loadBuffs();
   setInterval(loadBuffs, 60000);
   displayBuffs();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Set initial active button
+  updateFaction(faction);
+  // Set initial active button for buffs
+  updateBuffType(selectedBuffType);
 });
