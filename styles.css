@@ -781,97 +781,24 @@ body.alliance .custom-notification button {
     font-size: 0.95rem;
     margin: 0 4px 6px 0;
   }
-}
 
-@media (max-width: 480px) {
-  .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-  }
   .faction-select,
   .buff-select {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 15px;
   }
-  .faction-select label,
-  .buff-select label {
-    text-align: right;
-    min-width: auto;
-    margin-bottom: 0;
+
+  .faction-select button,
+  .buff-select button {
+    flex: 1 1 auto;
+    max-width: 45%;
+    white-space: nowrap;
     font-size: 0.9rem;
-  }
-  .faction-select select,
-  .buff-select select {
-    min-width: 100px;
-    width: auto;
-    font-size: 0.9rem;
-  }
-
-  .faction-select select,
-  .buff-select select,
-  .timezone-select select {
-    padding: 6px;
-    font-size: 0.9rem;
-    min-width: 100px;
-  }
-
-  .faction-select,
-  .buff-select {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .faction-select label,
-  .buff-select label {
-    text-align: center;
-    min-width: auto;
-    margin-bottom: 5px;
-  }
-
-  #buffSearch,
-  #timezoneSearch {
-    width: 120px;
-    font-size: 0.8rem;
-    padding: 4px 15px 4px 30px;
-  }
-
-  .timeline-group {
-    flex: 0 0 250px;
-  }
-
-  .timeline-group h2 {
-    font-size: 1.3rem;
-  }
-
-  .timeline-card .summary,
-  .timeline-card .details p {
-    font-size: 0.8rem;
-  }
-
-  .timer-container {
-    padding: 4px;
-  }
-
-  .last-buff,
-  .countdown {
-    font-size: clamp(0.8rem, 1.8vw, 1rem);
-    white-space: normal;
-    word-break: break-word;
-  }
-
-  #countdownTimer {
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    white-space: normal;
-    word-break: break-word;
+    padding: 10px 15px;
   }
 }
 
