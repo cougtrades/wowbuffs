@@ -793,10 +793,17 @@ body.alliance .custom-notification button {
 
   .faction-select button,
   .buff-select button {
-    flex: 1 1 45% !important;
-    max-width: 48% !important;
-    min-width: 120px;
-    padding: 8px 10px !important;
+    flex: 0 1 auto !important;
+    max-width: 120px !important;
+    min-width: 60px !important;
+    padding: 4px 6px !important;
+    font-size: 0.8rem !important;
+    margin: 2px !important;
+  }
+  .buff-btn-icon {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 2px !important;
   }
 }
 
@@ -1063,9 +1070,16 @@ body.alliance .time-format-toggle:focus {
 
   .faction-select button,
   .buff-select button {
-    flex: 1 1 45% !important;
-    max-width: 48% !important;
-    min-width: 120px;
-    padding: 8px 10px !important;
+    flex: 0 1 auto !important;
+    max-width: 120px !important;
+    min-width: 60px !important;
+    padding: 4px 6px !important;
+    font-size: 0.8rem !important;
+    margin: 2px !important;
+  }
+  .buff-btn-icon {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 2px !important;
   }
 }
