@@ -40,21 +40,25 @@
  </section>
  <div class="container">
   <div class="faction-select" role="region" aria-label="Faction Selection">
-   <label for="faction">Faction:</label>
-   <select id="faction" onchange="updateFaction()" aria-label="Select faction (Horde or Alliance)">
-    <option value="horde">Horde</option>
-    <option value="alliance">Alliance</option>
-   </select>
+   <button id="hordeBtn" class="faction-btn horde" onclick="updateFaction('horde')" aria-label="Show Horde Buffs">Horde</button>
+   <button id="allianceBtn" class="faction-btn alliance" onclick="updateFaction('alliance')" aria-label="Show Alliance Buffs">Alliance</button>
   </div>
   <div class="buff-select" role="region" aria-label="Buff Selection">
-   <label for="buffType">Buff:</label>
-   <select id="buffType" onchange="updateBuffType()" aria-label="Select buff type">
-    <option value="all">All Buffs</option>
-    <option value="onyxia">Onyxia</option>
-    <option value="zandalar">Zandalar</option>
-    <option value="nefarian">Nefarian</option>
-    <option value="rend">Rend</option>
-   </select>
+    <button class="buff-btn all" id="buffAllBtn" onclick="updateBuffType('all')" aria-label="Show All Buffs">
+      All
+    </button>
+    <button class="buff-btn onyxia" id="buffOnyxiaBtn" onclick="updateBuffType('onyxia')" aria-label="Show Onyxia Buffs">
+      <img src="/onyxia-icon.png" alt="Onyxia" class="buff-btn-icon"> Onyxia
+    </button>
+    <button class="buff-btn zandalar" id="buffZandalarBtn" onclick="updateBuffType('zandalar')" aria-label="Show Zandalar Buffs">
+      <img src="/zandalar-icon.png" alt="Zandalar" class="buff-btn-icon"> Zandalar
+    </button>
+    <button class="buff-btn nefarian" id="buffNefarianBtn" onclick="updateBuffType('nefarian')" aria-label="Show Nefarian Buffs">
+      <img src="/nefarian-icon.png" alt="Nefarian" class="buff-btn-icon"> Nefarian
+    </button>
+    <button class="buff-btn rend" id="buffRendBtn" onclick="updateBuffType('rend')" aria-label="Show Rend Buffs">
+      <img src="/rend-icon.png" alt="Rend" class="buff-btn-icon"> Rend
+    </button>
   </div>
   <div class="timezone-select" role="region" aria-label="Timezone Selection">
    <label for="timezoneSearch">Filter Timezones:</label>
