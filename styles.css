@@ -676,17 +676,20 @@ body.alliance .custom-notification button {
     display: flex;
     flex-direction: column;
   }
-  .timer-container {
+  .intro {
     order: 1;
   }
-  .faction-select {
+  .timer-container {
     order: 2;
   }
-  .buff-select {
+  .faction-select {
     order: 3;
   }
-  .timeline-wrapper {
+  .buff-select {
     order: 4;
+  }
+  .timeline-wrapper {
+    order: 5;
   }
 
   .faction-select select,
