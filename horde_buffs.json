@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-06-20T00:28:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T00:30:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T01:45:00Z",
-        "guild": "Washed Up",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T01:47:00Z",
-        "guild": "Washed Up",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T03:50:00Z",
-        "guild": "SALAMI",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T21:30:00Z",
-        "guild": "fatal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-06-20T21:32:00Z",
-        "guild": "fatal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-21T00:50:00Z",
         "guild": "Zug Life",
         "buff": "Zandalar",
