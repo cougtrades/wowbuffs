@@ -140,13 +140,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-06-23T23:50:00Z",
-        "guild": "Zug Life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-23T23:52:00Z",
         "guild": "Zug Life",
         "buff": "Onyxia",
@@ -171,6 +164,13 @@
         "datetime": "2025-06-24T04:30:00Z",
         "guild": "Death Wish",
         "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-25T23:50:00Z",
+        "guild": "Zug Life",
+        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     },
