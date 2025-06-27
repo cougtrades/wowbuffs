@@ -70,13 +70,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-06-27T22:30:00Z",
-        "guild": "Booty Bay Yacht Club",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-28T22:28:00Z",
         "guild": "Shadow Wizard Money Gang",
         "buff": "Zandalar",
@@ -87,6 +80,13 @@
         "datetime": "2025-06-28T22:30:00Z",
         "guild": "Shadow Wizard Money Gang",
         "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-28T22:30:00Z",
+        "guild": "Booty Bay Yacht Club",
+        "buff": "Rend",
         "notes": "",
         "server": "Doomhowl"
     },
