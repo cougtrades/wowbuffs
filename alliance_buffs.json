@@ -21,13 +21,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-06-28T15:30:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-06-28T15:31:00Z",
         "guild": "Eclipse",
         "buff": "Onyxia",
@@ -46,6 +39,13 @@
         "guild": "Immortal",
         "buff": "Onyxia",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-29T03:31:00Z",
+        "guild": "Eclipse",
+        "buff": "Onyxia",
+        "notes": "We'll drop after our raids. Will update if needed.",
         "server": "Doomhowl"
     }
 ]
