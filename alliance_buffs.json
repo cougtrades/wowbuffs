@@ -61,5 +61,12 @@
         "buff": "Onyxia",
         "notes": "We'll drop after our raids. Will update if needed.",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-06-30T01:45:00Z",
+        "guild": "Collective",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
