@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "",
-        "buff": "",
-        "notes": "swmg buffs delayed shortly a couple mins",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T00:28:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T00:30:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T00:30:00Z",
-        "guild": "Booty Bay Yacht Club",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T01:40:00Z",
-        "guild": "Aligned",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T01:42:00Z",
-        "guild": "Aligned",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-05T22:28:00Z",
         "guild": "Shadow Wizard Money Gang",
         "buff": "Zandalar",
