@@ -42,13 +42,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-07-06T12:48:00Z",
-        "guild": "Death",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-06T12:50:00Z",
         "guild": "Death",
         "buff": "Onyxia",
@@ -66,6 +59,13 @@
         "datetime": "2025-07-06T21:02:00Z",
         "guild": "fatal",
         "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-07T00:48:00Z",
+        "guild": "Death",
+        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     }
