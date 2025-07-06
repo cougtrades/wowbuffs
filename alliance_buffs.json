@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-06-07T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T00:54:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T00:55:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-04T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "ish",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-05T00:00:00Z",
-        "guild": "HC Cuties",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-06T00:55:00Z",
         "guild": "Immortal",
         "buff": "Zandalar",
