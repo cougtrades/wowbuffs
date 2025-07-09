@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "",
-        "buff": "Onyxia",
-        "notes": "layers deep fried, this ony is canceled",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-07T00:48:00Z",
-        "guild": "Death",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-07T00:50:00Z",
-        "guild": "Death",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-07T06:05:00Z",
-        "guild": "",
-        "buff": "Nefarian",
-        "notes": "in 5 minutes too after ZG. FOR THE HORDE!",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-07T23:18:00Z",
-        "guild": "Fractured",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-07T23:20:00Z",
-        "guild": "Fractured",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-08T00:57:00Z",
         "guild": "Endless",
         "buff": "Onyxia",
