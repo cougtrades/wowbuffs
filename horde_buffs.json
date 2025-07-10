@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-07-08T00:57:00Z",
-        "guild": "Endless",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-08T01:40:00Z",
-        "guild": "Aligned",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-08T01:42:00Z",
-        "guild": "Aligned",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-08T22:00:00Z",
-        "guild": "fatal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-08T22:02:00Z",
-        "guild": "fatal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-08T22:58:00Z",
-        "guild": "Warlords of Rexxar",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-08T23:00:00Z",
-        "guild": "Warlords of Rexxar",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-09T00:30:00Z",
         "guild": "Shadow Wizard Money Gang",
         "buff": "Zandalar",
