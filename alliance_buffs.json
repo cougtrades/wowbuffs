@@ -68,5 +68,12 @@
         "buff": "Zandalar",
         "notes": "melior",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-15T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Turtlekun",
+        "server": "Doomhowl"
     }
 ]
