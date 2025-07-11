@@ -194,5 +194,12 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-13T23:00:00Z",
+        "guild": "Booty Bay Yacht Club",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
