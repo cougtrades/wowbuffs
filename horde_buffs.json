@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-07-14T00:50:00Z",
-        "guild": "Death",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-14T23:18:00Z",
-        "guild": "Fractured",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-14T23:20:00Z",
-        "guild": "Fractured",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-15T01:40:00Z",
         "guild": "Aligned",
         "buff": "Zandalar",
