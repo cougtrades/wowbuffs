@@ -145,5 +145,12 @@
         "buff": "Nefarian",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-19T22:50:00Z",
+        "guild": "Zug Life",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
