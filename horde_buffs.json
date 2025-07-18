@@ -215,5 +215,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-20T07:30:00Z",
+        "guild": "Anzacs HC",
+        "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
