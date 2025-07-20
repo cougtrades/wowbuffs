@@ -222,5 +222,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-24T22:02:00Z",
+        "guild": "fatal",
+        "buff": "Nefarian",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
