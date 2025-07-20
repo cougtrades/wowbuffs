@@ -105,13 +105,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-07-20T03:00:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-20T04:04:00Z",
         "guild": "Hordes Finest",
         "buff": "Zandalar",
@@ -141,6 +134,13 @@
     },
     {
         "datetime": "2025-07-20T21:38:00Z",
+        "guild": "Heart and Solo",
+        "buff": "Zandalar",
+        "notes": "dropped by zuglife",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-20T21:58:00Z",
         "guild": "Heart and Solo",
         "buff": "Zandalar",
         "notes": "dropped by zuglife",
