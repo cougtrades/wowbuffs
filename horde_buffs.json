@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-07-18T01:45:00Z",
-        "guild": "Washed Up",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-18T01:47:00Z",
-        "guild": "Washed Up",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-18T02:30:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Onyxia",
-        "notes": "Layers permitting",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-18T04:02:00Z",
-        "guild": "Hordes Finest",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-18T04:04:00Z",
-        "guild": "Hordes Finest",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-18T21:57:00Z",
-        "guild": "UNGOON",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-18T22:00:00Z",
-        "guild": "UNGOON",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-19T00:50:00Z",
         "guild": "Zug Life",
         "buff": "Zandalar",
