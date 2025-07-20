@@ -180,5 +180,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-22T02:45:00Z",
+        "guild": "Heart and Solo",
+        "buff": "Onyxia",
+        "notes": "layers permitting",
+        "server": "Doomhowl"
     }
 ]
