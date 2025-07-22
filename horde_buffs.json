@@ -1,5 +1,12 @@
 [
     {
+        "datetime": "",
+        "guild": "",
+        "buff": "",
+        "notes": "will drop after we finish raid, if slightly delayed thats why",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-07-21T00:50:00Z",
         "guild": "Death",
         "buff": "Onyxia",
