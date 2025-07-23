@@ -72,13 +72,6 @@
     {
         "datetime": "2025-07-24T01:00:00Z",
         "guild": "Endless",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-24T01:00:00Z",
-        "guild": "Endless",
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
@@ -87,6 +80,13 @@
         "datetime": "2025-07-24T01:00:00Z",
         "guild": "Endless",
         "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-24T01:02:00Z",
+        "guild": "Endless",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     },
