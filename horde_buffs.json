@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-07-22T00:50:00Z",
-        "guild": "Death",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-22T02:43:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-22T02:45:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Onyxia",
-        "notes": "layers permitting",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-22T22:00:00Z",
-        "guild": "fatal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-22T22:02:00Z",
-        "guild": "fatal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-23T00:00:00Z",
-        "guild": "fatal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-23T00:02:00Z",
         "guild": "fatal",
         "buff": "Onyxia",
