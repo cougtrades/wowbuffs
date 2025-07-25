@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-07-23T00:02:00Z",
-        "guild": "fatal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-23T00:02:00Z",
-        "guild": "fatal",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-23T23:57:00Z",
-        "guild": "UNGOON",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-24T00:00:00Z",
-        "guild": "UNGOON",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-24T00:30:00Z",
         "guild": "Shadow Wizard Money Gang",
         "buff": "Onyxia",
