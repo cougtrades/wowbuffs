@@ -182,6 +182,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-07-27T20:45:00Z",
+        "guild": "Shadow Wizard Money Gang",
+        "buff": "Rend",
+        "notes": "delayed by 5 min for rend layer cd",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-07-27T22:00:00Z",
         "guild": "Endless",
         "buff": "Zandalar",
