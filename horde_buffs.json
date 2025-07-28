@@ -161,13 +161,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-07-28T01:45:00Z",
-        "guild": "Power Rangers",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-28T01:47:00Z",
         "guild": "Power Rangers",
         "buff": "Onyxia",
@@ -179,6 +172,13 @@
         "guild": "Power Rangers",
         "buff": "Rend",
         "notes": "assumin someone doesn't grief in the next 20 mins",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-28T01:47:00Z",
+        "guild": "Power Rangers",
+        "buff": "Nefarian",
+        "notes": "",
         "server": "Doomhowl"
     }
 ]
