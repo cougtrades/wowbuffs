@@ -224,13 +224,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-07-29T23:57:00Z",
-        "guild": "UNGOON",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-30T00:00:00Z",
         "guild": "UNGOON",
         "buff": "Onyxia",
@@ -283,6 +276,13 @@
         "datetime": "2025-08-01T00:00:00Z",
         "guild": "UNGOON",
         "buff": "Nefarian",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-01T00:00:00Z",
+        "guild": "UNGOON",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     }
