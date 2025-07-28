@@ -173,5 +173,12 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-07-28T01:47:00Z",
+        "guild": "Power Rangers",
+        "buff": "Rend",
+        "notes": "assumin someone doesn't grief in the next 20 mins",
+        "server": "Doomhowl"
     }
 ]
