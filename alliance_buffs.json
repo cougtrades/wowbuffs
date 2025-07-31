@@ -1,12 +1,5 @@
 [
     {
-        "datetime": "2025-01-08T23:00:00Z",
-        "guild": "Rosario",
-        "buff": "Zandalar",
-        "notes": "(Friday 01) (05:00PM ST)",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-30T01:55:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
@@ -53,6 +46,13 @@
         "guild": "Grail Knights",
         "buff": "Zandalar",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-01T23:00:00Z",
+        "guild": "Rosario",
+        "buff": "Zandalar",
+        "notes": "(Friday 01) (05:00PM ST)",
         "server": "Doomhowl"
     },
     {
