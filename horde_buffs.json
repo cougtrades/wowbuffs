@@ -133,6 +133,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-02T03:27:00Z",
+        "guild": "Death",
+        "buff": "Rend",
+        "notes": "all 3 buffs",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-02T04:00:00Z",
         "guild": "Death",
         "buff": "",
