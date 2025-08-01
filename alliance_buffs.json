@@ -89,5 +89,12 @@
         "buff": "Nefarian",
         "notes": "these are approximate, we will be dropping after AQ40 planning",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-05T00:55:00Z",
+        "guild": "Resolve",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
