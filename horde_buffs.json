@@ -119,13 +119,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-08-01T22:28:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-01T22:30:00Z",
         "guild": "Shadow Wizard Money Gang",
         "buff": "Nefarian",
@@ -199,6 +192,13 @@
         "datetime": "2025-08-02T22:02:00Z",
         "guild": "fatal",
         "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-02T22:28:00Z",
+        "guild": "Shadow Wizard Money Gang",
+        "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
     },
