@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-07-30T02:45:00Z",
-        "guild": "UNGOON",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-30T02:48:00Z",
-        "guild": "UNGOON",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-30T02:48:00Z",
-        "guild": "UNGOON",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-30T23:00:00Z",
-        "guild": "Warlords of Rexxar",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-30T23:02:00Z",
-        "guild": "Warlords of Rexxar",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-30T23:57:00Z",
-        "guild": "UNGOON",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-31T00:00:00Z",
-        "guild": "UNGOON",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-07-31T01:45:00Z",
         "guild": "Washed Up",
         "buff": "Zandalar",
