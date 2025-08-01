@@ -119,6 +119,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-02T01:00:00Z",
+        "guild": "Purpose",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-02T03:27:00Z",
         "guild": "Death",
         "buff": "Zandalar",
