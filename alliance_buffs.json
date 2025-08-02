@@ -91,6 +91,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-03T01:00:00Z",
+        "guild": "Risk",
+        "buff": "Zandalar",
+        "notes": "Trickturner",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-04T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
