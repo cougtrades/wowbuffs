@@ -1,19 +1,5 @@
 [
     {
-        "datetime": "2025-07-31T00:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-07-31T00:56:00Z",
-        "guild": "Resolve",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-01T00:55:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
