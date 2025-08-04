@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-08-02T00:02:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "15 min warning GL",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-02T01:00:00Z",
-        "guild": "HC Cuties",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-02T03:00:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-02T03:02:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-02T15:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "estimating (after our night's raids, will update)",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-02T15:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Onyxia",
-        "notes": "estimating (after our night's raids, will update)",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-03T00:55:00Z",
         "guild": "Immortal",
         "buff": "Zandalar",
