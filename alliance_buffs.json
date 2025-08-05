@@ -103,5 +103,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-10T00:58:00Z",
+        "guild": "Immortal",
+        "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
