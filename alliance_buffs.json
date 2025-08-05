@@ -96,5 +96,12 @@
         "buff": "Nefarian",
         "notes": "Turtlekun",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-10T00:55:00Z",
+        "guild": "Immortal",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
