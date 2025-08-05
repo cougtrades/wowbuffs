@@ -68,5 +68,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-09T00:57:00Z",
+        "guild": "Risk",
+        "buff": "Zandalar",
+        "notes": "Tedd",
+        "server": "Doomhowl"
     }
 ]
