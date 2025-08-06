@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-08-04T00:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "these are approximate, we will be dropping after AQ40 planning",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-04T00:55:00Z",
-        "guild": "HC Cuties",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-04T00:56:00Z",
-        "guild": "Resolve",
-        "buff": "Nefarian",
-        "notes": "these are approximate, we will be dropping after AQ40 planning",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-04T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-04T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-04T23:57:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Murdamo",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-05T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "Lonelyhuman",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-05T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
