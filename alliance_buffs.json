@@ -42,24 +42,10 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-08-09T00:55:00Z",
-        "guild": "Immortal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-09T00:57:00Z",
         "guild": "Risk",
         "buff": "Zandalar",
         "notes": "Tedd",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T00:58:00Z",
-        "guild": "Immortal",
-        "buff": "Onyxia",
-        "notes": "",
         "server": "Doomhowl"
     },
     {
@@ -73,6 +59,20 @@
         "datetime": "2025-08-09T03:00:00Z",
         "guild": "Stalwart",
         "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-09T14:55:00Z",
+        "guild": "Purpose",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-09T14:57:00Z",
+        "guild": "Purpose",
+        "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
     },
@@ -130,6 +130,20 @@
         "guild": "HC Cuties",
         "buff": "Zandalar",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-11T23:57:00Z",
+        "guild": "Risk",
+        "buff": "Zandalar",
+        "notes": "Kefka",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-12T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Procto",
         "server": "Doomhowl"
     },
     {
