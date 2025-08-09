@@ -34,60 +34,62 @@
  </script>
 </head>
 <body>
- <h1>WoW Classic Buff Schedule</h1>
- <section class="intro">
-  <p>Welcome to the <strong>WoW Classic buff schedule</strong> for Doomhowl! Track <strong>Onyxia, Zandalar, Rend, Nefarian, and future</strong> buffs for both <strong><span class="horde-color">Horde</span></strong> and <strong><span class="alliance-color">Alliance</span></strong>. Use the dropdowns to switch factions and select buffs.</p>
- </section>
- <div class="container">
-  <div class="faction-select" role="region" aria-label="Faction Selection">
-   <button id="hordeBtn" class="faction-btn horde" onclick="updateFaction('horde')" aria-label="Show Horde Buffs">Horde</button>
-   <button id="allianceBtn" class="faction-btn alliance" onclick="updateFaction('alliance')" aria-label="Show Alliance Buffs">Alliance</button>
-  </div>
-  <div class="buff-select" role="region" aria-label="Buff Selection">
-    <button class="buff-btn all" id="buffAllBtn" onclick="updateBuffType('all')" aria-label="Show All Buffs">
-      All
-    </button>
-    <button class="buff-btn onyxia" id="buffOnyxiaBtn" onclick="updateBuffType('onyxia')" aria-label="Show Onyxia Buffs">
-      <img src="/onyxia-icon.png" alt="Onyxia" class="buff-btn-icon"> Onyxia
-    </button>
-    <button class="buff-btn zandalar" id="buffZandalarBtn" onclick="updateBuffType('zandalar')" aria-label="Show Zandalar Buffs">
-      <img src="/zandalar-icon.png" alt="Zandalar" class="buff-btn-icon"> Zandalar
-    </button>
-    <button class="buff-btn nefarian" id="buffNefarianBtn" onclick="updateBuffType('nefarian')" aria-label="Show Nefarian Buffs">
-      <img src="/nefarian-icon.png" alt="Nefarian" class="buff-btn-icon"> Nefarian
-    </button>
-    <button class="buff-btn rend" id="buffRendBtn" onclick="updateBuffType('rend')" aria-label="Show Rend Buffs">
-      <img src="/rend-icon.png" alt="Rend" class="buff-btn-icon"> Rend
-    </button>
-  </div>
-  <div class="timezone-select" role="region" aria-label="Timezone Selection">
-   <label for="timezoneSearch">Filter Timezones:</label>
-   <input type="text" id="timezoneSearch" placeholder="Search by country or city..." oninput="filterTimezones()" aria-label="Search timezones">
-   <label for="timezone">Timezone:</label>
-   <select id="timezone" onchange="updateTimezone()" aria-label="Select your timezone">
-    <!-- Options populated by JavaScript -->
-   </select>
-  </div>
-  <div class="search-container" role="search" aria-label="Search Buffs">
-   <label for="buffSearch">Search Buffs:</label>
-   <input type="text" id="buffSearch" placeholder="Search by guild, time, or buff..." oninput="searchBuffs()" aria-label="Search buff schedule">
-  </div>
-  <div class="timer-container">
-   <div class="last-buff" id="lastBuff" role="timer" aria-live="polite">
-    Time Since Last Buff: <span id="lastBuffTime">--:--:--</span>
+ <div class="content-zoom-wrapper">
+  <h1>WoW Classic Buff Schedule</h1>
+  <section class="intro">
+   <p>Welcome to the <strong>WoW Classic buff schedule</strong> for Doomhowl! Track <strong>Onyxia, Zandalar, Rend, Nefarian, and future</strong> buffs for both <strong><span class="horde-color">Horde</span></strong> and <strong><span class="alliance-color">Alliance</span></strong>. Use the dropdowns to switch factions and select buffs.</p>
+  </section>
+  <div class="container">
+   <div class="faction-select" role="region" aria-label="Faction Selection">
+    <button id="hordeBtn" class="faction-btn horde" onclick="updateFaction('horde')" aria-label="Show Horde Buffs">Horde</button>
+    <button id="allianceBtn" class="faction-btn alliance" onclick="updateFaction('alliance')" aria-label="Show Alliance Buffs">Alliance</button>
    </div>
-   <div class="countdown" id="countdown" role="timer" aria-live="polite">
-    <span id="countdownTimer">--:--:--</span>
+   <div class="buff-select" role="region" aria-label="Buff Selection">
+     <button class="buff-btn all" id="buffAllBtn" onclick="updateBuffType('all')" aria-label="Show All Buffs">
+       All
+     </button>
+     <button class="buff-btn onyxia" id="buffOnyxiaBtn" onclick="updateBuffType('onyxia')" aria-label="Show Onyxia Buffs">
+       <img src="/onyxia-icon.png" alt="Onyxia" class="buff-btn-icon"> Onyxia
+     </button>
+     <button class="buff-btn zandalar" id="buffZandalarBtn" onclick="updateBuffType('zandalar')" aria-label="Show Zandalar Buffs">
+       <img src="/zandalar-icon.png" alt="Zandalar" class="buff-btn-icon"> Zandalar
+     </button>
+     <button class="buff-btn nefarian" id="buffNefarianBtn" onclick="updateBuffType('nefarian')" aria-label="Show Nefarian Buffs">
+       <img src="/nefarian-icon.png" alt="Nefarian" class="buff-btn-icon"> Nefarian
+     </button>
+     <button class="buff-btn rend" id="buffRendBtn" onclick="updateBuffType('rend')" aria-label="Show Rend Buffs">
+       <img src="/rend-icon.png" alt="Rend" class="buff-btn-icon"> Rend
+     </button>
    </div>
-  </div>
-  <div class="time-disclaimer">
-   <p id="timeFormatText">Times shown are in server time. Click any buff to see your local time.</p>
-  </div>
-  <button id="timeFormatToggle" class="time-format-toggle" onclick="toggleTimeFormat()">
-   Show Local Time
-  </button>
-  <div class="timeline-wrapper">
-   <div id="buffTimeline" role="region" aria-label="Buff Timeline"></div>
+   <div class="timezone-select" role="region" aria-label="Timezone Selection">
+    <label for="timezoneSearch">Filter Timezones:</label>
+    <input type="text" id="timezoneSearch" placeholder="Search by country or city..." oninput="filterTimezones()" aria-label="Search timezones">
+    <label for="timezone">Timezone:</label>
+    <select id="timezone" onchange="updateTimezone()" aria-label="Select your timezone">
+     <!-- Options populated by JavaScript -->
+    </select>
+   </div>
+   <div class="search-container" role="search" aria-label="Search Buffs">
+    <label for="buffSearch">Search Buffs:</label>
+    <input type="text" id="buffSearch" placeholder="Search by guild, time, or buff..." oninput="searchBuffs()" aria-label="Search buff schedule">
+   </div>
+   <div class="timer-container">
+    <div class="last-buff" id="lastBuff" role="timer" aria-live="polite">
+     Time Since Last Buff: <span id="lastBuffTime">--:--:--</span>
+    </div>
+    <div class="countdown" id="countdown" role="timer" aria-live="polite">
+     <span id="countdownTimer">--:--:--</span>
+    </div>
+   </div>
+   <div class="time-disclaimer">
+    <p id="timeFormatText">Times shown are in server time. Click any buff to see your local time.</p>
+   </div>
+   <button id="timeFormatToggle" class="time-format-toggle" onclick="toggleTimeFormat()">
+    Show Local Time
+   </button>
+   <div class="timeline-wrapper">
+    <div id="buffTimeline" role="region" aria-label="Buff Timeline"></div>
+   </div>
   </div>
  </div>
  <footer>
