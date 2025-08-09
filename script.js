@@ -1,7 +1,7 @@
 let buffs = [];
 let pastBuffs = [];
 let faction = "horde";
-let selectedBuffType = "all";
+let selectedBuffTypes = ["all"]; // Changed from selectedBuffType = "all" to array
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 let groupedBuffs = [];
 let showLocalTime = localStorage.getItem("showLocalTime") !== "false";
@@ -70,18 +70,39 @@ function updateTimezone() {
 }
 
 function updateBuffType(type) {
-  if (type) {
-    selectedBuffType = type;
+  if (!type) {
+    selectedBuffTypes = ['all'];
+  } else if (type === 'all') {
+    // If 'all' is clicked, clear other selections and select only 'all'
+    selectedBuffTypes = ['all'];
   } else {
-    selectedBuffType = 'all';
+    // Remove 'all' if it's currently selected
+    if (selectedBuffTypes.includes('all')) {
+      selectedBuffTypes = selectedBuffTypes.filter(t => t !== 'all');
+    }
+    
+    // Toggle the selected buff type
+    if (selectedBuffTypes.includes(type)) {
+      // Remove the buff type if it's already selected
+      selectedBuffTypes = selectedBuffTypes.filter(t => t !== type);
+      // If no buffs are selected, default to 'all'
+      if (selectedBuffTypes.length === 0) {
+        selectedBuffTypes = ['all'];
+      }
+    } else {
+      // Add the buff type to selection
+      selectedBuffTypes.push(type);
+    }
   }
+  
   // Set active button state
   const buffTypes = ['all', 'onyxia', 'zandalar', 'nefarian', 'rend'];
   buffTypes.forEach(bt => {
     const btn = document.getElementById(`buff${bt.charAt(0).toUpperCase() + bt.slice(1)}Btn`);
-    if (btn) btn.classList.toggle('active', selectedBuffType === bt);
+    if (btn) btn.classList.toggle('active', selectedBuffTypes.includes(bt));
   });
-  console.log(`Selected buff type: ${selectedBuffType}`);
+  
+  console.log(`Selected buff types: ${selectedBuffTypes.join(', ')}`);
   displayBuffs();
   startCountdown();
 }
@@ -163,8 +184,23 @@ function updateFaction(selected) {
   document.getElementById("lastBuffTime").textContent = "--:--:--";
   if (faction === "alliance") {
     document.body.classList.add("alliance");
+    // Hide rend button for alliance
+    const rendBtn = document.getElementById('buffRendBtn');
+    if (rendBtn) {
+      rendBtn.style.display = 'none';
+    }
+    // If rend is currently selected, switch to 'all'
+    if (selectedBuffTypes.includes('rend')) {
+      selectedBuffTypes = ['all'];
+      updateBuffType('all');
+    }
   } else {
     document.body.classList.remove("alliance");
+    // Show rend button for horde
+    const rendBtn = document.getElementById('buffRendBtn');
+    if (rendBtn) {
+      rendBtn.style.display = 'inline-flex';
+    }
   }
   loadBuffs();
   localStorage.removeItem("alertedBuffs");
@@ -211,7 +247,15 @@ function groupBuffsByDate() {
   let filteredBuffs = buffs.filter(buff => {
     let buffDate = moment(buff.datetime).tz("America/Denver");
     let diffDays = buffDate.startOf('day').diff(now.startOf('day'), 'days');
-    return diffDays >= 0 && diffDays <= 7 && (selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
+    // Filter out rend buffs for alliance
+    if (faction === 'alliance' && buff.buff.toLowerCase() === 'rend') {
+      return false;
+    }
+    // Check if buff matches any of the selected types
+    return diffDays >= 0 && diffDays <= 7 && (
+      selectedBuffTypes.includes("all") || 
+      selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase())
+    );
   });
 
   // Sort buffs by date, with today's buffs first
@@ -351,7 +395,7 @@ function searchBuffs() {
     let buffType = buff.buff.toLowerCase();
     let notes = (buff.notes || "").toLowerCase();
     return (serverTime.includes(searchTerm) || guild.includes(searchTerm) || buffType.includes(searchTerm) || notes.includes(searchTerm)) &&
-           (selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
+           (selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
   });
   let upcomingFilteredBuffs = filteredBuffs.filter(buff => {
     let buffDate = moment(buff.datetime).tz("America/Denver");
@@ -369,8 +413,8 @@ function startCountdown() {
 
   function updateCountdown() {
     let now = moment().tz("America/Denver");
-    let filteredBuffs = buffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
-    let filteredPastBuffs = pastBuffs.filter(buff => selectedBuffType === "all" || buff.buff.toLowerCase() === selectedBuffType.toLowerCase());
+    let filteredBuffs = buffs.filter(buff => selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
+    let filteredPastBuffs = pastBuffs.filter(buff => selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
 
     if (filteredBuffs.length === 0 && filteredPastBuffs.length === 0) {
       document.getElementById("countdownTimer").textContent = "--:--:--";
@@ -537,5 +581,5 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set initial active button
   updateFaction(faction);
   // Set initial active button for buffs
-  updateBuffType(selectedBuffType);
+  updateBuffType('all');
 });
