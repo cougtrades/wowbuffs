@@ -5,6 +5,8 @@ let selectedBuffTypes = ["all"]; // Changed from selectedBuffType = "all" to arr
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 let groupedBuffs = [];
 let showLocalTime = localStorage.getItem("showLocalTime") !== "false";
+let alertedBuffsInSession = new Set(); // Track alerts in current session - moved to global scope
+let countdownInterval = null; // Track the countdown interval to prevent multiple intervals
 
 function populateTimezoneDropdown() {
   const timezoneSelect = document.getElementById("timezone");
@@ -66,7 +68,7 @@ function updateTimezone() {
   selectedTimezone = document.getElementById("timezone").value;
   localStorage.setItem("selectedTimezone", selectedTimezone);
   displayBuffs();
-  startCountdown();
+  // Don't call startCountdown() here - it should already be running
 }
 
 function updateBuffType(type) {
@@ -103,8 +105,12 @@ function updateBuffType(type) {
   });
   
   console.log(`Selected buff types: ${selectedBuffTypes.join(', ')}`);
+  
+  // Only clear visible notifications when buff types change, but keep session tracking
+  clearAllNotifications();
+  
   displayBuffs();
-  startCountdown();
+  // Don't call startCountdown() here - it should already be running
 }
 
 async function loadBuffs() {
@@ -157,8 +163,20 @@ async function loadBuffs() {
       .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
     
     console.log(`Loaded ${buffs.length} upcoming buffs and ${pastBuffs.length} past buffs`);
+    
+    // Clear stale session alerts when buffs are reloaded
+    // Only keep alerts for buffs that still exist in the current buff list
+    let currentBuffKeys = new Set(buffs.map(buff => `${buff.datetime}_${buff.guild}_${buff.buff}`));
+    let filteredSessionAlerts = new Set();
+    for (let alertKey of alertedBuffsInSession) {
+      if (currentBuffKeys.has(alertKey)) {
+        filteredSessionAlerts.add(alertKey);
+      }
+    }
+    alertedBuffsInSession = filteredSessionAlerts;
+    
     displayBuffs();
-    startCountdown();
+    // Don't call startCountdown() here - it should already be running
   } catch (error) {
     console.error(`Error loading buffs: ${error.message}`);
     document.getElementById("buffTimeline").innerHTML = `<div class="timeline-card"><p class="summary">Error</p><div class="details"><p>Error loading buffs: ${error.message}</p></div></div>`;
@@ -202,8 +220,10 @@ function updateFaction(selected) {
       rendBtn.style.display = 'inline-flex';
     }
   }
-  loadBuffs();
+  // Clear alerted buffs when faction changes
   localStorage.removeItem("alertedBuffs");
+  alertedBuffsInSession.clear();
+  loadBuffs();
 }
 
 function formatDateTime(date, isServerTime = false) {
@@ -409,7 +429,11 @@ function searchBuffs() {
 
 function startCountdown() {
   let lastBuffs = null;
-  let alertedBuffsInSession = new Set(); // Track alerts in current session
+  
+  // Clear existing interval if it exists
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
 
   function updateCountdown() {
     let now = moment().tz("America/Denver");
@@ -473,6 +497,7 @@ function startCountdown() {
     let buffKey = `${nextBuff.datetime}_${nextBuff.guild}_${nextBuff.buff}`;
 
     // Only alert if the buff is still upcoming (timeDiff > 0) and within 10 minutes
+    // Check if we haven't already alerted for this buff in this session or localStorage
     if (timeDiff <= 600000 && timeDiff > 0 && !alertedBuffs.has(buffKey) && !alertedBuffsInSession.has(buffKey) && buffDate.isAfter(now)) {
       showCustomNotification(nextBuff);
       alertedBuffs.add(buffKey);
@@ -492,7 +517,9 @@ function startCountdown() {
         displayBuffs();
         lastBuffs = upcomingBuffs;
       }
+      // Clear alerted buffs when buff is now
       localStorage.removeItem("alertedBuffs");
+      alertedBuffsInSession.clear();
       return;
     }
 
@@ -523,8 +550,15 @@ function startCountdown() {
   }
 
   function showCustomNotification(buff) {
+    // Check if a notification for this buff already exists
+    let existingNotification = document.querySelector(`[data-buff-key="${buff.datetime}_${buff.guild}_${buff.buff}"]`);
+    if (existingNotification) {
+      return; // Don't create duplicate notifications
+    }
+
     let notification = document.createElement("div");
     notification.className = "custom-notification";
+    notification.setAttribute("data-buff-key", `${buff.datetime}_${buff.guild}_${buff.buff}`);
     notification.innerHTML = `
       <p>${buff.buff} buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)</p>
       <button onclick="this.parentElement.remove()">Close</button>
@@ -537,16 +571,19 @@ function startCountdown() {
       audio.play().catch(e => console.warn("Sound playback failed:", e));
     }
 
+    // Auto-remove notification after 30 seconds
     setTimeout(() => {
       if (notification.parentElement) {
         notification.remove();
       }
     }, 30000);
 
+    // Show browser notification if permission is granted
     if ("Notification" in window && Notification.permission === "granted") {
       new Notification("Buff Alert!", {
         body: `${buff.buff} buff from ${buff.guild} drops in 10 minutes at ${formatDateTime(new Date(buff.datetime), false)} (Your Time)`,
-        icon: "/favicon.ico"
+        icon: "/favicon.ico",
+        tag: `${buff.datetime}_${buff.guild}_${buff.buff}` // Use tag to prevent duplicate browser notifications
       });
     } else if ("Notification" in window && Notification.permission !== "denied") {
       Notification.requestPermission();
@@ -554,7 +591,19 @@ function startCountdown() {
   }
 
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Function to clear all custom notifications
+function clearAllNotifications() {
+  const notifications = document.querySelectorAll('.custom-notification');
+  notifications.forEach(notification => notification.remove());
+}
+
+// Function to clear session alerts
+function clearSessionAlerts() {
+  alertedBuffsInSession.clear();
+  localStorage.removeItem("alertedBuffs");
 }
 
 // Swipe Gestures for Mobile
@@ -575,6 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadBuffs();
   setInterval(loadBuffs, 60000);
   displayBuffs();
+  startCountdown(); // Start the countdown system once
 });
 
 document.addEventListener('DOMContentLoaded', function() {
