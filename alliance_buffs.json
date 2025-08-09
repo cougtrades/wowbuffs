@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "Immortal",
-        "buff": "Zandalar",
-        "notes": "A previous message was incorrectly sent for an alliance ZG / Ony buff on Friday from Immortal, please dont wait around for it. It's coming on Saturday instead.",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "",
-        "guild": "Immortal",
-        "buff": "Onyxia",
-        "notes": "A previous message was incorrectly sent for an alliance ZG / Ony buff on Friday from Immortal, please dont wait around for it. It's coming on Saturday instead.",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-07T01:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-07T01:56:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-08T00:53:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
