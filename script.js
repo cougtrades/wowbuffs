@@ -94,17 +94,44 @@ async function loadBuffs() {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     let data = await response.json();
     
+    // For Zandalar buffs, we need to load from both factions since they work for both
+    let zandalarBuffs = [];
+    if (faction === 'horde') {
+      try {
+        const allianceResponse = await fetch(`alliance_buffs.json?ts=${Date.now()}`);
+        if (allianceResponse.ok) {
+          const allianceData = await allianceResponse.json();
+          zandalarBuffs = allianceData.filter(buff => buff.buff.toLowerCase() === 'zandalar');
+        }
+      } catch (error) {
+        console.warn('Could not load Alliance Zandalar buffs:', error);
+      }
+    } else if (faction === 'alliance') {
+      try {
+        const hordeResponse = await fetch(`horde_buffs.json?ts=${Date.now()}`);
+        if (hordeResponse.ok) {
+          const hordeData = await hordeResponse.json();
+          zandalarBuffs = hordeData.filter(buff => buff.buff.toLowerCase() === 'zandalar');
+        }
+      } catch (error) {
+        console.warn('Could not load Horde Zandalar buffs:', error);
+      }
+    }
+    
+    // Combine the main faction buffs with Zandalar buffs from the other faction
+    let allBuffs = [...data, ...zandalarBuffs];
+    
     // Separate past and future buffs
     let now = moment().tz("America/Denver");
-    let allBuffs = Array.from(new Map(data.map(item => [item.datetime + item.guild + item.buff, item])).values());
+    let allBuffsDeduped = Array.from(new Map(allBuffs.map(item => [item.datetime + item.guild + item.buff, item])).values());
     
     // Store past buffs for time since last buff calculation
-    pastBuffs = allBuffs
+    pastBuffs = allBuffsDeduped
       .filter(buff => moment(buff.datetime).tz("America/Denver").isBefore(now))
       .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
     
     // Filter for upcoming buffs only for display
-    buffs = allBuffs
+    buffs = allBuffsDeduped
       .filter(buff => moment(buff.datetime).tz("America/Denver").isAfter(now))
       .sort((a, b) => moment(a.datetime).valueOf() - moment(b.datetime).valueOf());
     
