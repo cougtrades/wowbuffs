@@ -27,7 +27,8 @@ body {
   color: var(--text-color);
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   overflow-x: hidden;
-  min-height: 100vh;
+  height: auto;
+  min-height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -51,9 +52,10 @@ body::before {
   transform-origin: top center;
   width: 125%; /* Compensate for the 0.8 scale to maintain full width */
   margin-left: -12.5%; /* Center the scaled content */
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  margin-bottom: -40vh; /* Compensate for extra space created by transform scale */
+  padding-bottom: 0;
+  flex: 0 1 auto;
 }
 
 /* Headings */
@@ -121,7 +123,6 @@ body.alliance .intro strong {
   border: 2px solid var(--horde-color);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 85, 85, 0.3);
   backdrop-filter: blur(10px);
-  flex: 1;
 }
 
 body.alliance .container {
@@ -589,7 +590,7 @@ body.alliance .time-format-toggle:hover {
 
 /* Footer */
 footer {
-  margin-top: clamp(20px, 3vw, 30px);
+  margin-top: clamp(5px, 1vw, 10px);
   padding: clamp(10px, 2vw, 15px);
   background: var(--background-dark);
   border: 2px solid var(--horde-color);
