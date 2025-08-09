@@ -5,13 +5,46 @@
   --text-color: #e6e6e6;
   --background-dark: rgba(0, 0, 0, 0.8);
   --background-light: rgba(50, 50, 50, 0.9);
-  --border-radius: 10px;
+  --border-radius: 0.625rem;
   --transition-speed: 0.3s;
-  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  --text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  --box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.5);
+  --text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
   --hover-transition: all var(--transition-speed) ease;
-  --card-padding: clamp(10px, 2vw, 15px);
+  --card-padding: clamp(0.625rem, 2vw, 0.9375rem);
 }
+
+/* Root scaling for better zoom-out effect */
+html {
+  font-size: 90%; /* Scales everything to 90% of the default (16px base becomes ~14.4px) */
+}
+
+@media (min-width: 1200px) { /* For larger desktops where zoom-out helps */
+  html { font-size: 85%; }
+}
+
+@media (max-width: 768px) { /* Disable on mobile to prevent tiny text */
+  html { font-size: 100%; }
+}
+
+/*
+ * ROOT SCALING SYSTEM EXPLANATION:
+ * 
+ * This system provides a "zoom-out" effect by scaling the root font size:
+ * - Default: 90% (16px base becomes ~14.4px)
+ * - Large desktops (1200px+): 85% (16px base becomes ~13.6px)
+ * - Mobile (768px and below): 100% (16px base stays 16px)
+ * 
+ * Benefits:
+ * 1. All rem-based elements scale proportionally
+ * 2. More content fits vertically without scrolling
+ * 3. Better use of screen real estate on large displays
+ * 4. Maintains readability on mobile devices
+ * 
+ * Since we converted all px units to rem, everything scales together:
+ * - Fonts, margins, padding, borders, shadows
+ * - Icons, buttons, and interactive elements
+ * - Timeline cards and countdown displays
+ */
 
 * {
   margin: 0;
@@ -30,6 +63,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto; /* Allows natural scrolling if needed */
 }
 
 body::before {
@@ -40,6 +76,7 @@ body::before {
   width: 100%;
   height: 100%;
   background: url('ony.webp') center center/cover no-repeat fixed;
+  background-size: cover;
   z-index: -1;
   opacity: 0.9;
   will-change: transform;
@@ -51,26 +88,26 @@ h1 {
   font-size: clamp(1.8rem, 5vw, 3rem);
   text-align: center;
   color: var(--horde-color);
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px #ff5555;
-  margin: 20px 0;
+  text-shadow: 0.125rem 0.125rem 0.375rem rgba(0, 0, 0, 0.8), 0 0 0.625rem #ff5555;
+  margin: 1.25rem 0;
 }
 
 body.alliance h1 {
   color: var(--alliance-color);
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px #55aaff;
+  text-shadow: 0.125rem 0.125rem 0.375rem rgba(0, 0, 0, 0.8), 0 0 0.625rem #55aaff;
 }
 
 /* Intro Section */
 .intro {
   text-align: center;
   max-width: min(900px, 90%);
-  margin: 0 auto 30px;
-  padding: clamp(10px, 3vw, 20px);
+  margin: 0 auto 1.875rem;
+  padding: clamp(0.625rem, 3vw, 1.25rem);
   background: var(--background-dark);
   border-radius: var(--border-radius);
-  border: 2px solid var(--horde-color);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  border: 0.125rem solid var(--horde-color);
+  box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.3125rem);
 }
 
 body.alliance .intro {
@@ -92,30 +129,30 @@ body.alliance .intro strong {
 
 .horde-color {
   color: var(--horde-color);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
 }
 
 .alliance-color {
   color: var(--alliance-color);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
 }
 
 /* Container */
 .container {
   max-width: min(1000px, 95%);
   margin: 0 auto;
-  padding: clamp(15px, 3vw, 30px);
+  padding: clamp(0.9375rem, 3vw, 1.875rem);
   background: var(--background-dark);
   border-radius: var(--border-radius);
-  border: 2px solid var(--horde-color);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 85, 85, 0.3);
-  backdrop-filter: blur(10px);
+  border: 0.125rem solid var(--horde-color);
+  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.5), 0 0 0.9375rem rgba(255, 85, 85, 0.3);
+  backdrop-filter: blur(0.625rem);
   flex: 1;
 }
 
 body.alliance .container {
-  border: 2px solid var(--alliance-color);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(85, 170, 255, 0.3);
+  border: 0.125rem solid var(--alliance-color);
+  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.5), 0 0 0.9375rem rgba(85, 170, 255, 0.3);
 }
 
 /* Dropdowns and Search */
@@ -123,11 +160,11 @@ body.alliance .container {
 .buff-select,
 .search-container {
   text-align: center;
-  margin-bottom: clamp(15px, 3vw, 25px);
+  margin-bottom: clamp(0.9375rem, 3vw, 1.5625rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 0.9375rem;
 }
 
 .timezone-select,
@@ -141,8 +178,8 @@ body.alliance .container {
   font-family: 'Morpheus', Georgia, serif;
   font-size: clamp(1.1rem, 2vw, 1.3rem);
   color: var(--text-color);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  min-width: 80px;
+  text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
+  min-width: 5rem;
   text-align: right;
 }
 
@@ -151,11 +188,11 @@ body.alliance .container {
 .timezone-select select {
   background: var(--background-light);
   color: var(--text-color);
-  padding: clamp(6px, 2vw, 10px) clamp(8px, 2vw, 15px);
+  padding: clamp(0.375rem, 2vw, 0.625rem) clamp(0.5rem, 2vw, 0.9375rem);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
-  width: 150px;
-  border: 1px solid var(--horde-color);
-  border-radius: 5px;
+  width: 9.375rem;
+  border: 0.0625rem solid var(--horde-color);
+  border-radius: 0.3125rem;
   appearance: none;
   transition: var(--hover-transition);
   text-align: left;
@@ -163,17 +200,17 @@ body.alliance .container {
   cursor: pointer;
   background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
                     linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: calc(100% - 20px) calc(1em + 2px),
-                       calc(100% - 15px) calc(1em + 2px);
-  background-size: 5px 5px,
-                   5px 5px;
+  background-position: calc(100% - 1.25rem) calc(1em + 0.125rem),
+                       calc(100% - 0.9375rem) calc(1em + 0.125rem);
+  background-size: 0.3125rem 0.3125rem,
+                   0.3125rem 0.3125rem;
   background-repeat: no-repeat;
 }
 
 body.alliance .faction-select select,
 body.alliance .buff-select select,
 body.alliance .timezone-select select {
-  border: 1px solid var(--alliance-color);
+  border: 0.0625rem solid var(--alliance-color);
 }
 
 .faction-select select:hover,
@@ -198,24 +235,24 @@ body.alliance .timezone-select select:hover {
 #timezoneSearch {
   background: var(--background-light);
   color: var(--text-color);
-  padding: 8px 15px 8px 30px;
+  padding: 0.5rem 0.9375rem 0.5rem 1.875rem;
   font-size: 1rem;
-  width: 200px;
-  border: 1px solid var(--horde-color);
-  border-radius: 5px;
+  width: 12.5rem;
+  border: 0.0625rem solid var(--horde-color);
+  border-radius: 0.3125rem;
   transition: var(--hover-transition);
   position: relative;
-  background-position: 10px center;
+  background-position: 0.625rem center;
   background-repeat: no-repeat;
-  background-size: 16px;
-  padding-left: 35px;
+  background-size: 1rem;
+  padding-left: 2.1875rem;
 }
 
 #buffSearch::before,
 #timezoneSearch::before {
   content: '\1F50D';
   position: absolute;
-  left: 10px;
+  left: 0.625rem;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1rem;
@@ -224,7 +261,7 @@ body.alliance .timezone-select select:hover {
 
 body.alliance #buffSearch,
 body.alliance #timezoneSearch {
-  border: 1px solid var(--alliance-color);
+  border: 0.0625rem solid var(--alliance-color);
 }
 
 #buffSearch:focus,
@@ -241,23 +278,23 @@ body.alliance #timezoneSearch:focus {
 .timeline-wrapper {
   position: relative;
   max-width: 100%;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin: 1.25rem auto;
+  padding: 0 1.25rem;
   order: 1;
 }
 
 #buffTimeline {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 10px 0;
+  gap: 0.9375rem;
+  padding: 0.625rem 0;
   max-width: 100%;
 }
 
 .timeline-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
   width: 100%;
 }
 
@@ -266,8 +303,8 @@ body.alliance #timezoneSearch:focus {
   font-size: 1.8rem;
   color: var(--horde-color);
   text-align: center;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin: 10px 0;
+  text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
+  margin: 0.625rem 0;
 }
 
 body.alliance .timeline-group h2 {
@@ -276,10 +313,10 @@ body.alliance .timeline-group h2 {
 
 .timeline-card {
   background: var(--background-light);
-  border: 2px solid var(--horde-color);
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 85, 85, 0.3);
+  border: 0.125rem solid var(--horde-color);
+  border-radius: 0.625rem;
+  padding: 0.9375rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.5), 0 0 0.625rem rgba(255, 85, 85, 0.3);
   color: var(--text-color);
   cursor: pointer;
   transition: var(--hover-transition);
@@ -289,8 +326,8 @@ body.alliance .timeline-group h2 {
 }
 
 body.alliance .timeline-card {
-  border: 2px solid var(--alliance-color);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(85, 170, 255, 0.3);
+  border: 0.125rem solid var(--alliance-color);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.5), 0 0 0.625rem rgba(85, 170, 255, 0.3);
 }
 
 .timeline-card.glowing {
@@ -322,13 +359,13 @@ body.alliance .timeline-card.glowing {
 }
 
 .timeline-card .summary {
-  margin: 5px 0;
+  margin: 0.3125rem 0;
   font-size: 1rem;
   position: relative;
-  padding-left: 45px;
+  padding-left: 2.8125rem;
   display: flex;
   align-items: center;
-  min-height: 40px;
+  min-height: 2.5rem;
 }
 
 .timeline-card .summary .buff-icon {
@@ -336,10 +373,10 @@ body.alliance .timeline-card.glowing {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 35px;
-  height: 35px;
+  width: 2.1875rem;
+  height: 2.1875rem;
   object-fit: contain;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  filter: drop-shadow(0 0 0.125rem rgba(255, 255, 255, 0.3));
   transition: transform var(--transition-speed) ease;
 }
 
@@ -359,9 +396,9 @@ body.alliance .timeline-card .summary strong {
 
 .timeline-card .details {
   display: none;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
+  border-top: 0.0625rem solid rgba(255, 255, 255, 0.2);
 }
 
 .timeline-card.expanded .details {
@@ -369,7 +406,7 @@ body.alliance .timeline-card .summary strong {
 }
 
 .timeline-card .details p {
-  margin: 5px 0;
+  margin: 0.3125rem 0;
   font-size: 0.95rem;
 }
 
@@ -384,15 +421,15 @@ body.alliance .timeline-card .details p strong {
 
 /* Timer Container */
 .timer-container {
-  margin: clamp(10px, 2vw, 20px) 0;
-  padding: clamp(6px, 1.5vw, 10px);
+  margin: clamp(0.625rem, 2vw, 1.25rem) 0;
+  padding: clamp(0.375rem, 1.5vw, 0.625rem);
   background: transparent;
-  border: 2px solid var(--horde-color);
+  border: 0.125rem solid var(--horde-color);
   border-radius: var(--border-radius);
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
   align-items: center;
   width: 100%;
   min-height: auto;
@@ -401,15 +438,15 @@ body.alliance .timeline-card .details p strong {
 }
 
 body.alliance .timer-container {
-  border: 2px solid var(--alliance-color);
+  border: 0.125rem solid var(--alliance-color);
 }
 
 .last-buff,
 .countdown {
   font-size: clamp(0.9rem, 2vw, 1.2rem);
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin: 5px 0;
+  text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
+  margin: 0.3125rem 0;
   width: 100%;
   white-space: normal !important;
   overflow: visible !important;
@@ -433,8 +470,8 @@ body.alliance .timer-container {
   letter-spacing: normal;
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
   text-shadow: 
-    0 0 2px #fff,
-    0 0 5px #ff3333;
+    0 0 0.125rem #fff,
+    0 0 0.3125rem #ff3333;
   animation: sparkle 3s infinite;
   white-space: normal !important;
   overflow: visible !important;
@@ -461,14 +498,14 @@ body.alliance .timer-container {
 .countdown::before {
   content: '';
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
+  top: -0.3125rem;
+  left: -0.3125rem;
+  right: -0.3125rem;
+  bottom: -0.3125rem;
   background: radial-gradient(circle at center, transparent 50%, rgba(255, 51, 51, 0.05) 100%);
   animation: glow 3s infinite alternate;
   z-index: -1;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 @keyframes glow {
@@ -484,8 +521,8 @@ body.alliance .timer-container {
 
 body.alliance .countdown {
   text-shadow: 
-    0 0 2px #fff,
-    0 0 5px #3399ff;
+    0 0 0.125rem #fff,
+    0 0 0.3125rem #3399ff;
 }
 
 body.alliance .countdown::before {
@@ -519,7 +556,7 @@ body.alliance .countdown {
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 900;
-  text-shadow: 0 0 10px rgba(170, 255, 0, 0.5);
+  text-shadow: 0 0 0.625rem rgba(170, 255, 0, 0.5);
   display: inline;
   white-space: normal !important;
   overflow: visible !important;
@@ -529,10 +566,10 @@ body.alliance .countdown {
 
 .time-format-toggle {
   display: block;
-  margin: 10px auto 20px;
-  padding: 8px 16px;
+  margin: 0.625rem auto 1.25rem;
+  padding: 0.5rem 1rem;
   background: transparent;
-  border: 2px solid var(--horde-color);
+  border: 0.125rem solid var(--horde-color);
   border-radius: var(--border-radius);
   color: var(--horde-color);
   font-size: 0.9rem;
@@ -563,13 +600,13 @@ body.alliance .time-format-toggle:hover {
 
 /* Time Disclaimer */
 .time-disclaimer {
-  margin: -10px 0 20px 0;
-  padding: 10px;
+  margin: -0.625rem 0 1.25rem 0;
+  padding: 0.625rem;
   text-align: center;
   font-size: 0.9rem;
   color: var(--text-color);
   opacity: 0.8;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
 }
 
 .time-disclaimer p {
@@ -578,27 +615,27 @@ body.alliance .time-format-toggle:hover {
 
 /* Footer */
 footer {
-  margin-top: clamp(20px, 3vw, 30px);
-  padding: clamp(10px, 2vw, 15px);
+  margin-top: clamp(1.25rem, 3vw, 1.875rem);
+  padding: clamp(0.625rem, 2vw, 0.9375rem);
   background: var(--background-dark);
-  border: 2px solid var(--horde-color);
+  border: 0.125rem solid var(--horde-color);
   border-radius: var(--border-radius);
   text-align: center;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: var(--text-color);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.5);
 }
 
 body.alliance footer {
-  border: 2px solid var(--alliance-color);
+  border: 0.125rem solid var(--alliance-color);
 }
 
 footer a {
   color: var(--horde-color);
   text-decoration: none;
-  margin: 0 10px;
-  padding: 5px 15px;
-  border-radius: 5px;
+  margin: 0 0.625rem;
+  padding: 0.3125rem 0.9375rem;
+  border-radius: 0.3125rem;
   transition: var(--hover-transition);
 }
 
@@ -617,15 +654,15 @@ body.alliance footer a:hover {
 /* Custom Notification */
 .custom-notification {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 1.25rem;
+  right: 1.25rem;
   background: rgba(255, 107, 107, 0.9);
   color: #fff;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  padding: 0.9375rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  max-width: 300px;
+  max-width: 18.75rem;
   font-size: 1rem;
   animation: slideIn 0.3s ease-out;
   transform-origin: top right;
@@ -639,10 +676,10 @@ body.alliance .custom-notification {
   background: #fff;
   color: var(--horde-color);
   border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.1875rem;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 body.alliance .custom-notification button {
@@ -671,11 +708,11 @@ body.alliance .custom-notification button {
   /* Only show buff icons, hide text for buff-btn */
   .buff-btn {
     font-size: 0 !important;
-    padding: 8px !important;
+    padding: 0.5rem !important;
   }
   .buff-btn .buff-btn-icon {
-    width: 28px !important;
-    height: 28px !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
     margin-right: 0 !important;
     display: inline-block !important;
     vertical-align: middle;
@@ -683,7 +720,7 @@ body.alliance .custom-notification button {
   /* Keep text for faction-btn */
   .faction-btn {
     font-size: 1.1rem !important;
-    padding: 10px 24px !important;
+    padding: 0.625rem 1.5rem !important;
   }
 }
 
@@ -702,12 +739,12 @@ footer a,
 
 /* Optimize card hover effects */
 .timeline-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--box-shadow), 0 0 15px var(--horde-color);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--box-shadow), 0 0 0.9375rem var(--horde-color);
 }
 
 body.alliance .timeline-card:hover {
-  box-shadow: var(--box-shadow), 0 0 15px var(--alliance-color);
+  box-shadow: var(--box-shadow), 0 0 0.9375rem var(--alliance-color);
 }
 
 /* Optimize select elements */
@@ -717,20 +754,20 @@ body.alliance .timeline-card:hover {
   cursor: pointer;
   background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
                     linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: calc(100% - 20px) calc(1em + 2px),
-                       calc(100% - 15px) calc(1em + 2px);
-  background-size: 5px 5px,
-                   5px 5px;
+  background-position: calc(100% - 1.25rem) calc(1em + 0.125rem),
+                       calc(100% - 0.9375rem) calc(1em + 0.125rem);
+  background-size: 0.3125rem 0.3125rem,
+                   0.3125rem 0.3125rem;
   background-repeat: no-repeat;
 }
 
 /* Optimize search inputs */
 #buffSearch,
 #timezoneSearch {
-  background-position: 10px center;
+  background-position: 0.625rem center;
   background-repeat: no-repeat;
-  background-size: 16px;
-  padding-left: 35px;
+  background-size: 1rem;
+  padding-left: 2.1875rem;
 }
 
 /* Optimize button interactions */
@@ -767,7 +804,7 @@ body.alliance .timeline-card:hover {
 #timezoneSearch:focus,
 .time-format-toggle:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--horde-color);
+  box-shadow: 0 0 0 0.125rem var(--horde-color);
 }
 
 body.alliance .faction-select select:focus,
@@ -776,7 +813,7 @@ body.alliance .timezone-select select:focus,
 body.alliance #buffSearch:focus,
 body.alliance #timezoneSearch:focus,
 body.alliance .time-format-toggle:focus {
-  box-shadow: 0 0 0 2px var(--alliance-color);
+  box-shadow: 0 0 0 0.125rem var(--alliance-color);
 }
 
 /* Optimize notification animations */
@@ -809,18 +846,18 @@ body.alliance .time-format-toggle:focus {
 #countdownTimer  { font-size: clamp(3rem, 6vw, 4.5rem); }
 
 .faction-btn {
-  padding: 10px 24px;
-  margin: 0 8px;
+  padding: 0.625rem 1.5rem;
+  margin: 0 0.5rem;
   font-size: 1.1rem;
   font-family: 'Morpheus', Georgia, serif;
   border-radius: var(--border-radius);
-  border: 2px solid transparent;
+  border: 0.125rem solid transparent;
   background: var(--background-light);
   color: var(--text-color);
   cursor: pointer;
   font-weight: bold;
   transition: var(--hover-transition);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.15);
   outline: none;
 }
 .faction-btn.horde {
@@ -851,37 +888,37 @@ body.alliance .time-format-toggle:focus {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px 8px;
-  margin-bottom: clamp(15px, 3vw, 25px);
+  gap: 0.625rem 0.5rem;
+  margin-bottom: clamp(0.9375rem, 3vw, 1.5625rem);
 }
 .buff-btn {
   margin: 0 0 8px 0;
 }
 
 .buff-btn {
-  padding: 8px 18px 8px 12px;
-  margin: 0 6px 8px 0;
+  padding: 0.5rem 1.125rem 0.5rem 0.75rem;
+  margin: 0 0.375rem 0.5rem 0;
   font-size: 1rem;
   font-family: 'Morpheus', Georgia, serif;
   border-radius: var(--border-radius);
-  border: 2px solid transparent;
+  border: 0.125rem solid transparent;
   background: var(--background-light);
   color: var(--text-color);
   cursor: pointer;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   transition: var(--hover-transition);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.10);
   outline: none;
 }
 .buff-btn-icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   object-fit: contain;
-  margin-right: 4px;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+  margin-right: 0.25rem;
+  filter: drop-shadow(0 0 0.125rem rgba(0,0,0,0.2));
 }
 .buff-btn.all {
   border-color: #aaa;
@@ -963,3 +1000,42 @@ body.alliance .time-format-toggle:focus {
     margin-right: 2px !important;
   }
 } */
+
+/* Ensure background image scales properly */
+body::before {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Optimize for high-DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .timeline-card .summary .buff-icon,
+  .buff-btn-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Optimize animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-card,
+  .faction-select select,
+  .buff-select select,
+  .timezone-select select,
+  #buffSearch,
+  #timezoneSearch,
+  footer a,
+  .time-format-toggle {
+    transition: none;
+  }
+  
+  .countdown {
+    animation: none;
+  }
+  
+  .timeline-card:hover {
+    transform: none;
+  }
+}

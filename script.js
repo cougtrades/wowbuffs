@@ -410,23 +410,101 @@ function searchBuffs() {
 function startCountdown() {
   let lastBuffs = null;
   let alertedBuffsInSession = new Set(); // Track alerts in current session
+  let animationId = null;
+  let lastUpdate = 0;
 
-  function updateCountdown() {
-    let now = moment().tz("America/Denver");
-    let filteredBuffs = buffs.filter(buff => selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
-    let filteredPastBuffs = pastBuffs.filter(buff => selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
+  function updateCountdown(timestamp) {
+    // Use requestAnimationFrame for smoother performance
+    if (!lastUpdate || timestamp - lastUpdate >= 1000) { // Update every 1000ms (1 second)
+      lastUpdate = timestamp;
+      
+      let now = moment().tz("America/Denver");
+      let filteredBuffs = buffs.filter(buff => selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
+      let filteredPastBuffs = pastBuffs.filter(buff => selectedBuffTypes.includes("all") || selectedBuffTypes.some(type => buff.buff.toLowerCase() === type.toLowerCase()));
 
-    if (filteredBuffs.length === 0 && filteredPastBuffs.length === 0) {
-      document.getElementById("countdownTimer").textContent = "--:--:--";
-      document.getElementById("lastBuffTime").textContent = "--:--:--";
-      return;
-    }
+      if (filteredBuffs.length === 0 && filteredPastBuffs.length === 0) {
+        document.getElementById("countdownTimer").textContent = "--:--:--";
+        document.getElementById("lastBuffTime").textContent = "--:--:--";
+        animationId = requestAnimationFrame(updateCountdown);
+        return;
+      }
 
-    // Get the most recent past buff (last in the array since we sorted ascending)
-    let lastBuff = filteredPastBuffs[filteredPastBuffs.length - 1];
-    if (lastBuff) {
-      let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
-      let timeDiff = now.diff(lastBuffDate);
+      // Get the most recent past buff (last in the array since we sorted ascending)
+      let lastBuff = filteredPastBuffs[filteredPastBuffs.length - 1];
+      if (lastBuff) {
+        let lastBuffDate = moment(lastBuff.datetime).tz("America/Denver");
+        let timeDiff = now.diff(lastBuffDate);
+        let duration = moment.duration(timeDiff);
+        let days = Math.floor(duration.asDays());
+        let hours = duration.hours();
+        let minutes = duration.minutes();
+        let seconds = duration.seconds();
+        
+        let timeString;
+        if (days === 0) {
+          if (hours === 0) {
+            if (minutes === 0) {
+              timeString = `${seconds}s`;
+            } else {
+              timeString = `${minutes}m ${seconds}s`;
+            }
+          } else {
+            timeString = `${hours}h ${minutes}m ${seconds}s`;
+          }
+        } else {
+          timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+        document.getElementById("lastBuffTime").textContent = timeString;
+      } else {
+        document.getElementById("lastBuffTime").textContent = "--:--:--";
+      }
+
+      // Find the next upcoming buff
+      let nextBuff = filteredBuffs.find(e => {
+        let buffDate = moment(e.datetime).tz("America/Denver");
+        return buffDate.isAfter(now);
+      });
+
+      if (!nextBuff) {
+        document.getElementById("countdownTimer").textContent = "No upcoming buffs";
+        if (lastBuffs !== null) {
+          displayBuffs();
+          lastBuffs = null;
+        }
+        animationId = requestAnimationFrame(updateCountdown);
+        return;
+      }
+
+      let buffDate = moment(nextBuff.datetime).tz("America/Denver");
+      let timeDiff = buffDate.diff(now);
+      let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
+      let buffKey = `${nextBuff.datetime}_${nextBuff.guild}_${nextBuff.buff}`;
+
+      // Only alert if the buff is still upcoming (timeDiff > 0) and within 10 minutes
+      if (timeDiff <= 600000 && timeDiff > 0 && !alertedBuffs.has(buffKey) && !alertedBuffsInSession.has(buffKey) && buffDate.isAfter(now)) {
+        showCustomNotification(nextBuff);
+        alertedBuffs.add(buffKey);
+        alertedBuffsInSession.add(buffKey);
+        localStorage.setItem("alertedBuffs", JSON.stringify([...alertedBuffs]));
+        displayBuffs();
+      }
+
+      if (timeDiff <= 0) {
+        document.getElementById("countdownTimer").textContent = `${nextBuff.buff} buff is now!`;
+        let upcomingBuffs = filteredBuffs.filter(e => {
+          let d = moment(e.datetime).tz("America/Denver");
+          return d.isAfter(now);
+        });
+        if (JSON.stringify(upcomingBuffs) !== JSON.stringify(lastBuffs)) {
+          buffs = upcomingBuffs;
+          displayBuffs();
+          lastBuffs = upcomingBuffs;
+        }
+        localStorage.removeItem("alertedBuffs");
+        animationId = requestAnimationFrame(updateCountdown);
+        return;
+      }
+
       let duration = moment.duration(timeDiff);
       let days = Math.floor(duration.asDays());
       let hours = duration.hours();
@@ -447,79 +525,14 @@ function startCountdown() {
       } else {
         timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
-      document.getElementById("lastBuffTime").textContent = timeString;
-    } else {
-      document.getElementById("lastBuffTime").textContent = "--:--:--";
+      document.getElementById("countdownTimer").textContent = `${nextBuff.buff} drops in ${timeString}`;
+
+      // Update all countdown timers in expanded cards
+      updateAllCountdowns();
     }
-
-    // Find the next upcoming buff
-    let nextBuff = filteredBuffs.find(e => {
-      let buffDate = moment(e.datetime).tz("America/Denver");
-      return buffDate.isAfter(now);
-    });
-
-    if (!nextBuff) {
-      document.getElementById("countdownTimer").textContent = "No upcoming buffs";
-      if (lastBuffs !== null) {
-        displayBuffs();
-        lastBuffs = null;
-      }
-      return;
-    }
-
-    let buffDate = moment(nextBuff.datetime).tz("America/Denver");
-    let timeDiff = buffDate.diff(now);
-    let alertedBuffs = new Set(JSON.parse(localStorage.getItem("alertedBuffs")) || []);
-    let buffKey = `${nextBuff.datetime}_${nextBuff.guild}_${nextBuff.buff}`;
-
-    // Only alert if the buff is still upcoming (timeDiff > 0) and within 10 minutes
-    if (timeDiff <= 600000 && timeDiff > 0 && !alertedBuffs.has(buffKey) && !alertedBuffsInSession.has(buffKey) && buffDate.isAfter(now)) {
-      showCustomNotification(nextBuff);
-      alertedBuffs.add(buffKey);
-      alertedBuffsInSession.add(buffKey);
-      localStorage.setItem("alertedBuffs", JSON.stringify([...alertedBuffs]));
-      displayBuffs();
-    }
-
-    if (timeDiff <= 0) {
-      document.getElementById("countdownTimer").textContent = `${nextBuff.buff} buff is now!`;
-      let upcomingBuffs = filteredBuffs.filter(e => {
-        let d = moment(e.datetime).tz("America/Denver");
-        return d.isAfter(now);
-      });
-      if (JSON.stringify(upcomingBuffs) !== JSON.stringify(lastBuffs)) {
-        buffs = upcomingBuffs;
-        displayBuffs();
-        lastBuffs = upcomingBuffs;
-      }
-      localStorage.removeItem("alertedBuffs");
-      return;
-    }
-
-    let duration = moment.duration(timeDiff);
-    let days = Math.floor(duration.asDays());
-    let hours = duration.hours();
-    let minutes = duration.minutes();
-    let seconds = duration.seconds();
     
-    let timeString;
-    if (days === 0) {
-      if (hours === 0) {
-        if (minutes === 0) {
-          timeString = `${seconds}s`;
-        } else {
-          timeString = `${minutes}m ${seconds}s`;
-        }
-      } else {
-        timeString = `${hours}h ${minutes}m ${seconds}s`;
-      }
-    } else {
-      timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-    document.getElementById("countdownTimer").textContent = `${nextBuff.buff} drops in ${timeString}`;
-
-    // Update all countdown timers in expanded cards
-    updateAllCountdowns();
+    // Continue the animation loop
+    animationId = requestAnimationFrame(updateCountdown);
   }
 
   function showCustomNotification(buff) {
@@ -553,8 +566,16 @@ function startCountdown() {
     }
   }
 
+  // Start the animation loop
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  
+  // Return cleanup function
+  return function stopCountdown() {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  };
 }
 
 // Swipe Gestures for Mobile
@@ -575,6 +596,16 @@ document.addEventListener('DOMContentLoaded', () => {
   loadBuffs();
   setInterval(loadBuffs, 60000);
   displayBuffs();
+  
+  // Start the optimized countdown
+  const stopCountdown = startCountdown();
+  
+  // Cleanup function for when page unloads
+  window.addEventListener('beforeunload', () => {
+    if (stopCountdown) {
+      stopCountdown();
+    }
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
