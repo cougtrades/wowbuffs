@@ -1,5 +1,12 @@
 [
     {
+        "datetime": "2025-01-16T18:00:00Z",
+        "guild": "Alliance Test Guild",
+        "buff": "Zandalar",
+        "notes": "Test buff for localhost testing",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-08T00:53:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
@@ -98,6 +105,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-10T22:00:00Z",
+        "guild": "Rosario",
+        "buff": "Zandalar",
+        "notes": "(Sunday 10) (04:00PM ST)",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-11T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
@@ -130,13 +144,6 @@
         "guild": "Resolve",
         "buff": "Nefarian",
         "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-01-16T18:00:00Z",
-        "guild": "Alliance Test Guild",
-        "buff": "Zandalar",
-        "notes": "Test buff for localhost testing",
         "server": "Doomhowl"
     }
 ]
