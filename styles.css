@@ -30,11 +30,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Scale the entire site to 90% zoom level */
-  transform: scale(0.9);
-  transform-origin: top center;
-  width: 111.11%; /* Compensate for the scale to prevent horizontal scrolling */
-  margin-left: -5.56%; /* Center the scaled content */
 }
 
 body::before {
@@ -440,6 +435,7 @@ body.alliance .timer-container {
   text-shadow: 
     0 0 2px #fff,
     0 0 5px #ff3333;
+  animation: sparkle 3s infinite;
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: unset !important;
@@ -470,6 +466,7 @@ body.alliance .timer-container {
   right: -5px;
   bottom: -5px;
   background: radial-gradient(circle at center, transparent 50%, rgba(255, 51, 51, 0.05) 100%);
+  animation: glow 3s infinite alternate;
   z-index: -1;
   border-radius: 10px;
 }
@@ -477,9 +474,11 @@ body.alliance .timer-container {
 @keyframes glow {
   from {
     opacity: 0.3;
+    transform: scale(0.98);
   }
   to {
     opacity: 0.5;
+    transform: scale(1.02);
   }
 }
 
@@ -507,7 +506,7 @@ body.alliance .countdown::before {
 }
 
 body.alliance .countdown {
-  /* Removed animation to prevent movement */
+  animation: sparkle-alliance 3s infinite;
 }
 
 #lastBuffTime {
