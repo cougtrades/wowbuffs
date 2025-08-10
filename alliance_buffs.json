@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "",
-        "buff": "",
-        "notes": "MB date fixed",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-01-16T18:00:00Z",
-        "guild": "Alliance Test Guild",
-        "buff": "Zandalar",
-        "notes": "Test buff for localhost testing",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-08T00:53:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-08T00:55:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-08T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-08T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-08T22:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-09T00:57:00Z",
         "guild": "Risk",
         "buff": "Zandalar",
