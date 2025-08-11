@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-08-09T00:57:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Tedd",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T01:00:00Z",
-        "guild": "Risk",
-        "buff": "Nefarian",
-        "notes": "Turtlekun",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T03:00:00Z",
-        "guild": "Stalwart",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T14:55:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T14:57:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T22:57:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-09T23:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-10T00:55:00Z",
         "guild": "Immortal",
         "buff": "Zandalar",
