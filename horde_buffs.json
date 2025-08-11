@@ -117,5 +117,12 @@
         "buff": "Nefarian",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-14T22:02:00Z",
+        "guild": "fatal",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
