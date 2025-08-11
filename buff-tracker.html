@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#ff3333">
     <title>Doomhowl Buff Tracker</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://hcbuffs.com">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -12,6 +14,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="/android-chrome-512x512.png" sizes="512x512">
+    <link rel="preload" href="https://hcbuffs.com/ony.webp" as="image" fetchpriority="high">
     <style>
         :root {
             --horde-color: #ff3333;
@@ -52,6 +55,10 @@
             z-index: -1;
             opacity: 0.9;
             will-change: transform;
+        }
+
+        @media (max-width: 768px) {
+            body::before { background-attachment: scroll; }
         }
 
         h1, h2 { 
@@ -326,7 +333,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-10-year-range.min.js"></script>
     <script>
         // Password authentication with auto-remember
         const pagePassword = "coug"; // Set your password

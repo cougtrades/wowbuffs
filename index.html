@@ -1,102 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
- <meta name="theme-color" content="#ff3333">
- <meta name="description" content="Find the latest WoW Classic buff schedule for Onyxia, Zandalar, Rend, Nefarian, and future buffs on Doomhowl server. Check server times for Horde and Alliance buffs. Updated for Hardcore (HC) WoW Classic.">
- <meta name="keywords" content="wow classic buff schedule, when ony, wen ony, when does ony drop, what time is ony, hc wow classic buffs, hcbuffs, onyxia buff schedule, zandalar buff, nefarian buff, doomhowl buffs">
- <meta name="robots" content="index, follow">
- <meta name="author" content="CougDevs">
- <meta property="og:title" content="HCBuffs - WoW Classic Hardcore Buff Schedule">
- <meta property="og:description" content="Get the exact times for Onyxia, Zandalar, and Nefarian buff drops in WoW Classic Hardcore on Doomhowl. Horde and Alliance schedules included!">
- <meta property="og:type" content="website">
- <meta property="og:url" content="https://hcbuffs.com">
- <meta property="og:image" content="https://hcbuffs.com/ony_compressed.webp">
- <link rel="icon" href="/favicon.ico" type="image/x-icon">
- <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
- <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
- <link rel="apple-touch-icon" href="/apple-touch-icon.png">
- <link rel="manifest" href="/site.webmanifest">
- <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
- <link rel="icon" type="image/png" href="/android-chrome-512x512.png" sizes="512x512">
- <link rel="preload" href="/styles.css" as="style">
- <link rel="preload" href="/script.js" as="script">
- <link rel="preload" href="/ony_compressed.webp" as="image">
- <title>HCBuffs - WoW Classic Hardcore Buff Schedule</title>
- <link rel="stylesheet" href="styles.css">
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-1M81YHK2EB"></script>
- <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
- gtag('config', 'G-1M81YHK2EB');
- </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ff3333">
+  <meta name="description" content="Find the latest WoW Classic buff schedule for Onyxia, Zandalar, Rend, Nefarian, and future buffs on Doomhowl server. Check server times for Horde and Alliance buffs. Updated for Hardcore (HC) WoW Classic.">
+  <meta name="keywords" content="wow classic buff schedule, when ony, wen ony, when does ony drop, what time is ony, hc wow classic buffs, hcbuffs, onyxia buff schedule, zandalar buff, nefarian buff, doomhowl buffs">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="CougDevs">
+  <meta property="og:title" content="HCBuffs - WoW Classic Hardcore Buff Schedule">
+  <meta property="og:description" content="Get the exact times for Onyxia, Zandalar, and Nefarian buff drops in WoW Classic Hardcore on Doomhowl. Horde and Alliance schedules included!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hcbuffs.com">
+  <meta property="og:image" content="https://hcbuffs.com/ony.webp">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/android-chrome-512x512.png" sizes="512x512">
+  <link rel="preload" href="/styles.css" as="style">
+  <link rel="preload" href="/script.js" as="script">
+  <link rel="preload" href="/ony.webp" as="image">
+  <title>HCBuffs - WoW Classic Hardcore Buff Schedule</title>
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1M81YHK2EB"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date());
+  gtag('config', 'G-1M81YHK2EB');
+  </script>
 </head>
 <body>
- <div class="content-zoom-wrapper">
-  <h1>WoW Classic Buff Schedule</h1>
-  <section class="intro">
-   <p>Welcome to the <strong>WoW Classic buff schedule</strong> for Doomhowl! Track <strong>Onyxia, Zandalar, Rend, Nefarian, and future</strong> buffs for both <strong><span class="horde-color">Horde</span></strong> and <strong><span class="alliance-color">Alliance</span></strong>. Use the dropdowns to switch factions and select buffs.</p>
-  </section>
-  <div class="container">
-   <div class="faction-select" role="region" aria-label="Faction Selection">
-    <button id="hordeBtn" class="faction-btn horde" onclick="updateFaction('horde')" aria-label="Show Horde Buffs">Horde</button>
-    <button id="allianceBtn" class="faction-btn alliance" onclick="updateFaction('alliance')" aria-label="Show Alliance Buffs">Alliance</button>
-   </div>
-   <div class="buff-select" role="region" aria-label="Buff Selection">
-     <button class="buff-btn all" id="buffAllBtn" onclick="updateBuffType('all')" aria-label="Show All Buffs">
-       All
-     </button>
-     <button class="buff-btn onyxia" id="buffOnyxiaBtn" onclick="updateBuffType('onyxia')" aria-label="Show Onyxia Buffs">
-       <img src="/onyxia-icon.png" alt="Onyxia" class="buff-btn-icon"> Onyxia
-     </button>
-     <button class="buff-btn zandalar" id="buffZandalarBtn" onclick="updateBuffType('zandalar')" aria-label="Show Zandalar Buffs">
-       <img src="/zandalar-icon.png" alt="Zandalar" class="buff-btn-icon"> Zandalar
-     </button>
-     <button class="buff-btn nefarian" id="buffNefarianBtn" onclick="updateBuffType('nefarian')" aria-label="Show Nefarian Buffs">
-       <img src="/nefarian-icon.png" alt="Nefarian" class="buff-btn-icon"> Nefarian
-     </button>
-     <button class="buff-btn rend" id="buffRendBtn" onclick="updateBuffType('rend')" aria-label="Show Rend Buffs">
-       <img src="/rend-icon.png" alt="Rend" class="buff-btn-icon"> Rend
-     </button>
-   </div>
-   <div class="timezone-select" role="region" aria-label="Timezone Selection">
-    <label for="timezoneSearch">Filter Timezones:</label>
-    <input type="text" id="timezoneSearch" placeholder="Search by country or city..." oninput="filterTimezones()" aria-label="Search timezones">
-    <label for="timezone">Timezone:</label>
-    <select id="timezone" onchange="updateTimezone()" aria-label="Select your timezone">
-     <!-- Options populated by JavaScript -->
-    </select>
-   </div>
-   <div class="search-container" role="search" aria-label="Search Buffs">
-    <label for="buffSearch">Search Buffs:</label>
-    <input type="text" id="buffSearch" placeholder="Search by guild, time, or buff..." oninput="searchBuffs()" aria-label="Search buff schedule">
-   </div>
-   <div class="timer-container">
-    <div class="last-buff" id="lastBuff" role="timer" aria-live="polite">
-     Time Since Last Buff: <span id="lastBuffTime">--:--:--</span>
+  <div class="content-zoom-wrapper">
+    <h1>WoW Classic Buff Schedule</h1>
+    <section class="intro">
+      <p>Welcome to the <strong>WoW Classic buff schedule</strong> for Doomhowl! Track <strong>Onyxia, Zandalar, Rend, Nefarian, and future</strong> buffs for both <strong><span class="horde-color">Horde</span></strong> and <strong><span class="alliance-color">Alliance</span></strong>. Use the dropdowns to switch factions and select buffs.</p>
+    </section>
+    <div class="container">
+      <div class="faction-select" role="region" aria-label="Faction Selection">
+        <button id="hordeBtn" class="faction-btn horde" onclick="updateFaction('horde')" aria-label="Show Horde Buffs">Horde</button>
+        <button id="allianceBtn" class="faction-btn alliance" onclick="updateFaction('alliance')" aria-label="Show Alliance Buffs">Alliance</button>
+      </div>
+      <div class="buff-select" role="region" aria-label="Buff Selection">
+        <button class="buff-btn all" id="buffAllBtn" onclick="updateBuffType('all')" aria-label="Show All Buffs">
+          All
+        </button>
+        <button class="buff-btn onyxia" id="buffOnyxiaBtn" onclick="updateBuffType('onyxia')" aria-label="Show Onyxia Buffs">
+          <img src="/onyxia-icon.png" alt="Onyxia" class="buff-btn-icon" loading="lazy" decoding="async" width="24" height="24"> Onyxia
+        </button>
+        <button class="buff-btn zandalar" id="buffZandalarBtn" onclick="updateBuffType('zandalar')" aria-label="Show Zandalar Buffs">
+          <img src="/zandalar-icon.png" alt="Zandalar" class="buff-btn-icon" loading="lazy" decoding="async" width="24" height="24"> Zandalar
+        </button>
+        <button class="buff-btn nefarian" id="buffNefarianBtn" onclick="updateBuffType('nefarian')" aria-label="Show Nefarian Buffs">
+          <img src="/nefarian-icon.png" alt="Nefarian" class="buff-btn-icon" loading="lazy" decoding="async" width="24" height="24"> Nefarian
+        </button>
+        <button class="buff-btn rend" id="buffRendBtn" onclick="updateBuffType('rend')" aria-label="Show Rend Buffs">
+          <img src="/rend-icon.png" alt="Rend" class="buff-btn-icon" loading="lazy" decoding="async" width="24" height="24"> Rend
+        </button>
+      </div>
+      <div class="timezone-select" role="region" aria-label="Timezone Selection">
+        <label for="timezoneSearch">Filter Timezones:</label>
+        <input type="text" id="timezoneSearch" placeholder="Search by country or city..." oninput="filterTimezones()" aria-label="Search timezones">
+        <label for="timezone">Timezone:</label>
+        <select id="timezone" onchange="updateTimezone()" aria-label="Select your timezone">
+          <!-- Options populated by JavaScript -->
+        </select>
+      </div>
+      <div class="search-container" role="search" aria-label="Search Buffs">
+        <label for="buffSearch">Search Buffs:</label>
+        <input type="text" id="buffSearch" placeholder="Search by guild, time, or buff..." oninput="searchBuffs()" aria-label="Search buff schedule">
+      </div>
+      <div class="timer-container">
+        <div class="last-buff" id="lastBuff" role="timer" aria-live="polite">
+          Time Since Last Buff: <span id="lastBuffTime">--:--:--</span>
+        </div>
+        <div class="countdown" id="countdown" role="timer" aria-live="polite">
+          <span id="countdownTimer">--:--:--</span>
+        </div>
+      </div>
+      <div class="time-disclaimer">
+        <p id="timeFormatText">Times shown are in server time. Click any buff to see your local time.</p>
+      </div>
+      <button id="timeFormatToggle" class="time-format-toggle" onclick="toggleTimeFormat()">
+        Show Local Time
+      </button>
+      <div class="timeline-wrapper">
+        <div id="buffTimeline" role="region" aria-label="Buff Timeline"></div>
+      </div>
     </div>
-    <div class="countdown" id="countdown" role="timer" aria-live="polite">
-     <span id="countdownTimer">--:--:--</span>
-    </div>
-   </div>
-   <div class="time-disclaimer">
-    <p id="timeFormatText">Times shown are in server time. Click any buff to see your local time.</p>
-   </div>
-   <button id="timeFormatToggle" class="time-format-toggle" onclick="toggleTimeFormat()">
-    Show Local Time
-   </button>
-   <div class="timeline-wrapper">
-    <div id="buffTimeline" role="region" aria-label="Buff Timeline"></div>
-   </div>
   </div>
- </div>
- <footer>
-  Feature ideas? Comments? Want your own app made? <a href="mailto:cougdevs@gmail.com">cougdevs@gmail.com</a> | <a href="https://www.buymeacoffee.com/cougdevs" target="_blank" rel="noopener">Support HCBuffs</a>
- </footer>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
- <script src="script.js"></script>
+  <footer>
+    Feature ideas? Comments? Want your own app made? <a href="mailto:cougdevs@gmail.com">cougdevs@gmail.com</a> | <a href="https://www.buymeacoffee.com/cougdevs" target="_blank" rel="noopener">Support HCBuffs</a>
+  </footer>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data-10-year-range.min.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
