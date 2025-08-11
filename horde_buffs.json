@@ -49,13 +49,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-08-11T23:50:00Z",
-        "guild": "Zug Life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-11T23:52:00Z",
         "guild": "Zug Life",
         "buff": "Onyxia",
@@ -67,6 +60,13 @@
         "guild": "Zug Life",
         "buff": "Rend",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-12T00:45:00Z",
+        "guild": "Zug Life",
+        "buff": "Zandalar",
+        "notes": "these times were updated as of 8/11 00:21 ST to accommodate a change in plans to save our raids DMF",
         "server": "Doomhowl"
     }
 ]
