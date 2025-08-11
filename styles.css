@@ -26,6 +26,11 @@ html {
   html { font-size: 100%; }
 }
 
+/* Improve scroll perf on mobile by avoiding fixed attachment */
+@media (max-width: 768px) {
+  body::before { background-attachment: scroll; }
+}
+
 /*
  * ROOT SCALING SYSTEM EXPLANATION:
  * 
@@ -80,6 +85,12 @@ body::before {
   z-index: -1;
   opacity: 0.9;
   will-change: transform;
+}
+
+/* Virtualize large sections to reduce layout/paint work */
+.timeline-group {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px 400px;
 }
 
 /* Headings */

@@ -5,6 +5,8 @@ let selectedBuffTypes = ["all"]; // Changed from selectedBuffType = "all" to arr
 let selectedTimezone = localStorage.getItem("selectedTimezone") || Intl.DateTimeFormat().resolvedOptions().timeZone;
 let groupedBuffs = [];
 let showLocalTime = localStorage.getItem("showLocalTime") !== "false";
+let lastBuffsEtag = { horde: null, alliance: null };
+let isPageHidden = false;
 
 function populateTimezoneDropdown() {
   const timezoneSelect = document.getElementById("timezone");
@@ -107,40 +109,60 @@ function updateBuffType(type) {
   startCountdown();
 }
 
-async function loadBuffs() {
+async function fetchWithCache(url, etagKey) {
   try {
-    let url = `${faction}_buffs.json?ts=${Date.now()}`;
-    console.log(`Loading buffs from: ${url}`);
-    let response = await fetch(url);
+    const headers = {};
+    const etag = lastBuffsEtag[etagKey];
+    if (etag) headers['If-None-Match'] = etag;
+    const response = await fetch(url, { headers });
+    if (response.status === 304) {
+      // Not modified; do nothing, caller should keep existing data
+      return null;
+    }
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    let data = await response.json();
+    const newEtag = response.headers.get('ETag');
+    if (newEtag) lastBuffsEtag[etagKey] = newEtag;
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.warn('Fetch with cache failed, falling back:', e);
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    const data = await response.json();
+    return data;
+  }
+}
+
+async function loadBuffs() {
+  if (isPageHidden) return; // Skip network while hidden
+  try {
+    let baseUrl = `${faction}_buffs.json`;
+    console.log(`Loading buffs from: ${baseUrl}`);
+    let data = await fetchWithCache(baseUrl, faction);
+    if (data === null && buffs.length) {
+      // Use existing buffs if not modified
+      data = [...buffs, ...pastBuffs];
+    } else if (data === null) {
+      // Nothing cached yet; fetch once without cache headers
+      const resp = await fetch(baseUrl);
+      if (!resp.ok) throw new Error(`HTTP error! Status: ${resp.status}`);
+      data = await resp.json();
+    }
     
     // For Zandalar buffs, we need to load from both factions since they work for both
     let zandalarBuffs = [];
-    if (faction === 'horde') {
-      try {
-        const allianceResponse = await fetch(`alliance_buffs.json?ts=${Date.now()}`);
-        if (allianceResponse.ok) {
-          const allianceData = await allianceResponse.json();
-          zandalarBuffs = allianceData.filter(buff => buff.buff.toLowerCase() === 'zandalar');
-        }
-      } catch (error) {
-        console.warn('Could not load Alliance Zandalar buffs:', error);
+    const otherFaction = faction === 'horde' ? 'alliance' : 'horde';
+    try {
+      const otherData = await fetchWithCache(`${otherFaction}_buffs.json`, otherFaction);
+      if (otherData) {
+        zandalarBuffs = otherData.filter(buff => buff.buff.toLowerCase() === 'zandalar');
       }
-    } else if (faction === 'alliance') {
-      try {
-        const hordeResponse = await fetch(`horde_buffs.json?ts=${Date.now()}`);
-        if (hordeResponse.ok) {
-          const hordeData = await hordeResponse.json();
-          zandalarBuffs = hordeData.filter(buff => buff.buff.toLowerCase() === 'zandalar');
-        }
-      } catch (error) {
-        console.warn('Could not load Horde Zandalar buffs:', error);
-      }
+    } catch (error) {
+      console.warn('Could not load other faction Zandalar buffs:', error);
     }
     
     // Combine the main faction buffs with Zandalar buffs from the other faction
-    let allBuffs = [...data, ...zandalarBuffs];
+    let allBuffs = Array.isArray(data) ? [...data, ...zandalarBuffs] : [...zandalarBuffs];
     
     // Separate past and future buffs
     let now = moment().tz("America/Denver");
@@ -343,7 +365,7 @@ function displayBuffs() {
       
       groupContent += `
         <div class="timeline-card ${isGlowing ? 'glowing' : ''}" data-datetime="${buff.datetime}">
-          <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon"><strong>${timeOnly} - ${buff.buff}</strong></p>
+          <p class="summary"><img src="${iconSrc}" alt="${buff.buff} Icon" class="buff-icon" loading="lazy" decoding="async" width="35" height="35"><strong>${timeOnly} - ${buff.buff}</strong></p>
           <div class="details">
             <p><strong>Guild:</strong> ${buff.guild}</p>
             <p><strong>${showLocalTime ? 'Server Time' : 'Your Time'}:</strong> ${alternateTime}</p>
@@ -372,6 +394,7 @@ function displayBuffs() {
 }
 
 function updateAllCountdowns() {
+  if (isPageHidden) return;
   const cards = document.querySelectorAll('.timeline-card');
   const now = moment().tz("America/Denver");
 
@@ -415,6 +438,10 @@ function startCountdown() {
 
   function updateCountdown(timestamp) {
     // Use requestAnimationFrame for smoother performance
+    if (isPageHidden) {
+      animationId = requestAnimationFrame(updateCountdown);
+      return;
+    }
     if (!lastUpdate || timestamp - lastUpdate >= 1000) { // Update every 1000ms (1 second)
       lastUpdate = timestamp;
       
@@ -578,6 +605,13 @@ function startCountdown() {
   };
 }
 
+// Pause timers and network when tab is hidden
+function handleVisibilityChange() {
+  isPageHidden = document.hidden;
+}
+
+document.addEventListener('visibilitychange', handleVisibilityChange);
+
 // Swipe Gestures for Mobile
 document.addEventListener('DOMContentLoaded', () => {
   const button = document.getElementById('timeFormatToggle');
@@ -594,7 +628,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   populateTimezoneDropdown();
   loadBuffs();
-  setInterval(loadBuffs, 60000);
+  // Poll less often; will revalidate via ETag and pause when hidden
+  setInterval(() => { if (!isPageHidden) loadBuffs(); }, 120000);
   displayBuffs();
   
   // Start the optimized countdown
