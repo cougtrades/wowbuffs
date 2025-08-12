@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-08-10T00:57:00Z",
-        "guild": "Endless",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-10T07:27:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-10T07:30:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-10T07:30:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-10T22:02:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Onyxia",
-        "notes": "To complement Alliance Zandalar dropped at 16:00 ST",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-11T00:48:00Z",
         "guild": "Death",
         "buff": "Zandalar",
