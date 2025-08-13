@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-08-11T00:48:00Z",
-        "guild": "Death",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-11T00:50:00Z",
-        "guild": "Death",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-11T23:52:00Z",
-        "guild": "Zug Life",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-11T23:53:00Z",
-        "guild": "Zug Life",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-12T00:45:00Z",
         "guild": "Zug Life",
         "buff": "Zandalar",
