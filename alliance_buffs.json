@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-08-13T01:53:00Z",
-        "guild": "",
-        "buff": "Zandalar",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-13T01:55:00Z",
-        "guild": "",
-        "buff": "Onyxia",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-13T22:30:00Z",
-        "guild": "Embrace RPness",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-14T01:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
