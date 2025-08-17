@@ -82,5 +82,12 @@
         "buff": "Zandalar",
         "notes": "Lonelyhuman",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-19T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Eisenheart",
+        "server": "Doomhowl"
     }
 ]
