@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-08-15T00:55:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-15T00:57:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "give or take a few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-15T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-15T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-15T02:00:00Z",
-        "guild": "Stalwart",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-15T22:00:00Z",
-        "guild": "Rosario",
-        "buff": "Zandalar",
-        "notes": "(Friday 15) (04:00PM ST)",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-16T00:57:00Z",
         "guild": "Freminik",
         "buff": "Zandalar",
