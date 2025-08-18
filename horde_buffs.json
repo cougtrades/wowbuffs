@@ -56,6 +56,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-19T00:00:00Z",
+        "guild": "WoR",
+        "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-19T22:00:00Z",
         "guild": "fatal",
         "buff": "Zandalar",
