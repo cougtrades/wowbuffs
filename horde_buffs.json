@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-08-17T07:27:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-17T07:30:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-17T22:58:00Z",
-        "guild": "Ungoon",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-17T23:00:00Z",
-        "guild": "Ungoon",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-17T23:00:00Z",
-        "guild": "Ungoon",
-        "buff": "Rend",
-        "notes": "Layers permitting",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-18T00:48:00Z",
         "guild": "Death",
         "buff": "Zandalar",
