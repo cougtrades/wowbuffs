@@ -98,6 +98,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-20T02:58:00Z",
+        "guild": "",
+        "buff": "Rend",
+        "notes": "for the rend cd to come off of cd (dont mess up the layers ninjas)",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-21T22:00:00Z",
         "guild": "fatal",
         "buff": "Zandalar",
