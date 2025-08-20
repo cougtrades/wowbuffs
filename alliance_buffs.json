@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-08-18T00:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-18T00:58:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-18T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-18T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-18T23:57:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Lonelyhuman",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-19T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "Eisenheart",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-19T00:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-19T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
