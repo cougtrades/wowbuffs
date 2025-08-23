@@ -197,7 +197,7 @@
     },
     {
         "datetime": "2025-08-26T22:00:00Z",
-        "guild": "",
+        "guild": "fatal",
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
