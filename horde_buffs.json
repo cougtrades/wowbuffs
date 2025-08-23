@@ -215,5 +215,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-28T22:02:00Z",
+        "guild": "",
+        "buff": "Nefarian",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
