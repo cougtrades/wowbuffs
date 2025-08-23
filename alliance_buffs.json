@@ -84,6 +84,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-23T21:30:00Z",
+        "guild": "Elite",
+        "buff": "Onyxia",
+        "notes": "Kronwalled",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-24T00:00:00Z",
         "guild": "Stalwart",
         "buff": "Zandalar",
