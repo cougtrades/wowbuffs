@@ -133,6 +133,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-08-26T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Meanmachine",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-08-26T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
