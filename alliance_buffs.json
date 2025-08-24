@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-08-22T00:55:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-22T00:57:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-22T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-22T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-22T23:30:00Z",
-        "guild": "Grail Knights",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-23T01:00:00Z",
         "guild": "Risk",
         "buff": "Zandalar",
