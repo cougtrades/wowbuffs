@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "",
-        "buff": "",
-        "notes": "Late notice, but the Monday drops scheduled for today are cancelled",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-25T00:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-25T00:58:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-25T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-25T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-25T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Turtle",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-26T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "Meanmachine",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-26T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
