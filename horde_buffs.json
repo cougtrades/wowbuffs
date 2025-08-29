@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "",
-        "buff": "",
-        "notes": "may be pushed a 10-15 minutes as our team finishes up their raid",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "",
-        "guild": "",
-        "buff": "Onyxia",
-        "notes": "layers cooked (thanks griefers) will still be dropping Zandalar/Rend if someone doesnt cook rend layers in the next few minutes",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-27T00:50:00Z",
-        "guild": "Death",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-27T01:47:00Z",
-        "guild": "Washed Up",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-27T02:45:00Z",
-        "guild": "Washed Up",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-27T02:47:00Z",
-        "guild": "Washed Up",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-28T00:00:00Z",
-        "guild": "Ungoon",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-28T00:02:00Z",
         "guild": "Ungoon",
         "buff": "Onyxia",
