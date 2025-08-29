@@ -54,5 +54,12 @@
         "buff": "Nefarian",
         "notes": "Optionalz",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-31T00:00:00Z",
+        "guild": "Stalwart",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
