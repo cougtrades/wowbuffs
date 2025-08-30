@@ -1,19 +1,5 @@
 [
     {
-        "datetime": "2025-08-28T01:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-28T01:56:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-08-29T00:55:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
@@ -73,7 +59,7 @@
         "datetime": "2025-08-30T15:02:00Z",
         "guild": "Purpose",
         "buff": "Onyxia",
-        "notes": "give or take a few minutes \ud83d\ude34",
+        "notes": "give or take a few minutes 😴",
         "server": "Doomhowl"
     },
     {
