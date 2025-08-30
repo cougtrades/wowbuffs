@@ -59,7 +59,14 @@
         "datetime": "2025-08-30T15:02:00Z",
         "guild": "Purpose",
         "buff": "Onyxia",
-        "notes": "give or take a few minutes 😴",
+        "notes": "give or take a few minutes \ud83d\ude34",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-08-30T22:58:00Z",
+        "guild": "Eclipse",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
