@@ -75,5 +75,12 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-02T22:02:00Z",
+        "guild": "fatal",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
