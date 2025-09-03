@@ -89,5 +89,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-09T00:00:00Z",
+        "guild": "Meanmachine",
+        "buff": "Onyxia",
+        "notes": "Turtlecoii",
+        "server": "Doomhowl"
     }
 ]
