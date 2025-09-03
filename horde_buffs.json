@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "",
-        "guild": "",
-        "buff": "",
-        "notes": "pushed to 9st due to layers",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-01T00:48:00Z",
-        "guild": "Death",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-01T00:50:00Z",
-        "guild": "Death",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-01T00:52:00Z",
-        "guild": "",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-02T01:40:00Z",
         "guild": "Aligned",
         "buff": "Zandalar",
