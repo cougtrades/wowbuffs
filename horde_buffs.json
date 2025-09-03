@@ -84,13 +84,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-09-04T03:45:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Zandalar",
-        "notes": "Layers permitting",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-04T03:47:00Z",
         "guild": "Heart and Solo",
         "buff": "Onyxia",
@@ -101,6 +94,13 @@
         "datetime": "2025-09-04T03:47:00Z",
         "guild": "Heart and Solo",
         "buff": "Rend",
+        "notes": "Layers permitting",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-04T03:47:00Z",
+        "guild": "Heart and Solo",
+        "buff": "Nefarian",
         "notes": "Layers permitting",
         "server": "Doomhowl"
     },
