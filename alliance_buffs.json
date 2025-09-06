@@ -31,7 +31,7 @@
         "datetime": "2025-09-05T12:50:00Z",
         "guild": "Risk",
         "buff": "Zandalar",
-        "notes": "using horde’s ZG",
+        "notes": "using horde\u2019s ZG",
         "server": "Doomhowl"
     },
     {
@@ -74,6 +74,13 @@
         "guild": "Elite",
         "buff": "Onyxia",
         "notes": "Berzrk",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-07T21:00:00Z",
+        "guild": "Phoenix RP",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
