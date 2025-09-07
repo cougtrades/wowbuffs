@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-09-05T00:02:00Z",
-        "guild": "Ungoon",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-05T00:02:00Z",
-        "guild": "Ungoon",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-05T00:28:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-05T00:30:00Z",
-        "guild": "Shadow Wizard Money Gang",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-05T22:00:00Z",
-        "guild": "Endless",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-05T22:02:00Z",
-        "guild": "Endless",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-05T22:02:00Z",
-        "guild": "Endless",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-06T00:50:00Z",
         "guild": "Zug Life",
         "buff": "Zandalar",
