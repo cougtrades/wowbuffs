@@ -82,5 +82,12 @@
         "buff": "Zandalar",
         "notes": "Babyfaecat",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-13T14:33:00Z",
+        "guild": "Elite",
+        "buff": "Onyxia",
+        "notes": "Requiem",
+        "server": "Doomhowl"
     }
 ]
