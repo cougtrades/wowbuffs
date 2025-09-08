@@ -75,5 +75,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-13T14:30:00Z",
+        "guild": "Elite",
+        "buff": "Zandalar",
+        "notes": "Babyfaecat",
+        "server": "Doomhowl"
     }
 ]
