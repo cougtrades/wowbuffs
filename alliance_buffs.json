@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-09-07T21:00:00Z",
-        "guild": "Phoenix RP",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-07T23:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-07T23:55:00Z",
-        "guild": "Purpose",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-07T23:58:00Z",
-        "guild": "Purpose",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-08T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
