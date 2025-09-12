@@ -98,6 +98,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-09-13T03:00:00Z",
+        "guild": "fatal",
+        "buff": "",
+        "notes": "Friday raid night window start (9:00-9:30pm ST, actual buff type not specified)",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-09-13T03:30:00Z",
         "guild": "fatal",
         "buff": "",
