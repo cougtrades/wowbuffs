@@ -84,6 +84,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-09-13T03:30:00Z",
+        "guild": "fatal",
+        "buff": "",
+        "notes": "Typical drop window end (7:30pm ST - 9:30pm ST, actual buff type not specified)",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-09-13T22:00:00Z",
         "guild": "fatal",
         "buff": "Zandalar",
