@@ -131,5 +131,12 @@
         "buff": "Zandalar",
         "notes": "Bhugish",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-20T14:02:00Z",
+        "guild": "Elite",
+        "buff": "Onyxia",
+        "notes": "Vantherr",
+        "server": "Doomhowl"
     }
 ]
