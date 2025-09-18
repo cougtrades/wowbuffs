@@ -131,5 +131,12 @@
         "buff": "Onyxia",
         "notes": "Vantherr",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-21T00:00:00Z",
+        "guild": "Stalwart",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
