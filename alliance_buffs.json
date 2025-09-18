@@ -70,6 +70,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-09-20T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Teddhunt",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-09-20T14:00:00Z",
         "guild": "Elite",
         "buff": "Zandalar",
