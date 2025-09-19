@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-08-16T02:00:00Z",
-        "guild": "Stalwart",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-21T00:00:00Z",
-        "guild": "Stalwart",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-08-21T00:02:00Z",
-        "guild": "Stalwart",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-17T19:00:00Z",
-        "guild": "The Orchards",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-17T23:00:00Z",
-        "guild": "Grail Knight",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-18T00:45:00Z",
         "guild": "Valhalla Awakening",
         "buff": "Zandalar",
