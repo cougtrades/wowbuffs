@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-09-19T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-19T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-19T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Restodad",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-20T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "Teddhunt",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-20T00:45:00Z",
         "guild": "Valhalla Awakening",
         "buff": "Zandalar",
