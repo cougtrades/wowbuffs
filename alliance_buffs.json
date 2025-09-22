@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-09-20T00:45:00Z",
-        "guild": "Valhalla Awakening",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-20T02:00:00Z",
-        "guild": "Stalwart",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-20T10:58:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-20T11:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-20T14:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Bhugish",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-20T14:02:00Z",
-        "guild": "Elite",
-        "buff": "Onyxia",
-        "notes": "Vantherr",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-21T00:00:00Z",
-        "guild": "Stalwart",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-21T00:02:00Z",
         "guild": "Stalwart",
         "buff": "Onyxia",
