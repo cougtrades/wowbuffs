@@ -1,12 +1,5 @@
 [
     {
-        "datetime": "2025-09-17T23:00:00Z",
-        "guild": "Grail Knight",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-21T00:02:00Z",
         "guild": "Stalwart",
         "buff": "Onyxia",
@@ -88,6 +81,13 @@
         "guild": "Risk",
         "buff": "Nefarian",
         "notes": "Seggusall",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-23T23:30:00Z",
+        "guild": "Grail Knight",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     }
 ]
