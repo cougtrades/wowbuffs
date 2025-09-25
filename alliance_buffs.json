@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-09-21T23:30:00Z",
-        "guild": "Phoenix RP",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T00:15:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "dropping an extra head to help out the scuffed drop, sorry for short notice",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T23:30:00Z",
-        "guild": "Grail Knight",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T23:33:00Z",
-        "guild": "Grail Knight",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-24T01:00:00Z",
         "guild": "Good Vibes Fresh Coffee",
         "buff": "Zandalar",
