@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-09-23T01:25:00Z",
-        "guild": "The Core",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T01:27:00Z",
-        "guild": "The Core",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T01:28:00Z",
-        "guild": "The Core",
-        "buff": "Rend",
-        "notes": "unless layers have been cooked",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T02:30:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T02:32:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-23T23:40:00Z",
-        "guild": "",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-25T01:25:00Z",
         "guild": "The Core",
         "buff": "Zandalar",
