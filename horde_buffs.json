@@ -84,6 +84,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-09-26T00:45:00Z",
+        "guild": "fatal",
+        "buff": "Rend",
+        "notes": "10 minutes from now",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-09-26T01:27:00Z",
         "guild": "The Core",
         "buff": "Onyxia",
