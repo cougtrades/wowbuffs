@@ -82,5 +82,12 @@
         "buff": "Zandalar",
         "notes": "Kzho",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-30T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Nefarian",
+        "notes": "Hibwarnicus",
+        "server": "Doomhowl"
     }
 ]
