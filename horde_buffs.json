@@ -49,13 +49,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-09-30T02:30:00Z",
-        "guild": "Heart and Solo",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-30T02:32:00Z",
         "guild": "Heart and Solo",
         "buff": "Onyxia",
@@ -67,6 +60,13 @@
         "guild": "",
         "buff": "",
         "notes": "Edited time above for today's drop to 9:30pm ST as we had a change in raid plans",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-09-30T03:30:00Z",
+        "guild": "Heart and Solo",
+        "buff": "Zandalar",
+        "notes": "",
         "server": "Doomhowl"
     },
     {
