@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-09-27T10:58:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-27T11:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-27T22:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Bobia | running zg at lv 56\ud83d\ude02",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-28T10:58:00Z",
         "guild": "Eclipse",
         "buff": "Zandalar",
