@@ -82,5 +82,12 @@
         "buff": "Zandalar",
         "notes": "Hadesw",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-04T14:02:00Z",
+        "guild": "Elite",
+        "buff": "Onyxia",
+        "notes": "Anboiji (korean angel)",
+        "server": "Doomhowl"
     }
 ]
