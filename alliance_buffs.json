@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-09-29T00:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-29T00:56:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-29T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-29T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-29T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Kzho",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-09-30T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Nefarian",
-        "notes": "Hibwarnicus",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-09-30T23:30:00Z",
         "guild": "Grail Knight",
         "buff": "Zandalar",
