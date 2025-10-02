@@ -77,6 +77,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-10-04T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Nyrelia",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-04T10:58:00Z",
         "guild": "Eclipse",
         "buff": "Zandalar",
