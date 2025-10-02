@@ -105,6 +105,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-10-03T00:40:00Z",
+        "guild": "fatal",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-03T00:50:00Z",
         "guild": "Zug Life",
         "buff": "Zandalar",
