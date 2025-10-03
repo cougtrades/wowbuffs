@@ -1,5 +1,12 @@
 [
     {
+        "datetime": "",
+        "guild": "",
+        "buff": "",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-02T02:15:00Z",
         "guild": "fatal",
         "buff": "Zandalar",
