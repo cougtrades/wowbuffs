@@ -222,9 +222,25 @@ exports.handler = async function(event) {
       const guild = String(opts.guild || '').trim();
       if (!guild) throw new Error('guild is required');
 
-      const datetimeInput = String(opts.datetime || '').trim();
-      if (!datetimeInput) throw new Error('datetime is required');
-      const isoDatetime = isIsoDatetime(datetimeInput) ? new Date(datetimeInput).toISOString().replace(/\.\d{3}Z$/, 'Z') : parseStToUtcIso(datetimeInput);
+      const dateInput = opts.date;
+      const timeInput = String(opts.time || '').trim();
+      if (!dateInput || !timeInput) throw new Error('date and time are required');
+      
+      // Convert Discord date (ISO string) and time to combined datetime
+      const date = new Date(dateInput);
+      const [hours, minutes] = timeInput.split(':').map(Number);
+      date.setUTCHours(hours, minutes, 0, 0);
+      
+      // Convert from ST to UTC
+      const year = date.getUTCFullYear();
+      const month = date.getUTCMonth() + 1;
+      const day = date.getUTCDate();
+      const hour = date.getUTCHours();
+      const minute = date.getUTCMinutes();
+      
+      const offsetHours = isDenverDST(year, month, day, hour, minute) ? 6 : 7; // ST -> UTC
+      const utcMs = Date.UTC(year, month - 1, day, hour + offsetHours, minute, 0, 0);
+      const isoDatetime = new Date(utcMs).toISOString().replace(/\.\d{3}Z$/, 'Z');
 
       const notes = (opts.notes || '').toString().trim();
 
