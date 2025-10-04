@@ -2,7 +2,8 @@
   "name": "wowbuffs",
   "version": "1.0.0",
   "scripts": {
-    "register:commands": "node scripts/register-commands.js"
+    "register:commands": "node scripts/register-commands.js",
+    "invite:url": "node scripts/invite-url.js"
   },
   "dependencies": {
     "node-fetch": "^2.6.7",
