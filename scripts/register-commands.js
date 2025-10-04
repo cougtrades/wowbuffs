@@ -79,16 +79,10 @@ const command = {
     },
     {
       name: 'date',
-      description: 'Quick date selection (or leave empty to use custom_date)',
+      description: 'Date for the buff drop',
       type: 3,
-      required: false,
+      required: true,
       choices: dateChoices
-    },
-    {
-      name: 'custom_date',
-      description: 'Custom date (YYYY-MM-DD) - use this for dates beyond 7 days or specific dates',
-      type: 3,
-      required: false
     },
     {
       name: 'notes',
