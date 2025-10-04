@@ -80,16 +80,16 @@ const command = {
       choices: dateChoices
     },
     {
-      name: 'manual_date',
-      description: 'Manual date entry (YYYY-MM-DD) - required when "Future Date" is selected',
-      type: 3,
-      required: false
-    },
-    {
       name: 'time',
       description: 'Time for the buff drop (HH:MM server time, e.g., 19:30 or 7:30 PM)',
       type: 3,
       required: true
+    },
+    {
+      name: 'manual_date',
+      description: 'Manual date entry (YYYY-MM-DD) - required when "Future Date" is selected',
+      type: 3,
+      required: false
     },
     {
       name: 'notes',
@@ -119,7 +119,7 @@ const command = {
     const data = await resp.json();
     if (!resp.ok) {
       console.error('Failed to register command:', resp.status, data);
-      console.error('Command object:', JSON.stringify(command, null, 2));
+      console.error('Full error details:', JSON.stringify(data, null, 2));
       process.exit(1);
     }
 
