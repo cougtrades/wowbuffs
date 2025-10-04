@@ -55,8 +55,7 @@ const command = {
         { name: 'In 4 Days', value: 'in_4_days' },
         { name: 'In 5 Days', value: 'in_5_days' },
         { name: 'In 6 Days', value: 'in_6_days' },
-        { name: 'In 7 Days', value: 'in_7_days' },
-        { name: 'Manual Entry (YYYY-MM-DD)', value: 'manual' }
+        { name: 'In 7 Days', value: 'in_7_days' }
       ]
     },
     {

@@ -230,13 +230,10 @@ exports.handler = async function(event) {
       let year, month, day;
       
       // Handle date selection
-      if (dateSelection === 'manual') {
+      if (dateSelection === 'manual' || manualDateInput) {
         // Parse manual date input (YYYY-MM-DD format)
-        if (!manualDateInput) {
-          throw new Error('Manual date entry required when "Manual Entry" is selected. Use YYYY-MM-DD format.');
-        }
-        
-        const dateMatch = manualDateInput.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        const dateToParse = manualDateInput || dateSelection;
+        const dateMatch = dateToParse.match(/^(\d{4})-(\d{2})-(\d{2})$/);
         if (!dateMatch) {
           throw new Error('Invalid date format. Use YYYY-MM-DD (e.g., 2024-01-15)');
         }
