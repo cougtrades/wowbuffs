@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-10-02T01:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-02T01:56:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-02T03:30:00Z",
-        "guild": "Grail Knights",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-02T03:32:00Z",
-        "guild": "Grail Knights",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-03T00:00:00Z",
-        "guild": "HC Roaches",
-        "buff": "Zandalar",
-        "notes": "Coolberry",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-03T00:02:00Z",
         "guild": "HC Cuties",
         "buff": "Onyxia",
