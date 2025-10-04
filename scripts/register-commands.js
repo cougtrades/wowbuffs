@@ -35,8 +35,7 @@ const dateChoices = [
   { name: `In 4 Days (${formatDate(new Date(serverTime.getTime() + 96 * 60 * 60 * 1000))})`, value: 'in_4_days' },
   { name: `In 5 Days (${formatDate(new Date(serverTime.getTime() + 120 * 60 * 60 * 1000))})`, value: 'in_5_days' },
   { name: `In 6 Days (${formatDate(new Date(serverTime.getTime() + 144 * 60 * 60 * 1000))})`, value: 'in_6_days' },
-  { name: `In 7 Days (${formatDate(new Date(serverTime.getTime() + 168 * 60 * 60 * 1000))})`, value: 'in_7_days' },
-  { name: 'Future Date (YYYY-MM-DD)', value: 'manual' }
+  { name: `In 7 Days (${formatDate(new Date(serverTime.getTime() + 168 * 60 * 60 * 1000))})`, value: 'in_7_days' }
 ];
 
 const command = {
@@ -74,9 +73,9 @@ const command = {
     },
     {
       name: 'date',
-      description: 'Date for the buff drop',
+      description: 'Quick date selection (or leave empty to use custom_date)',
       type: 3,
-      required: true,
+      required: false,
       choices: dateChoices
     },
     {
@@ -86,8 +85,8 @@ const command = {
       required: true
     },
     {
-      name: 'manual_date',
-      description: 'Manual date entry (YYYY-MM-DD) - required when "Future Date" is selected',
+      name: 'custom_date',
+      description: 'Custom date (YYYY-MM-DD) - use this for dates beyond 7 days or specific dates',
       type: 3,
       required: false
     },

@@ -223,19 +223,15 @@ exports.handler = async function(event) {
       if (!guild) throw new Error('guild is required');
 
       const dateSelection = String(opts.date || '').trim();
-      const manualDateInput = String(opts.manual_date || '').trim();
+      const customDateInput = String(opts.custom_date || '').trim();
       const timeInput = String(opts.time || '').trim();
-      if (!dateSelection || !timeInput) throw new Error('date and time are required');
+      if (!timeInput) throw new Error('time is required');
       
       let year, month, day;
       
-      // Handle manual date entry
-      if (dateSelection === 'manual') {
-        if (!manualDateInput) {
-          throw new Error('Manual date entry required when "Future Date" is selected. Use YYYY-MM-DD format.');
-        }
-        
-        const dateMatch = manualDateInput.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      // Handle custom date entry (if provided, use it; otherwise use dropdown selection)
+      if (customDateInput) {
+        const dateMatch = customDateInput.match(/^(\d{4})-(\d{2})-(\d{2})$/);
         if (!dateMatch) {
           throw new Error('Invalid date format. Use YYYY-MM-DD (e.g., 2024-01-15)');
         }
@@ -254,7 +250,7 @@ exports.handler = async function(event) {
         if (inputDate < serverToday) {
           throw new Error('Date must be today or in the future.');
         }
-      } else {
+      } else if (dateSelection) {
         // Calculate date based on selection (using server time zone)
         const now = new Date();
         const serverOffset = isDenverDST(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes()) ? -6 : -7;
@@ -279,6 +275,8 @@ exports.handler = async function(event) {
         year = targetDate.getFullYear();
         month = targetDate.getMonth() + 1;
         day = targetDate.getDate();
+      } else {
+        throw new Error('Either select a date from the dropdown or enter a custom date (YYYY-MM-DD).');
       }
       
       // Validate date
