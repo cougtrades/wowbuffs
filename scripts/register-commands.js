@@ -35,7 +35,8 @@ const dateChoices = [
   { name: `In 4 Days (${formatDate(new Date(serverTime.getTime() + 96 * 60 * 60 * 1000))})`, value: 'in_4_days' },
   { name: `In 5 Days (${formatDate(new Date(serverTime.getTime() + 120 * 60 * 60 * 1000))})`, value: 'in_5_days' },
   { name: `In 6 Days (${formatDate(new Date(serverTime.getTime() + 144 * 60 * 60 * 1000))})`, value: 'in_6_days' },
-  { name: `In 7 Days (${formatDate(new Date(serverTime.getTime() + 168 * 60 * 60 * 1000))})`, value: 'in_7_days' }
+  { name: `In 7 Days (${formatDate(new Date(serverTime.getTime() + 168 * 60 * 60 * 1000))})`, value: 'in_7_days' },
+  { name: 'Future Date (YYYY-MM-DD)', value: 'manual' }
 ];
 
 const command = {
@@ -77,6 +78,12 @@ const command = {
       type: 3,
       required: true,
       choices: dateChoices
+    },
+    {
+      name: 'manual_date',
+      description: 'Manual date entry (YYYY-MM-DD) - required when "Future Date" is selected',
+      type: 3,
+      required: false
     },
     {
       name: 'time',
