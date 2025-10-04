@@ -223,50 +223,33 @@ exports.handler = async function(event) {
       if (!guild) throw new Error('guild is required');
 
       const dateSelection = String(opts.date || '').trim();
-      const manualDateInput = String(opts.manual_date || '').trim();
       const timeInput = String(opts.time || '').trim();
       if (!dateSelection || !timeInput) throw new Error('date and time are required');
       
-      let year, month, day;
+      // Calculate date based on selection (using server time zone)
+      const now = new Date();
+      const serverOffset = isDenverDST(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes()) ? -6 : -7;
+      const serverTime = new Date(now.getTime() + serverOffset * 60 * 60 * 1000);
       
-      // Handle date selection
-      if (dateSelection === 'manual' || manualDateInput) {
-        // Parse manual date input (YYYY-MM-DD format)
-        const dateToParse = manualDateInput || dateSelection;
-        const dateMatch = dateToParse.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-        if (!dateMatch) {
-          throw new Error('Invalid date format. Use YYYY-MM-DD (e.g., 2024-01-15)');
-        }
-        
-        year = parseInt(dateMatch[1], 10);
-        month = parseInt(dateMatch[2], 10);
-        day = parseInt(dateMatch[3], 10);
-      } else {
-        // Calculate date based on selection (using server time zone)
-        const now = new Date();
-        const serverOffset = isDenverDST(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes()) ? -6 : -7;
-        const serverTime = new Date(now.getTime() + serverOffset * 60 * 60 * 1000);
-        
-        let daysToAdd = 0;
-        switch (dateSelection) {
-          case 'today': daysToAdd = 0; break;
-          case 'tomorrow': daysToAdd = 1; break;
-          case 'day_after': daysToAdd = 2; break;
-          case 'in_3_days': daysToAdd = 3; break;
-          case 'in_4_days': daysToAdd = 4; break;
-          case 'in_5_days': daysToAdd = 5; break;
-          case 'in_6_days': daysToAdd = 6; break;
-          case 'in_7_days': daysToAdd = 7; break;
-          default: throw new Error('Invalid date selection');
-        }
-        
-        const targetDate = new Date(serverTime);
-        targetDate.setDate(targetDate.getDate() + daysToAdd);
-        
-        year = targetDate.getFullYear();
-        month = targetDate.getMonth() + 1;
-        day = targetDate.getDate();
+      let daysToAdd = 0;
+      switch (dateSelection) {
+        case 'today': daysToAdd = 0; break;
+        case 'tomorrow': daysToAdd = 1; break;
+        case 'day_after': daysToAdd = 2; break;
+        case 'in_3_days': daysToAdd = 3; break;
+        case 'in_4_days': daysToAdd = 4; break;
+        case 'in_5_days': daysToAdd = 5; break;
+        case 'in_6_days': daysToAdd = 6; break;
+        case 'in_7_days': daysToAdd = 7; break;
+        default: throw new Error('Invalid date selection');
       }
+      
+      const targetDate = new Date(serverTime);
+      targetDate.setDate(targetDate.getDate() + daysToAdd);
+      
+      const year = targetDate.getFullYear();
+      const month = targetDate.getMonth() + 1;
+      const day = targetDate.getDate();
       
       // Validate date
       if (month < 1 || month > 12 || day < 1 || day > 31) {
