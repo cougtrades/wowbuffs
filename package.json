@@ -1,7 +1,11 @@
 {
   "name": "wowbuffs",
   "version": "1.0.0",
+  "scripts": {
+    "register:commands": "node scripts/register-commands.js"
+  },
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "tweetnacl": "^1.0.3"
   }
 }
