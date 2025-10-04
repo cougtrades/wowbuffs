@@ -44,9 +44,26 @@ const command = {
     },
     {
       name: 'date',
-      description: 'Date for the buff drop (YYYY-MM-DD format, e.g., 2024-01-15)',
+      description: 'Date for the buff drop',
       type: 3,
-      required: true
+      required: true,
+      choices: [
+        { name: 'Today', value: 'today' },
+        { name: 'Tomorrow', value: 'tomorrow' },
+        { name: 'Day After Tomorrow', value: 'day_after' },
+        { name: 'In 3 Days', value: 'in_3_days' },
+        { name: 'In 4 Days', value: 'in_4_days' },
+        { name: 'In 5 Days', value: 'in_5_days' },
+        { name: 'In 6 Days', value: 'in_6_days' },
+        { name: 'In 7 Days', value: 'in_7_days' },
+        { name: 'Manual Entry (YYYY-MM-DD)', value: 'manual' }
+      ]
+    },
+    {
+      name: 'manual_date',
+      description: 'Manual date entry (YYYY-MM-DD) - only required if "Manual Entry" was selected',
+      type: 3,
+      required: false
     },
     {
       name: 'time',
