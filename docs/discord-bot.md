@@ -24,7 +24,9 @@ Add a Discord slash command `/post` for world-buff droppers. Submissions will fl
 - **Env Vars**:
   - `DISCORD_PUBLIC_KEY` (required for signature verification)
   - `DISCORD_BOT_TOKEN` (required to send follow-up messages to channels)
-  - `DISCORD_CHANNEL_IDS` (comma-separated list of channel IDs for announcements)
+  - `DISCORD_CHANNEL_IDS_HORDE` (comma-separated channel IDs for Horde announcements)
+  - `DISCORD_CHANNEL_IDS_ALLIANCE` (comma-separated channel IDs for Alliance announcements)
+  - `DISCORD_CHANNEL_IDS` (fallback; used if per-faction vars are empty)
   - `GITHUB_TOKEN` (already used by `add-buff`)
 - **Responsibilities**:
   - Handle `PING` (type 1) with `PONG`.

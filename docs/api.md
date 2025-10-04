@@ -139,7 +139,7 @@ curl -X POST https://hcbuffs.com/.netlify/functions/cleanup-buffs
 ## discord-interactions
 - **Endpoint**: `POST /.netlify/functions/discord-interactions`
 - **Description**: Discord interactions endpoint that verifies signatures and handles the `/post` command, committing new buffs and broadcasting to channels.
-- **Environment**: `DISCORD_PUBLIC_KEY`, `DISCORD_BOT_TOKEN`, `DISCORD_CHANNEL_IDS`, `GITHUB_TOKEN`.
+- **Environment**: `DISCORD_PUBLIC_KEY`, `DISCORD_BOT_TOKEN`, `DISCORD_CHANNEL_IDS_HORDE`, `DISCORD_CHANNEL_IDS_ALLIANCE`, `DISCORD_CHANNEL_IDS` (fallback), `GITHUB_TOKEN`.
 - **Interactions**:
   - `PING` (type 1): returns `PONG`.
   - `APPLICATION_COMMAND` (type 2): `/post` with options:

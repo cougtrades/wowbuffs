@@ -138,7 +138,21 @@ function formatStTimeFromIso(iso) {
 
 async function broadcastToChannels({ faction, newBuff }) {
   const botToken = process.env.DISCORD_BOT_TOKEN;
-  const channelIds = (process.env.DISCORD_CHANNEL_IDS || '').split(',').map(s => s.trim()).filter(Boolean);
+  // Prefer per-faction channels; fall back to DISCORD_CHANNEL_IDS
+  let channelIdsRaw = '';
+  if (String(faction).toLowerCase() === 'horde') {
+    channelIdsRaw = process.env.DISCORD_CHANNEL_IDS_HORDE
+      || process.env.DISCORD_CHANNEL_ID_HORDE
+      || '';
+  } else if (String(faction).toLowerCase() === 'alliance') {
+    channelIdsRaw = process.env.DISCORD_CHANNEL_IDS_ALLIANCE
+      || process.env.DISCORD_CHANNEL_ID_ALLIANCE
+      || '';
+  }
+  if (!channelIdsRaw) {
+    channelIdsRaw = process.env.DISCORD_CHANNEL_IDS || '';
+  }
+  const channelIds = channelIdsRaw.split(',').map(s => s.trim()).filter(Boolean);
   if (!botToken || channelIds.length === 0) return; // Nothing to do
 
   const content = `[${capitalizeWord(faction)}] ${newBuff.buff} at ${formatStTimeFromIso(newBuff.datetime)} — Guild: ${newBuff.guild}${newBuff.notes ? `\nNotes: ${newBuff.notes}` : ''}\nhttps://hcbuffs.com`;
