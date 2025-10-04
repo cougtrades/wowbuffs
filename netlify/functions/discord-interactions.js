@@ -222,9 +222,24 @@ exports.handler = async function(event) {
       const guild = String(opts.guild || '').trim();
       if (!guild) throw new Error('guild is required');
 
-      const dateInput = opts.date;
+      const dateInput = String(opts.date || '').trim();
       const timeInput = String(opts.time || '').trim();
       if (!dateInput || !timeInput) throw new Error('date and time are required');
+      
+      // Parse date input (YYYY-MM-DD format)
+      const dateMatch = dateInput.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!dateMatch) {
+        throw new Error('Invalid date format. Use YYYY-MM-DD (e.g., 2024-01-15)');
+      }
+      
+      const year = parseInt(dateMatch[1], 10);
+      const month = parseInt(dateMatch[2], 10);
+      const day = parseInt(dateMatch[3], 10);
+      
+      // Validate date
+      if (month < 1 || month > 12 || day < 1 || day > 31) {
+        throw new Error('Invalid date. Month must be 1-12, day must be 1-31');
+      }
       
       // Parse flexible time input (supports HH:MM, H:MM, HHMM, H:MM AM/PM, etc.)
       let hours, minutes;
@@ -246,19 +261,9 @@ exports.handler = async function(event) {
         throw new Error('Invalid time format. Use HH:MM (24-hour) or H:MM AM/PM (12-hour)');
       }
       
-      // Convert Discord date (ISO string) and time to combined datetime
-      const date = new Date(dateInput);
-      date.setUTCHours(hours, minutes, 0, 0);
-      
       // Convert from ST to UTC
-      const year = date.getUTCFullYear();
-      const month = date.getUTCMonth() + 1;
-      const day = date.getUTCDate();
-      const hour = date.getUTCHours();
-      const minute = date.getUTCMinutes();
-      
-      const offsetHours = isDenverDST(year, month, day, hour, minute) ? 6 : 7; // ST -> UTC
-      const utcMs = Date.UTC(year, month - 1, day, hour + offsetHours, minute, 0, 0);
+      const offsetHours = isDenverDST(year, month, day, hours, minutes) ? 6 : 7; // ST -> UTC
+      const utcMs = Date.UTC(year, month - 1, day, hours + offsetHours, minutes, 0, 0);
       const isoDatetime = new Date(utcMs).toISOString().replace(/\.\d{3}Z$/, 'Z');
 
       const notes = (opts.notes || '').toString().trim();

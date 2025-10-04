@@ -44,8 +44,8 @@ const command = {
     },
     {
       name: 'date',
-      description: 'Date for the buff drop',
-      type: 11,
+      description: 'Date for the buff drop (YYYY-MM-DD format, e.g., 2024-01-15)',
+      type: 3,
       required: true
     },
     {
