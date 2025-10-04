@@ -514,12 +514,13 @@ body.alliance .timer-container {
   right: -0.3125rem;
   bottom: -0.3125rem;
   background: radial-gradient(circle at center, transparent 50%, rgba(255, 51, 51, 0.05) 100%);
-  animation: glow 3s infinite alternate;
+  animation: haloPulse 3s infinite alternate;
   z-index: -1;
   border-radius: 0.625rem;
 }
 
-@keyframes glow {
+/* Countdown halo animation (distinct from card glow) */
+@keyframes haloPulse {
   from {
     opacity: 0.3;
     transform: scale(0.98);
