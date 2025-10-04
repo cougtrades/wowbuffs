@@ -8,60 +8,82 @@ let showLocalTime = localStorage.getItem("showLocalTime") !== "false";
 let lastBuffsEtag = { horde: null, alliance: null };
 let isPageHidden = false;
 
+// Shared timezone catalog for dropdown and filtering
+const COUNTRY_TIMEZONES = {
+  "United States": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
+  "Canada": ["America/Toronto", "America/Vancouver"],
+  "Australia": ["Australia/Perth", "Australia/Sydney"],
+  "Chile": ["America/Santiago"],
+  "Brazil": ["America/Sao_Paulo"],
+  "United Kingdom": ["Europe/London"],
+  "New Zealand": ["Pacific/Auckland"],
+  "China": ["Asia/Shanghai"],
+  "Argentina": ["America/Argentina/Buenos_Aires"],
+  "Germany": ["Europe/Berlin"],
+  "Sweden": ["Europe/Stockholm"],
+  "Ukraine": ["Europe/Kiev"],
+  "Mexico": ["America/Mexico_City"],
+  "Colombia": ["America/Bogota"],
+  "Russia": ["Europe/Moscow"],
+  "Norway": ["Europe/Oslo"],
+  "Spain": ["Europe/Madrid"],
+  "Singapore": ["Asia/Singapore"],
+  "Finland": ["Europe/Helsinki"],
+  "Peru": ["America/Lima"],
+  "Indonesia": ["Asia/Jakarta"],
+  "Netherlands": ["Europe/Amsterdam"],
+  "Denmark": ["Europe/Copenhagen"],
+  "South Korea": ["Asia/Seoul"],
+  "Taiwan": ["Asia/Taipei"],
+  "Venezuela": ["America/Caracas"],
+  "France": ["Europe/Paris"],
+  "Hungary": ["Europe/Budapest"],
+  "Romania": ["Europe/Bucharest"],
+  "Saudi Arabia": ["Asia/Riyadh"],
+  "Belarus": ["Europe/Minsk"],
+  "Czechia": ["Europe/Prague"],
+  "Poland": ["Europe/Warsaw"],
+  "Thailand": ["Asia/Bangkok"],
+  "Costa Rica": ["America/Costa_Rica"],
+  "Iceland": ["Atlantic/Reykjavik"],
+  "Malaysia": ["Asia/Kuala_Lumpur"],
+  "Serbia": ["Europe/Belgrade"],
+  "Uruguay": ["America/Montevideo"],
+  "Cyprus": ["Asia/Nicosia"],
+  "Japan": ["Asia/Tokyo"]
+};
+
 function populateTimezoneDropdown() {
   const timezoneSelect = document.getElementById("timezone");
   const timezoneSearch = document.getElementById("timezoneSearch");
-  const countryTimezones = {
-    "United States": ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"],
-    "Canada": ["America/Toronto", "America/Vancouver"],
-    "Australia": ["Australia/Perth", "Australia/Sydney"],
-    "Chile": ["America/Santiago"],
-    "Brazil": ["America/Sao_Paulo"],
-    "United Kingdom": ["Europe/London"],
-    "New Zealand": ["Pacific/Auckland"],
-    "China": ["Asia/Shanghai"],
-    "Argentina": ["America/Argentina/Buenos_Aires"],
-    "Germany": ["Europe/Berlin"],
-    "Sweden": ["Europe/Stockholm"],
-    "Ukraine": ["Europe/Kiev"],
-    "Mexico": ["America/Mexico_City"],
-    "Colombia": ["America/Bogota"],
-    "Russia": ["Europe/Moscow"],
-    "Norway": ["Europe/Oslo"],
-    "Spain": ["Europe/Madrid"],
-    "Singapore": ["Asia/Singapore"],
-    "Finland": ["Europe/Helsinki"],
-    "Peru": ["America/Lima"],
-    "Indonesia": ["Asia/Jakarta"],
-    "Netherlands": ["Europe/Amsterdam"],
-    "Denmark": ["Europe/Copenhagen"],
-    "South Korea": ["Asia/Seoul"],
-    "Taiwan": ["Asia/Taipei"],
-    "Venezuela": ["America/Caracas"],
-    "France": ["Europe/Paris"],
-    "Hungary": ["Europe/Budapest"],
-    "Romania": ["Europe/Bucharest"],
-    "Saudi Arabia": ["Asia/Riyadh"],
-    "Belarus": ["Europe/Minsk"],
-    "Czechia": ["Europe/Prague"],
-    "Poland": ["Europe/Warsaw"],
-    "Thailand": ["Asia/Bangkok"],
-    "Costa Rica": ["America/Costa_Rica"],
-    "Iceland": ["Atlantic/Reykjavik"],
-    "Malaysia": ["Asia/Kuala_Lumpur"],
-    "Serbia": ["Europe/Belgrade"],
-    "Uruguay": ["America/Montevideo"],
-    "Cyprus": ["Asia/Nicosia"],
-    "Japan": ["Asia/Tokyo"]
-  };
 
-  let options = Object.entries(countryTimezones).map(([country, zones]) => {
+  let options = Object.entries(COUNTRY_TIMEZONES).map(([country, zones]) => {
     return `<optgroup label="${country}">
       ${zones.map(zone => `<option value="${zone}" ${zone === selectedTimezone ? "selected" : ""}>${zone}</option>`).join("")}
     </optgroup>`;
   }).join("");
 
   timezoneSelect.innerHTML = options;
+}
+
+function filterTimezones() {
+  const searchInput = document.getElementById('timezoneSearch');
+  const timezoneSelect = document.getElementById('timezone');
+  if (!searchInput || !timezoneSelect) return;
+  const term = searchInput.value.trim().toLowerCase();
+
+  // Rebuild options filtered by search term
+  const filtered = Object.entries(COUNTRY_TIMEZONES).reduce((acc, [country, zones]) => {
+    const matchZones = zones.filter(z => z.toLowerCase().includes(term) || country.toLowerCase().includes(term));
+    if (matchZones.length) acc.push([country, matchZones]);
+    return acc;
+  }, []);
+
+  const html = filtered.map(([country, zones]) => {
+    return `<optgroup label="${country}">${zones.map(zone => `<option value="${zone}" ${zone === selectedTimezone ? 'selected' : ''}>${zone}</option>`).join('')}</optgroup>`;
+  }).join('');
+
+  timezoneSelect.innerHTML = html || `<option value="${selectedTimezone}" selected>${selectedTimezone}</option>`;
 }
 
 function updateTimezone() {

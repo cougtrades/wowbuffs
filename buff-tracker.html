@@ -484,16 +484,12 @@
         }
 
         function convertToUTC(stDate, stTime) {
-            const [year, month, day] = stDate.split('-').map(Number);
-            const [hours, minutes] = stTime.split(':').map(Number);
-            const stDatetime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
-            
-            const dstStart = new Date(Date.UTC(2025, 2, 9, 8, 0));
-            const isDst = stDatetime >= dstStart;
-            const stOffset = isDst ? 6 : 7;
-            stDatetime.setHours(stDatetime.getHours() + stOffset);
-            
-            return stDatetime.toISOString().replace(/\.\d{3}Z$/, 'Z');
+            const m = moment.tz(`${stDate} ${stTime}`, 'YYYY-MM-DD HH:mm', 'America/Denver');
+            if (!m.isValid()) {
+                throw new Error('Invalid date or time format. Use YYYY-MM-DD for date and HH:MM for time.');
+            }
+            // Normalize to ISO without milliseconds for consistency
+            return m.toDate().toISOString().replace(/\.\d{3}Z$/, 'Z');
         }
 
         function validateBuffEntry(entry) {
@@ -587,8 +583,12 @@
                     fetch('alliance_buffs.json')
                 ]);
 
-                const hordeBuffs = await hordeResponse.json();
-                const allianceBuffs = await allianceResponse.json();
+                const hordeData = await hordeResponse.json();
+                const allianceData = await allianceResponse.json();
+
+                // Annotate each buff with its originating faction to avoid guessing later
+                const hordeBuffs = hordeData.map(b => ({ ...b, faction: 'horde' }));
+                const allianceBuffs = allianceData.map(b => ({ ...b, faction: 'alliance' }));
 
                 const now = moment().tz("America/Denver");
                 const activeBuffs = [...hordeBuffs, ...allianceBuffs]
@@ -604,7 +604,7 @@
                     buffCard.className = 'active-buff-card';
                     buffCard.innerHTML = `
                         <button class="edit-buff-btn" onclick="toggleEditForm(this)">Edit</button>
-                        <button class="delete-buff-btn" onclick="deleteBuff(this, '${buff.datetime}', '${buff.guild}', '${buff.buff}')">Delete</button>
+                        <button class="delete-buff-btn" onclick="deleteBuff(this, '${buff.datetime}', '${buff.guild}', '${buff.buff}', '${buff.faction}')">Delete</button>
                         <div class="buff-info">
                             <p><strong>Guild:</strong> ${buff.guild}</p>
                             <p><strong>Buff:</strong> ${buff.buff}</p>
@@ -637,7 +637,7 @@
                                 <label for="editNotes">Notes:</label>
                                 <input type="text" id="editNotes" value="${buff.notes || ''}">
                             </div>
-                            <button onclick="updateBuff(this, '${buff.datetime}', '${buff.guild}', '${buff.buff}')">Save Changes</button>
+                            <button onclick="updateBuff(this, '${buff.datetime}', '${buff.guild}', '${buff.buff}', '${buff.faction}')">Save Changes</button>
                         </div>
                     `;
                     activeBuffsContainer.appendChild(buffCard);
@@ -652,7 +652,7 @@
             form.classList.toggle('active');
         }
 
-        async function updateBuff(button, oldDatetime, oldGuild, oldBuff) {
+        async function updateBuff(button, oldDatetime, oldGuild, oldBuff, factionParam) {
             const card = button.closest('.active-buff-card');
             const newGuild = card.querySelector('#editGuild').value;
             const newBuffType = card.querySelector('#editBuffType').value;
@@ -672,8 +672,11 @@
                 const guildList = [...hordeGuilds, ...allianceGuilds];
                 const exactGuild = guildList.find(g => g.value.toLowerCase() === newGuild.toLowerCase())?.value || newGuild;
                 const exactOldGuild = guildList.find(g => g.value.toLowerCase() === oldGuild.toLowerCase())?.value || oldGuild;
-                
-                const faction = exactOldGuild.toLowerCase() in hordeGuilds.map(g => g.value.toLowerCase()) ? 'horde' : 'alliance';
+
+                // Prefer provided faction; fall back to guild list membership
+                const faction = (factionParam === 'horde' || factionParam === 'alliance')
+                    ? factionParam
+                    : (hordeGuilds.map(g => g.value.toLowerCase()).includes(exactOldGuild.toLowerCase()) ? 'horde' : 'alliance');
 
                 const updateData = {
                     faction,
@@ -719,13 +722,16 @@
             }
         }
 
-        async function deleteBuff(button, datetime, guild, buffType) {
+        async function deleteBuff(button, datetime, guild, buffType, factionParam) {
             if (!confirm('Are you sure you want to delete this buff?')) {
                 return;
             }
 
             try {
-                const faction = guild.toLowerCase() in hordeGuilds.map(g => g.value.toLowerCase()) ? 'horde' : 'alliance';
+                // Prefer provided faction; fall back to guild list membership
+                const faction = (factionParam === 'horde' || factionParam === 'alliance')
+                    ? factionParam
+                    : (hordeGuilds.map(g => g.value.toLowerCase()).includes(guild.toLowerCase()) ? 'horde' : 'alliance');
                 
                 const response = await fetch('/.netlify/functions/delete-buff', {
                     method: 'POST',

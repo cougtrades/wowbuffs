@@ -2,13 +2,16 @@ import requests
 from datetime import datetime, timedelta, UTC
 import json
 
-# Twitch API credentials
-CLIENT_ID = "fq0zwvwpscp5gf3x50k9qibyx7lekg"
-CLIENT_SECRET = "aslnns7feymjmvylh0v7ddw1ktrkj8"
+# Twitch API credentials (read from environment)
+import os
+CLIENT_ID = os.getenv("TWITCH_CLIENT_ID", "")
+CLIENT_SECRET = os.getenv("TWITCH_CLIENT_SECRET", "")
 GAME_ID = "18122"  # World of Warcraft game ID
 
 # Get access token
 def get_access_token():
+    if not CLIENT_ID or not CLIENT_SECRET:
+        raise RuntimeError("TWITCH_CLIENT_ID and TWITCH_CLIENT_SECRET are required in environment")
     url = "https://id.twitch.tv/oauth2/token"
     params = {
         "client_id": CLIENT_ID,
@@ -50,12 +53,16 @@ def fetch_wow_clips(token):
     
     return all_clips
 
-# Generate HTML embed code for top clips
+"""Generate HTML embed code for top clips.
+
+The Twitch embed requires specifying the parent domain. This should match the
+site where the HTML will be hosted. Defaults to hcbuffs.com.
+"""
 def generate_embed_html(clips, num_clips=10, domain="hcbuffs.com"):
     # Sort clips by view_count and take top N
     top_clips = sorted(clips, key=lambda x: x["view_count"], reverse=True)[:num_clips]
     
-    html = '<div class="clips-wrapper">\n'  # Remove the title and change to clips-wrapper
+    html = '<div class="clips-wrapper">\n'
     for clip in top_clips:
         embed_url = f"https://clips.twitch.tv/embed?clip={clip['id']}&parent={domain}"
         html += f'''    <div class="clip">
@@ -67,7 +74,6 @@ def generate_embed_html(clips, num_clips=10, domain="hcbuffs.com"):
     html += "</div>"
     return html
 
-# Main execution
 def main():
     try:
         token = get_access_token()
@@ -75,7 +81,7 @@ def main():
         embed_html = generate_embed_html(clips, num_clips=10, domain="hcbuffs.com")
         
         # Save to a file for use in your website
-        with open("wowbuffs/twitch_clips.html", "w") as f:
+        with open("twitch_clips.html", "w") as f:
             f.write(embed_html)
         print("Generated twitch_clips.html with top 10 clips.")
         print(f"Total clips fetched: {len(clips)}")
