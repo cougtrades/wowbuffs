@@ -50,35 +50,9 @@ const command = {
     },
     {
       name: 'time',
-      description: 'Time for the buff drop (server time)',
+      description: 'Time for the buff drop (HH:MM server time, e.g., 19:30 or 7:30 PM)',
       type: 3,
-      required: true,
-      choices: [
-        { name: '12:00 AM', value: '00:00' },
-        { name: '1:00 AM', value: '01:00' },
-        { name: '2:00 AM', value: '02:00' },
-        { name: '3:00 AM', value: '03:00' },
-        { name: '4:00 AM', value: '04:00' },
-        { name: '5:00 AM', value: '05:00' },
-        { name: '6:00 AM', value: '06:00' },
-        { name: '7:00 AM', value: '07:00' },
-        { name: '8:00 AM', value: '08:00' },
-        { name: '9:00 AM', value: '09:00' },
-        { name: '10:00 AM', value: '10:00' },
-        { name: '11:00 AM', value: '11:00' },
-        { name: '12:00 PM', value: '12:00' },
-        { name: '1:00 PM', value: '13:00' },
-        { name: '2:00 PM', value: '14:00' },
-        { name: '3:00 PM', value: '15:00' },
-        { name: '4:00 PM', value: '16:00' },
-        { name: '5:00 PM', value: '17:00' },
-        { name: '6:00 PM', value: '18:00' },
-        { name: '7:00 PM', value: '19:00' },
-        { name: '8:00 PM', value: '20:00' },
-        { name: '9:00 PM', value: '21:00' },
-        { name: '10:00 PM', value: '22:00' },
-        { name: '11:00 PM', value: '23:00' }
-      ]
+      required: true
     },
     {
       name: 'notes',

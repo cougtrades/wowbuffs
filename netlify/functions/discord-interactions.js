@@ -226,9 +226,28 @@ exports.handler = async function(event) {
       const timeInput = String(opts.time || '').trim();
       if (!dateInput || !timeInput) throw new Error('date and time are required');
       
+      // Parse flexible time input (supports HH:MM, H:MM, HHMM, H:MM AM/PM, etc.)
+      let hours, minutes;
+      
+      // Try HH:MM format first
+      const timeMatch = timeInput.match(/^(\d{1,2}):(\d{2})(?:\s*(AM|PM|am|pm))?$/);
+      if (timeMatch) {
+        hours = parseInt(timeMatch[1], 10);
+        minutes = parseInt(timeMatch[2], 10);
+        const ampm = timeMatch[3] ? timeMatch[3].toUpperCase() : null;
+        
+        if (ampm === 'PM' && hours !== 12) hours += 12;
+        if (ampm === 'AM' && hours === 12) hours = 0;
+        
+        if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+          throw new Error('Invalid time format. Use HH:MM (24-hour) or H:MM AM/PM (12-hour)');
+        }
+      } else {
+        throw new Error('Invalid time format. Use HH:MM (24-hour) or H:MM AM/PM (12-hour)');
+      }
+      
       // Convert Discord date (ISO string) and time to combined datetime
       const date = new Date(dateInput);
-      const [hours, minutes] = timeInput.split(':').map(Number);
       date.setUTCHours(hours, minutes, 0, 0);
       
       // Convert from ST to UTC
