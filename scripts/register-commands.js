@@ -72,17 +72,17 @@ const command = {
       required: true
     },
     {
+      name: 'time',
+      description: 'Time for the buff drop (HH:MM server time, e.g., 19:30 or 7:30 PM)',
+      type: 3,
+      required: true
+    },
+    {
       name: 'date',
       description: 'Quick date selection (or leave empty to use custom_date)',
       type: 3,
       required: false,
       choices: dateChoices
-    },
-    {
-      name: 'time',
-      description: 'Time for the buff drop (HH:MM server time, e.g., 19:30 or 7:30 PM)',
-      type: 3,
-      required: true
     },
     {
       name: 'custom_date',
