@@ -9,6 +9,35 @@ if (!APP_ID || !BOT_TOKEN) {
   process.exit(1);
 }
 
+// Helper function to calculate server time and format dates
+function getServerTime() {
+  const now = new Date();
+  // Simple DST check - this is approximate for server time (America/Denver)
+  const isDST = now.getMonth() >= 2 && now.getMonth() <= 10; // Rough DST period
+  const offset = isDST ? -6 : -7; // ST offset from UTC
+  return new Date(now.getTime() + offset * 60 * 60 * 1000);
+}
+
+function formatDate(date) {
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+}
+
+// Generate date choices with actual dates
+const serverTime = getServerTime();
+const dateChoices = [
+  { name: `Today (${formatDate(serverTime)})`, value: 'today' },
+  { name: `Tomorrow (${formatDate(new Date(serverTime.getTime() + 24 * 60 * 60 * 1000))})`, value: 'tomorrow' },
+  { name: `Day After (${formatDate(new Date(serverTime.getTime() + 48 * 60 * 60 * 1000))})`, value: 'day_after' },
+  { name: `In 3 Days (${formatDate(new Date(serverTime.getTime() + 72 * 60 * 60 * 1000))})`, value: 'in_3_days' },
+  { name: `In 4 Days (${formatDate(new Date(serverTime.getTime() + 96 * 60 * 60 * 1000))})`, value: 'in_4_days' },
+  { name: `In 5 Days (${formatDate(new Date(serverTime.getTime() + 120 * 60 * 60 * 1000))})`, value: 'in_5_days' },
+  { name: `In 6 Days (${formatDate(new Date(serverTime.getTime() + 144 * 60 * 60 * 1000))})`, value: 'in_6_days' },
+  { name: `In 7 Days (${formatDate(new Date(serverTime.getTime() + 168 * 60 * 60 * 1000))})`, value: 'in_7_days' }
+];
+
 const command = {
   name: 'post',
   description: 'Post a world-buff drop to HCBuffs',
@@ -47,16 +76,7 @@ const command = {
       description: 'Date for the buff drop',
       type: 3,
       required: true,
-      choices: [
-        { name: 'Today', value: 'today' },
-        { name: 'Tomorrow', value: 'tomorrow' },
-        { name: 'Day After Tomorrow', value: 'day_after' },
-        { name: 'In 3 Days', value: 'in_3_days' },
-        { name: 'In 4 Days', value: 'in_4_days' },
-        { name: 'In 5 Days', value: 'in_5_days' },
-        { name: 'In 6 Days', value: 'in_6_days' },
-        { name: 'In 7 Days', value: 'in_7_days' }
-      ]
+      choices: dateChoices
     },
     {
       name: 'time',
