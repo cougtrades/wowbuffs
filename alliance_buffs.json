@@ -84,6 +84,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-10-05T14:00:00Z",
+        "guild": "Elite",
+        "buff": "Zandalar",
+        "notes": "triplestack",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-05T23:13:00Z",
         "guild": "HC Cuties",
         "buff": "Zandalar",
