@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-10-03T00:02:00Z",
-        "guild": "HC Cuties",
-        "buff": "Onyxia",
-        "notes": "Scheduling it to go out after the <HC Roaches> drop to make it a double drop.",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-03T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-03T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-03T19:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Lyckez",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-03T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Tifflin",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-04T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "Nyrelia",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-04T10:58:00Z",
         "guild": "Eclipse",
         "buff": "Zandalar",
