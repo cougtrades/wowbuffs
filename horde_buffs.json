@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-10-04T03:28:00Z",
-        "guild": "swmg",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-04T03:30:00Z",
-        "guild": "swmg",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-04T03:30:00Z",
-        "guild": "swmg",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-05T08:00:00Z",
         "guild": "Anzacs HC",
         "buff": "Onyxia",
