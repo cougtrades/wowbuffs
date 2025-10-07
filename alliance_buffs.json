@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-10-05T10:58:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-05T11:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-05T14:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "triplestack",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-05T14:02:00Z",
-        "guild": "Elite",
-        "buff": "Onyxia",
-        "notes": "Sprint",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-05T23:13:00Z",
-        "guild": "HC Cuties",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-05T23:15:00Z",
-        "guild": "HC Cuties",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-06T00:55:00Z",
         "guild": "Resolve",
         "buff": "Onyxia",
