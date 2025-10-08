@@ -145,5 +145,12 @@
         "buff": "Rend",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-10T08:00:00Z",
+        "guild": "Anzacs HC",
+        "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
