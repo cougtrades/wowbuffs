@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-10-06T00:55:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-06T00:56:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-06T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-06T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-06T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "Suzi",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-07T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Nefarian",
-        "notes": "Smeepus",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-08T23:30:00Z",
         "guild": "Good Vibes Fresh Coffee",
         "buff": "Zandalar",
