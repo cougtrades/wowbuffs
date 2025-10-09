@@ -49,6 +49,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-10-11T14:00:00Z",
+        "guild": "Elite",
+        "buff": "Zandalar",
+        "notes": "Iorgen",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-13T01:48:00Z",
         "guild": "Collective",
         "buff": "Onyxia",
