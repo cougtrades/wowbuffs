@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-10-08T23:30:00Z",
-        "guild": "Good Vibes Fresh Coffee",
-        "buff": "Zandalar",
-        "notes": "Aluvia",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-08T23:32:00Z",
-        "guild": "Grail Knights",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-09T00:00:00Z",
-        "guild": "Grail Knights",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-09T00:45:00Z",
         "guild": "Valhalla Awakening",
         "buff": "Zandalar",
