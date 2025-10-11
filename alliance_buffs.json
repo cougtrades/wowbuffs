@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-10-09T00:45:00Z",
-        "guild": "Valhalla Awakening",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-09T23:58:00Z",
-        "guild": "HC Roaches",
-        "buff": "Zandalar",
-        "notes": "Dizz",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T00:00:00Z",
-        "guild": "HC Cuties",
-        "buff": "Onyxia",
-        "notes": "Scheduling it to go out after the <HC Roaches> drop to make it a double drop again.",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-10T00:55:00Z",
         "guild": "",
         "buff": "Zandalar",
