@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-10-10T00:50:00Z",
-        "guild": "zUg lIFE",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T00:52:00Z",
-        "guild": "zUg lIFE",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T00:53:00Z",
-        "guild": "zUg lIFE",
-        "buff": "Rend",
-        "notes": "cooked layers may delay drops",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T03:00:00Z",
-        "guild": "swmg",
-        "buff": "",
-        "notes": "Dropping triple after our raid tonight sometime around 9 PM server",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T07:57:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-10T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-11T03:15:00Z",
         "guild": "Fatal",
         "buff": "Zandalar",
