@@ -103,5 +103,12 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-12-10T23:12:00Z",
+        "guild": "Don't be Weird",
+        "buff": "Rend",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
