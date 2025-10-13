@@ -124,5 +124,12 @@
         "buff": "Zandalar",
         "notes": "Vostok",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-18T14:02:00Z",
+        "guild": "Elite",
+        "buff": "Onyxia",
+        "notes": "Alan",
+        "server": "Doomhowl"
     }
 ]
