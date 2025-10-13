@@ -117,5 +117,12 @@
         "buff": "Nefarian",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-18T14:00:00Z",
+        "guild": "Elite",
+        "buff": "Zandalar",
+        "notes": "Vostok",
+        "server": "Doomhowl"
     }
 ]
