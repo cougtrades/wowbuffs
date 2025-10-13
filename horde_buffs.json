@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-10-11T03:15:00Z",
-        "guild": "Fatal",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-11T03:15:00Z",
-        "guild": "Fatal",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-11T03:15:00Z",
-        "guild": "Fatal",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-11T07:57:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-11T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-11T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-14T03:30:00Z",
         "guild": "Heart and Solo",
         "buff": "Zandalar",
