@@ -14,13 +14,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-10-14T23:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-14T23:52:00Z",
         "guild": "zug life",
         "buff": "Onyxia",
@@ -80,6 +73,13 @@
         "datetime": "2025-10-17T23:52:00Z",
         "guild": "zug life",
         "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-17T23:52:00Z",
+        "guild": "zug life",
+        "buff": "Nefarian",
         "notes": "",
         "server": "Doomhowl"
     },
