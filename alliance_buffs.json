@@ -1,5 +1,12 @@
 [
     {
+        "datetime": "2025-10-15T12:00:00Z",
+        "guild": "Good Vibes Fresh Coffee",
+        "buff": "Zandalar",
+        "notes": "Notagane",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-15T23:30:00Z",
         "guild": "Grail Knights",
         "buff": "Zandalar",
