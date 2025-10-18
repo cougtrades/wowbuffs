@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-10-16T00:45:00Z",
-        "guild": "Valhalla Awakening",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-16T01:55:00Z",
-        "guild": "Resolve",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-16T01:56:00Z",
-        "guild": "Resolve",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-16T22:57:00Z",
-        "guild": "HC Roaches",
-        "buff": "Zandalar",
-        "notes": "Bighealing",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-16T23:00:00Z",
-        "guild": "HC Cuties",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-17T01:45:00Z",
         "guild": "Collective",
         "buff": "Zandalar",
