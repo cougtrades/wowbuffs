@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-10-17T01:45:00Z",
-        "guild": "Collective",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T01:48:00Z",
-        "guild": "Collective",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T14:30:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Locke",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T22:00:00Z",
-        "guild": "Phoenix RP",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T23:00:00Z",
-        "guild": "Insurrection",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T23:58:00Z",
-        "guild": "Risk",
-        "buff": "Zandalar",
-        "notes": "DarkBarbie",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-18T00:00:00Z",
-        "guild": "Risk",
-        "buff": "Onyxia",
-        "notes": "Calus",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-18T10:58:00Z",
         "guild": "Eclipse",
         "buff": "Zandalar",
