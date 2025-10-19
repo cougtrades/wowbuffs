@@ -1,54 +1,5 @@
 [
     {
-        "datetime": "2025-10-17T00:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T00:52:00Z",
-        "guild": "zug life",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T00:53:00Z",
-        "guild": "zug life",
-        "buff": "Rend",
-        "notes": "pending rend layers may delay these drops",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T23:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T23:52:00Z",
-        "guild": "zug life",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T23:52:00Z",
-        "guild": "zug life",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-17T23:53:00Z",
-        "guild": "zug life",
-        "buff": "Rend",
-        "notes": "pending rend layers may delay these drops",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-18T02:55:00Z",
         "guild": "FATAL",
         "buff": "Onyxia",
