@@ -68,5 +68,12 @@
         "buff": "Zandalar",
         "notes": "Iceblocknow",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-21T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Nefarian",
+        "notes": "Gwoss",
+        "server": "Doomhowl"
     }
 ]
