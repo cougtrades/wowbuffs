@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-10-18T10:58:00Z",
-        "guild": "Eclipse",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-18T11:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-18T11:00:00Z",
-        "guild": "Honor",
-        "buff": "Zandalar",
-        "notes": "Bloweyjoey",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-18T14:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Vostok",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-18T14:02:00Z",
-        "guild": "Elite",
-        "buff": "Onyxia",
-        "notes": "Alan",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-19T10:58:00Z",
         "guild": "Eclipse",
         "buff": "Zandalar",
