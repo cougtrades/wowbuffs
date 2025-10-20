@@ -54,5 +54,12 @@
         "buff": "Nefarian",
         "notes": "Gwoss",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-22T23:30:00Z",
+        "guild": "Grail Knights",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
