@@ -68,5 +68,12 @@
         "buff": "Zandalar",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-27T01:01:00Z",
+        "guild": "Resolve",
+        "buff": "Onyxia",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
