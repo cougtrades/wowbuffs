@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-10-19T23:10:00Z",
-        "guild": "Don't be Weird",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-19T23:12:00Z",
-        "guild": "Don't be Weird",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-19T23:12:00Z",
-        "guild": "Don't be Weird",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-20T23:30:00Z",
         "guild": "Don't be Weird",
         "buff": "Zandalar",
