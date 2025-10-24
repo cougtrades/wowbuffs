@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-10-22T03:00:00Z",
-        "guild": "",
-        "buff": "",
-        "notes": "post poned until after raid, looking at 9:00pm ST (sorry yall!)",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-22T23:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-22T23:52:00Z",
-        "guild": "zug life",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-22T23:53:00Z",
-        "guild": "zug life",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-23T07:57:00Z",
         "guild": "Anzacs HC",
         "buff": "Zandalar",
