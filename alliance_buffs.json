@@ -1,19 +1,5 @@
 [
     {
-        "datetime": "2025-10-22T23:30:00Z",
-        "guild": "Grail Knights",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-22T23:32:00Z",
-        "guild": "Grail Knights",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-24T00:55:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
