@@ -187,5 +187,12 @@
         "buff": "Zandalar",
         "notes": "Lambcakes",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-28T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "icantdps",
+        "server": "Doomhowl"
     }
 ]
