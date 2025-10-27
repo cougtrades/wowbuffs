@@ -89,5 +89,12 @@
         "buff": "Onyxia",
         "notes": "icantdps",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-28T22:00:00Z",
+        "guild": "Elite",
+        "buff": "Zandalar",
+        "notes": "Shoyo",
+        "server": "Doomhowl"
     }
 ]
