@@ -96,5 +96,12 @@
         "buff": "Zandalar",
         "notes": "Shoyo",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-10-29T23:30:00Z",
+        "guild": "Grail Knights",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
     }
 ]
