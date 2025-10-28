@@ -1,40 +1,5 @@
 [
     {
-        "datetime": "2025-10-26T15:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Setesh",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-26T15:02:00Z",
-        "guild": "Elite",
-        "buff": "Onyxia",
-        "notes": "Sspank",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-26T16:02:00Z",
-        "guild": "Elite",
-        "buff": "Onyxia",
-        "notes": "Sspank",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-26T22:58:00Z",
-        "guild": "Continental",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-26T23:00:00Z",
-        "guild": "",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-27T00:55:00Z",
         "guild": "Purpose",
         "buff": "Zandalar",
