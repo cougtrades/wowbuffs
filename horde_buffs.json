@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-10-28T01:30:00Z",
-        "guild": "",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-28T01:32:00Z",
-        "guild": "",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-28T01:32:00Z",
-        "guild": "",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-28T23:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-28T23:52:00Z",
-        "guild": "zug life",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-28T23:53:00Z",
-        "guild": "zug life",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-10-29T23:32:00Z",
         "guild": "Heart and Solo",
         "buff": "Onyxia",
