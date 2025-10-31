@@ -56,6 +56,13 @@
         "server": "Doomhowl"
     },
     {
+        "datetime": "2025-11-01T00:00:00Z",
+        "guild": "Risk",
+        "buff": "Onyxia",
+        "notes": "Prise",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-11-01T01:00:00Z",
         "guild": "Valhalla Awakening",
         "buff": "Zandalar",
