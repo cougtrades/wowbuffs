@@ -1,5 +1,12 @@
 [
     {
+        "datetime": "2025-10-25T01:00:00Z",
+        "guild": "Valhalla Awakening",
+        "buff": "Zandalar",
+        "notes": "",
+        "server": "Doomhowl"
+    },
+    {
         "datetime": "2025-10-30T01:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
