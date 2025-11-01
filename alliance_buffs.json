@@ -56,13 +56,6 @@
         "server": "Doomhowl"
     },
     {
-        "datetime": "2025-11-01T01:00:00Z",
-        "guild": "Valhalla Awakening",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-11-01T14:00:00Z",
         "guild": "Elite",
         "buff": "Zandalar",
@@ -95,6 +88,13 @@
         "guild": "Eclipse",
         "buff": "Nefarian",
         "notes": "",
+        "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-11-02T00:00:00Z",
+        "guild": "Valhalla Awakening",
+        "buff": "Zandalar",
+        "notes": "sorry about last time we fucked up the scheduling :P",
         "server": "Doomhowl"
     },
     {
