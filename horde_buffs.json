@@ -1,47 +1,5 @@
 [
     {
-        "datetime": "2025-10-30T07:57:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-30T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-30T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-30T23:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-30T23:52:00Z",
-        "guild": "zug life",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-10-30T23:53:00Z",
-        "guild": "zug life",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-11-01T07:57:00Z",
         "guild": "Anzacs HC",
         "buff": "Zandalar",
