@@ -96,5 +96,12 @@
         "buff": "Onyxia",
         "notes": "",
         "server": "Doomhowl"
+    },
+    {
+        "datetime": "2025-11-08T14:00:00Z",
+        "guild": "Elite",
+        "buff": "Zandalar",
+        "notes": "Dadblastit",
+        "server": "Doomhowl"
     }
 ]
