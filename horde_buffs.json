@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-11-01T07:57:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-01T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-01T08:00:00Z",
-        "guild": "Anzacs HC",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-11-05T23:30:00Z",
         "guild": "Heart and Solo",
         "buff": "Zandalar",
