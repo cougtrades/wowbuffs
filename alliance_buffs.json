@@ -1,33 +1,5 @@
 [
     {
-        "datetime": "2025-11-02T09:00:00Z",
-        "guild": "Honor",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-02T23:00:00Z",
-        "guild": "Eclipse",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-02T23:12:00Z",
-        "guild": "HC Cuties",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-02T23:15:00Z",
-        "guild": "HC Cuties",
-        "buff": "Onyxia",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-11-03T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
