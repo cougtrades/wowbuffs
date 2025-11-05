@@ -212,7 +212,7 @@ exports.handler = async function(event) {
     }
 
     const optsArr = interaction.data.options || [];
-    const opts = Object.fromEntries(optsArr.map(o => [o.name, o.value]));
+    const opts = Object.fromEntries((optsArr || []).map(o => [o.name, o.value]));
 
     try {
       const factionRaw = String(opts.faction || '').toLowerCase();

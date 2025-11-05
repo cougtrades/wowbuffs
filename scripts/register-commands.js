@@ -106,6 +106,7 @@ const command = {
         Authorization: `Bot ${BOT_TOKEN}`,
         'Content-Type': 'application/json'
       },
+      // For guild route, body is array; for global, it's a single command
       body: JSON.stringify(GUILD_ID ? [command] : command)
     });
 
