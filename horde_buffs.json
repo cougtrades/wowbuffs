@@ -1,26 +1,5 @@
 [
     {
-        "datetime": "2025-11-07T00:50:00Z",
-        "guild": "zug life",
-        "buff": "Zandalar",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-07T00:52:00Z",
-        "guild": "zug life",
-        "buff": "Nefarian",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-07T00:53:00Z",
-        "guild": "zug life",
-        "buff": "Rend",
-        "notes": "",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-11-08T07:57:00Z",
         "guild": "Anzacs HC",
         "buff": "Zandalar",
