@@ -1,19 +1,5 @@
 [
     {
-        "datetime": "2025-11-08T14:00:00Z",
-        "guild": "Elite",
-        "buff": "Zandalar",
-        "notes": "Dadblastit",
-        "server": "Doomhowl"
-    },
-    {
-        "datetime": "2025-11-08T14:02:00Z",
-        "guild": "Elite",
-        "buff": "Onyxia",
-        "notes": "Phurbie",
-        "server": "Doomhowl"
-    },
-    {
         "datetime": "2025-11-10T00:55:00Z",
         "guild": "Resolve",
         "buff": "Zandalar",
